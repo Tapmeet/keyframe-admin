@@ -44,6 +44,8 @@ const TemplateScene4 = (props) => {
   const [arrayIndex, setArrayIndex] = React.useState(0);
   const [showEditbutton, setShowEditbutton] = React.useState(false);
   const [playActive, setPlayActive] = React.useState(false);
+  const [sceneThumbnail, setSceneThumbnail] = React.useState("");
+  const [selectedCategory, setSelectedCategory] = React.useState('');
   // const [mediaArray, setMediaArray] = React.useState([
   //   {
   //     url: Scene,
@@ -299,6 +301,8 @@ const TemplateScene4 = (props) => {
       setMediaArray(response.data.scene.sceneData.media);
       setTextArray(response.data.scene.sceneData.textArray);
       setTextSize(response.data.scene.sceneData.textArray[0].fontSize);
+      setSceneThumbnail(response.data.scene.sceneThumbnail)
+      setSelectedCategory(response.data.scene.sceneCategory)
       // console.log(block.sceneData.textArray[0].fontSize);
       }
     });
@@ -341,6 +345,9 @@ const TemplateScene4 = (props) => {
             getTextSize={getTextSize}
             textSize={textSize}
             textlineHeight={textlineHeight}
+            id={4}
+            thumbnails={sceneThumbnail}
+            category={selectedCategory}
           />
         ) : (
           <ChangeBg showAddMedia={showAddMedia} type={bgType} scene={bgScene} />

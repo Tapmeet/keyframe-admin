@@ -69,7 +69,8 @@ const Scene1 = (props) => {
   return (
     <section className="template-new-wrapper-scene1">
       <div className="d-flex">
-        <div className="img-section">
+        <div className="img-section" 
+        height="1020" width="1920">
           {props.mediaArray ? (
             <DragResizeContainer
               className="resize-container"

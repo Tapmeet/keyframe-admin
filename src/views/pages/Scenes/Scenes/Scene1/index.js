@@ -27,6 +27,7 @@ const TemplateNew1 = (props) => {
   const cookies = new Cookies();
   const [textAligmnet, setTextAligmnet] = React.useState("text-center");
   const [bgType, setBgType] = React.useState("");
+  const [sceneThumbnail, setSceneThumbnail] = React.useState("");
   const [bgScene, setBgScene] = React.useState("");
   const [textColor, setTextColor] = React.useState("#333");
   const [content, setContent] = React.useState("");
@@ -39,6 +40,7 @@ const TemplateNew1 = (props) => {
   const [container, setContainer] = React.useState("");
   const [showEditbutton, setShowEditbutton] = React.useState(false);
   const [playActive, setPlayActive] = React.useState(false);
+  const [selectedCategory, setSelectedCategory] = React.useState('');
   // const [mediaArray, setMediaArray] = React.useState([
   //   {
   //     url: Scene,
@@ -236,6 +238,9 @@ const TemplateNew1 = (props) => {
         setWidth(response.data.scene.sceneData.boxwidth);
         setHeight(response.data.scene.sceneData.boxheight);
         setContent(response.data.scene.sceneData.content);
+        setSceneThumbnail(response.data.scene.sceneThumbnail)
+        setSelectedCategory(response.data.scene.sceneCategory)
+        
       }
     });
   }
@@ -328,6 +333,9 @@ const TemplateNew1 = (props) => {
               getTextSize={getTextSize}
               textSize={textSize}
               textlineHeight={textlineHeight}
+              id={1}
+              thumbnails={sceneThumbnail}
+              category={selectedCategory}
             />
           ) : null
         ) : (

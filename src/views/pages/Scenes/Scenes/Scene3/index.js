@@ -41,6 +41,8 @@ const TemplateScene3 = (props) => {
   const [container, setContainer] = React.useState("");
   const [showEditbutton, setShowEditbutton] = React.useState(false);
   const [playActive, setPlayActive] = React.useState(false);
+  const [sceneThumbnail, setSceneThumbnail] = React.useState("");
+  const [selectedCategory, setSelectedCategory] = React.useState('');
   // const [mediaArray, setMediaArray] = React.useState([
   //   {
   //     url: Scene,
@@ -233,6 +235,8 @@ const TemplateScene3 = (props) => {
         setWidth(response.data.scene.sceneData.boxwidth);
         setHeight(response.data.scene.sceneData.boxheight);
         setContent(response.data.scene.sceneData.content);
+        setSceneThumbnail(response.data.scene.sceneThumbnail)
+        setSelectedCategory(response.data.scene.sceneCategory)
       }
     });
   }
@@ -321,6 +325,9 @@ const TemplateScene3 = (props) => {
               getTextSize={getTextSize}
               textSize={textSize}
               textlineHeight={textlineHeight}
+              id={3}
+              thumbnails={sceneThumbnail}
+              category={selectedCategory}
             />
           ) : null
         ) : (

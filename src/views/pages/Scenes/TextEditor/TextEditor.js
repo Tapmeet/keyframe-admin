@@ -1,10 +1,27 @@
 /* eslint-disable react/jsx-no-duplicate-props */
 import React from "react";
 import FontPicker from "font-picker-react";
+import axios from "axios";
+import jwt_decode from "jwt-decode";
+import Cookies from "universal-cookie";
 import { SketchPicker } from "react-color";
-
+import {
+  apiUploadImage,
+  apiPath,
+  apiUpdateScene,
+  apiGetSceneCategories,
+} from "./../../../../Utility/Utility";
 const TextEditor = (props) => {
+  const [categories, setCategories] = React.useState([]);
+  const [userToken, setUserToken] = React.useState("");
+  const cookies = new Cookies();
+  const [userId, setUserId] = React.useState("");
+  const [sceneId, setSceneId] = React.useState(props.id);
   const [titleColor, setTitleColor] = React.useState(props.textColor);
+  const [thumbnail, setThumbnail] = React.useState(props.thumbnails);
+  //var thumbnail = props.thumbnail;
+  const [selectedCategory, setSelectedCategory] = React.useState(props.category);
+  const [processing, setProcessing] = React.useState(false);
   const [titleColorShow, setTitleColorShow] = React.useState(false);
   const [activeCapitalize, setactiveCapitalize] = React.useState(false);
   const [activeLeftAlign, setactiveLeftAlign] = React.useState(false);
@@ -17,9 +34,51 @@ const TextEditor = (props) => {
   //const [activeFontSize, setactiveFontSize] = React.useState(props.textSize);
   var activeFontSize = props.textSize;
   const toggleTitle = () => setTitleColorShow((prevState) => !prevState);
-
+  function setformImage(e) {
+    var parts = e.target.files[0].type.split("/");
+    var result = parts[0];
+    if (e.target.files[0] != "") {
+      const data = new FormData();
+      data.append("file", e.target.files[0]);
+      data.append("userId", userId);
+      setProcessing(true);
+      axios
+        .post(`${apiUploadImage}`, data)
+        .then((response) => {
+          setProcessing(false);
+          let fileUrl = response.data.message
+            .replace(/\\/g, "/")
+            .substring("public".length);
+          let imageUrl = fileUrl.replace("sets/", "");
+          let updatedImage = imageUrl;
+          setThumbnail(imageUrl);
+          axios
+            .put(`${apiUpdateScene}${sceneId}`, {
+              id: sceneId,
+              sceneThumbnail: updatedImage,
+            })
+            .then(function (response) {
+              console.log(response);
+            });
+        })
+        .catch((error) => {});
+    }
+  }
+  function updateCategory(e) {
+    setSelectedCategory(e.target.value)
+    if (e.target.value != "") {
+      axios
+        .put(`${apiUpdateScene}${sceneId}`, {
+          id: sceneId,
+          sceneCategory: e.target.value,
+        })
+        .then(function (response) {
+          console.log(response);
+        });
+    }
+  }
   React.useEffect(() => {
-    //console.log(props.textSize)
+    console.log(props.thumbnails);
     if (props.setTexttransform === "text-uppercase") {
       setactiveCapitalize(true);
     } else {
@@ -27,7 +86,26 @@ const TextEditor = (props) => {
     }
     //setactiveFontSize(props.textSize)
     activeFontSize = props.textSize;
-  }, []);
+    if (cookies.get("token")) {
+      setUserToken(cookies.get("token"));
+      const token = cookies.get("token");
+      const decoded = jwt_decode(token);
+      // console.log(decoded.id)
+      setUserId(decoded.id);
+      setSceneId(props.id);
+    }
+    if (props.thumbnails) {
+      setThumbnail(props.thumbnails);
+    }
+    if (props.category) {
+      setSelectedCategory(props.category);
+     console.log(props.category)
+    }
+    axios.get(`${apiGetSceneCategories}`, {}).then(function (response) {
+      
+      setCategories(response.data.scenes);
+    });
+  }, [props.thumbnails, props.category]);
   function setcapitalize() {
     if (activeCapitalize === true) {
       props.getTextTransform("");
@@ -60,7 +138,7 @@ const TextEditor = (props) => {
   }
   function setFontsize(e) {
     //setactiveFontSize(e);
-    activeFontSize = e
+    activeFontSize = e;
     props.getTextSize(e);
   }
   function setFontlineHeight(e) {
@@ -265,7 +343,7 @@ const TextEditor = (props) => {
             </li>
           </ul>
         </div>
-        <div className="text-editor animation-section">
+        <div className="text-editor animation-section sectionTwo">
           <h4>Text Animations</h4>
           <select>
             <option value="">No Animations</option>
@@ -273,6 +351,27 @@ const TextEditor = (props) => {
             <option value="1.4">Swipe from left</option>
             <option value="1.6">Scale Down</option>
             <option value="2">Simple fade</option>
+          </select>
+        </div>
+        <div className="thumbnail-wrapper sectionTwo">
+          <h4>Scene Thumbnail</h4>
+          {thumbnail ? (
+            <img
+              className="img-fluid"
+              src={apiPath + thumbnail}
+              alt="Thumbnail"
+            ></img>
+          ) : null}
+
+          <input type="file" onChange={(e) => setformImage(e)} />
+        </div>
+        <div className=" animation-section  category-section">
+          <h4>Scene Category</h4>
+          <select value={selectedCategory} onChange={updateCategory}>
+            <option value="">Select Category</option>;
+            {categories.map((data, index) => {
+              return <option value={data._id}>{data.title}</option>;
+            })}
           </select>
         </div>
       </div>

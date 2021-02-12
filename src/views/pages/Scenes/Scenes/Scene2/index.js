@@ -55,6 +55,8 @@ const TemplateScene2 = (props) => {
   const [showEditbutton, setShowEditbutton] = React.useState(false);
   const [mediaArray, setMediaArray] = React.useState([]);
   const [playActive, setPlayActive] = React.useState(false);
+  const [sceneThumbnail, setSceneThumbnail] = React.useState("");
+  const [selectedCategory, setSelectedCategory] = React.useState('');
   function getAlignment(alignment) {
     setTextAligmnet(alignment);
     const data = {
@@ -213,6 +215,8 @@ const TemplateScene2 = (props) => {
       setTextAligmnet(response.data.scene.sceneData.textAligmnet);
       setData(response.data.scene.sceneData);
       setContent(response.data.scene.sceneData.content);
+      setSceneThumbnail(response.data.scene.sceneThumbnail)
+      setSelectedCategory(response.data.scene.sceneCategory)
       }
     });
   }
@@ -278,6 +282,9 @@ const TemplateScene2 = (props) => {
             getTextSize={getTextSize}
             textSize={textSize}
             textlineHeight={textlineHeight}
+            id={2}
+            thumbnails={sceneThumbnail}
+            category={selectedCategory}
           />
         ) : (
           <ChangeBg showAddMedia={showAddMedia} type={bgType} scene={bgScene} />
