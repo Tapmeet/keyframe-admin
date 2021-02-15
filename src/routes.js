@@ -47,6 +47,7 @@ const TemplateScene4 = React.lazy(() => import('./views/pages/Scenes/Scenes/Scen
 const AllScenesCategories = React.lazy(() => import('./views/pages/Category/AllCategories'));
 const AddCategory = React.lazy(() => import('./views/pages/Category/AddCategory'));
 const EditCategory = React.lazy(() => import('./views/pages/Category/EditCategory'));
+const AllTemplates = React.lazy(() => import('./views/pages/Templates/AllTemplates'));
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
@@ -98,6 +99,7 @@ const routes = [
   { path: '/scene-categories', exact: true,  name: 'Categories', component: AllScenesCategories },
   { path: '/add-category', exact: true,  name: 'Add Category', component: AddCategory },
   { path: '/edit-category/:id', exact: true, name: 'Edit Category', component: EditCategory },
+  { path: '/all-templates', exact: true,  name: 'All Templates', component: AllTemplates },
 ];
 
 export default routes;

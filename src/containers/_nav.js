@@ -38,7 +38,7 @@ export default [
   {
     _tag: 'CSidebarNavItem',
     name: 'All Templates',
-    to: '/theme/typography',
+    to: '/all-templates',
     icon: 'cil-star',
   },
   {
