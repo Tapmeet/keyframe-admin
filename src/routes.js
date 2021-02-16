@@ -48,6 +48,11 @@ const AllScenesCategories = React.lazy(() => import('./views/pages/Category/AllC
 const AddCategory = React.lazy(() => import('./views/pages/Category/AddCategory'));
 const EditCategory = React.lazy(() => import('./views/pages/Category/EditCategory'));
 const AllTemplates = React.lazy(() => import('./views/pages/Templates/AllTemplates'));
+const AddTemplate = React.lazy(() => import('./views/pages/Templates/AddTemplate'));
+
+const AllTemplateCategories = React.lazy(() => import('./views/pages/TemplateCategory/AllCategories'));
+const AddTemplateCategory = React.lazy(() => import('./views/pages/TemplateCategory/AddCategory'));
+const EditTemplateCategory = React.lazy(() => import('./views/pages/TemplateCategory/EditCategory'));
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
@@ -100,6 +105,12 @@ const routes = [
   { path: '/add-category', exact: true,  name: 'Add Category', component: AddCategory },
   { path: '/edit-category/:id', exact: true, name: 'Edit Category', component: EditCategory },
   { path: '/all-templates', exact: true,  name: 'All Templates', component: AllTemplates },
+  { path: '/add-template', exact: true,  name: 'Add Template', component: AddTemplate },
+
+  { path: '/template-categories', exact: true,  name: 'Categories', component: AllTemplateCategories },
+  { path: '/add-template-category', exact: true,  name: 'Add Category', component: AddTemplateCategory },
+  { path: '/edit-template-category/:id', exact: true, name: 'Edit Category', component: EditTemplateCategory },
+ 
 ];
 
 export default routes;

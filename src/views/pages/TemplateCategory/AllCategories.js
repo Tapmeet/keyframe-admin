@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable eqeqeq */
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -6,11 +7,8 @@ import { Redirect } from "react-router-dom";
 import axios from "axios";
 import DataTable from "react-data-table-component";
 
-import { apiGetTemplates, apiPath } from "./../../../Utility/Utility";
-const AllTemplates = () => {
-  const renderEditUrl = (val, row) => (
-    <a href={`/${row["sceneId"]}`}>Edit Scene</a>
-  );
+import { apiGetTemplateCategories, apiPath } from "./../../../Utility/Utility";
+const AllTemplateCategories = () => {
   const [data, setData] = useState([]);
   const columns = [
     {
@@ -19,7 +17,7 @@ const AllTemplates = () => {
       ignoreRowClick: true,
       cell: (row) => (
         <img
-         src ={apiPath + row.templateImage}
+         src ={apiPath + row.categoryImage}
           alt="Poster"
           className="img-fluid"
         />
@@ -36,33 +34,31 @@ const AllTemplates = () => {
       ignoreRowClick: true,
       cell: (row) => (
         <a
-          href={"/#/edit-scene/" + row.sceneId}
+          href={"/#/edit-template-category/" + row._id}
           target="_blank"
           rel="noopener noreferrer"
         >
           {row.key}
-          Edit Scene
+        Edit Category
         </a>
       ),
     },
   ];
   useEffect(() => {
-    axios.get(`${apiGetTemplates}`, {}).then(function (response) {
-      console.log(response.data);
-      setData(response.data.template);
+    axios.get(`${apiGetTemplateCategories}`, {}).then(function (response) {
+      console.log(response.data.templates);
+      setData(response.data.templates);
     });
   }, []);
   return (
     <div className="container catgeory-wrapper ">
-      <div className="d-flex">
-        <h2>All Templates</h2>
-        <Link to="/add-template" className="btn">
-          Add Template
-        </Link>
-      </div>
+        <div className="d-flex">
+            <h2>All Categories</h2>
+            <Link to='/add-template-category' className="btn">Add Category</Link>
+        </div>
       <DataTable columns={columns} data={data} />
     </div>
   );
 };
 
-export default AllTemplates;
+export default AllTemplateCategories;

@@ -57,3 +57,11 @@ export const apiGetSceneCategories = `${url}api/category/all/`
 export const apiGetSceneCategory = `${url}api/category/get-category/`
 export const apiAddSceneCategory = `${url}api/category/add-category/`
 export const apiUpdateSceneCategory = `${url}api/category/`
+
+export const apiGetTemplateCategories = `${url}api/template-category/all/`
+export const apiGetTemplateCategory = `${url}api/template-category/get-category/`
+export const apiAddTemplateCategory = `${url}api/template-category/add-category/`
+export const apiUpdateTemplateCategory = `${url}api/template-category/`
+
+export const apiGetTemplates = `${url}api/template/all-templates`
+export const apiaddAdminTemplate = `${url}api/template/create-template`

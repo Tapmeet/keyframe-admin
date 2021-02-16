@@ -43,8 +43,8 @@ export default [
   },
   {
     _tag: 'CSidebarNavItem',
-    name: 'Active Templates',
-    to: '/theme/typography',
+    name: 'Template Categories',
+    to: '/template-categories',
     icon: 'cil-puzzle',
   },
   {
