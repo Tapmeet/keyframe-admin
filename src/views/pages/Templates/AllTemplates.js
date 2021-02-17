@@ -19,7 +19,7 @@ const AllTemplates = () => {
       ignoreRowClick: true,
       cell: (row) => (
         <img
-         src ={apiPath + row.templateImage}
+          src={apiPath + row.templateImage}
           alt="Poster"
           className="img-fluid"
         />
@@ -36,7 +36,14 @@ const AllTemplates = () => {
       ignoreRowClick: true,
       cell: (row) => (
         <a
-          href={"/#/edit-scene/" + row.sceneId}
+          href={
+            "/#/template/" +
+            row._id +
+            "/" +
+            row.sceneOrder[0].sceneId +
+            "/" +
+            row.sceneOrder[0].id
+          }
           target="_blank"
           rel="noopener noreferrer"
         >

@@ -65,3 +65,4 @@ export const apiUpdateTemplateCategory = `${url}api/template-category/`
 
 export const apiGetTemplates = `${url}api/template/all-templates`
 export const apiaddAdminTemplate = `${url}api/template/create-template`
+export const apigetAdminTemplate = `${url}api/template/get-admin-template`
