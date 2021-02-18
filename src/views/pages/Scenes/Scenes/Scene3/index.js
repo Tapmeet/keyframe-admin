@@ -275,6 +275,7 @@ const TemplateScene3 = (props) => {
       boxheight: obj.boxheight,
       textTransform: textTransform,
       media: mediaArray,
+      time: 4,
     };
     setTransformX(obj.x);
     setTransformY(obj.y);

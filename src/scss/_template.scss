@@ -6,11 +6,11 @@
     max-width: 100px;
     text-align: center;
     margin-top: 30px;
-    padding: 0; 
+    padding: 0;
     ul {
       margin-left: 0px;
       list-style: none;
-      padding: 0; 
+      padding: 0;
       li {
         margin-bottom: 50px;
         padding: 15px 10px;
@@ -323,7 +323,7 @@
     .inner-section {
       height: 100%;
     }
-    .player-thumb  {
+    .player-thumb {
       display: flex;
       height: 100%;
       .thumb-section {
@@ -621,6 +621,43 @@
   ul li {
     width: 33%;
     text-align: center;
+    position: relative;
+    &::after {
+      background: rgba(0, 0, 0, 0.5);
+      position: absolute;
+      content: "";
+      top: 0;
+      bottom: 0;
+      height: 100%;
+      width: 100%;
+      left: 0;
+      opacity: 0;
+      transition: all ease-in-out 0.4s;
+      z-index: 1;
+    }
+    &:hover &::after {
+      opacity: 1;
+    }
+    button {
+      position: absolute;
+      top: 0%;
+      margin: auto;
+      left: 0;
+      right: 0;
+      opacity: 0;
+      transition: all ease-in-out 0.4s;
+      z-index: 2;
+      background: #24213f;
+      color: #fff;
+      padding: 5px 15px;
+      border: 1px solid #fff;
+      border-radius: 5px;
+    }
+    &:hover button {
+      top: 40%;
+      opacity: 1;
+    }
+
     img {
       transition: all ease-in-out 0.4s;
       border-radius: 10px;
@@ -634,6 +671,9 @@
       transform: scale(1.04);
     }
   }
+}
+.template-new-media .rightPanel.addscenes ul li:hover::after {
+  opacity: 1;
 }
 .scene-section {
   position: relative;
@@ -864,12 +904,11 @@
   opacity: 0;
   transition: all ease-in-out 0.4s;
 }
-.section3 .resize-container{
+.section3 .resize-container {
   opacity: 0;
   transition: all ease-in-out 0.4s;
-
 }
-.section3.active  .resize-container{
+.section3.active .resize-container {
   opacity: 1;
   transition: all ease-in-out 0.4s;
 }
@@ -877,11 +916,10 @@
   opacity: 1;
   transition-delay: 0.8s;
   transition: all ease-in-out 0.4s;
-
 }
 
 .player-slider-1.animation .resize-container,
-.player-slider-2.animation .resize-container{
+.player-slider-2.animation .resize-container {
   top: 1%;
   transition: all ease-in-out 0.5s;
 }
@@ -898,7 +936,7 @@
   color: #fff;
   background: #ebedef;
 }
-.form-control{
+.form-control {
   height: auto;
 }
 .btn-link.btn,

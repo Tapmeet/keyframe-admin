@@ -49,9 +49,10 @@ export const apiUpdateUser = `${url}api/user/`
 export const apiAddScene = `${url}api/scene/add-scene`
 export const apiAllScene = `${url}api/scene/all-scenes`
 export const apigetUploads = `${url}api/template/get-uploads/`
-export const apiUpdateBlock = `${url}api/template/`
+export const apiUpdateBlock = `${url}api/template/update-scene`
 export const apiUpdateScene = `${url}api/scene/`
 export const apiGetScene = `${url}api/scene/get-scene/`
+export const apiGetCategoryScenes = `${url}api/scene/category-scenes`
 
 export const apiGetSceneCategories = `${url}api/category/all/`
 export const apiGetSceneCategory = `${url}api/category/get-category/`
@@ -66,3 +67,4 @@ export const apiUpdateTemplateCategory = `${url}api/template-category/`
 export const apiGetTemplates = `${url}api/template/all-templates`
 export const apiaddAdminTemplate = `${url}api/template/create-template`
 export const apigetAdminTemplate = `${url}api/template/get-admin-template`
+export const apiupdateAdminTemplate = `${url}api/template/update-template/`

@@ -23,6 +23,7 @@ import {
 } from "./../../../../../Utility/Utility";
 import Player from "../../Player";
 const TemplateSceneFour = (props) => {
+  const [bottomData, setBottomData] = React.useState("");
   const [userId, setUserId] = React.useState("");
   const match = useRouteMatch("/template/:templateId/4/:sceneId");
   const {
@@ -308,6 +309,7 @@ const TemplateSceneFour = (props) => {
         if (response.data.data.length > 0) {
           setBlocks(response.data.data[0].blocks);
           if (typeof response.data.data[0] !== undefined) {
+            setBottomData(response.data.data[0]);
             if (response.data.data[0].blocks.length > 0) {
               //setBlocks(response.data.data[0].blocks);
               response.data.data[0].blocks.map((block) => {
@@ -377,6 +379,7 @@ const TemplateSceneFour = (props) => {
         showEditbutton={showEditbutton}
         showAddScene={showAddScene}
         playVideo={playVideo}
+        bottomData={bottomData}
       />
     </section>
   );

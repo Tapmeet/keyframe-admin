@@ -2,6 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { apiPath } from "./../../../../Utility/Utility";
+
 import HOC from "./../Player/HOC";
 import Reorder, {
   reorder,
@@ -95,12 +96,13 @@ const BottomSection = (props) => {
     });
     setPlayerTime(time);
   }, []);
-  function onReorder (event, previousIndex, nextIndex, fromId, toId) {
-    console.log(event)
-    setSceneOrder(reorder(sceneOrder, previousIndex, nextIndex))
+  function onReorder(event, previousIndex, nextIndex, fromId, toId) {
+    console.log(event);
+    setSceneOrder(reorder(sceneOrder, previousIndex, nextIndex));
   }
   return (
     <section className="template-new-wrapper-bottom">
+       
       <div className="d-flex">
         <div className="play-button-section">
           <div className="duration-view">Length: {playerTime}s</div>
@@ -151,37 +153,38 @@ const BottomSection = (props) => {
           </div>
           <div className="inner-section">
             <div className="player-thumb" id="player-thumb">
-                {sceneOrder.map((block) => {
-                  return (
-                    <HOC>
-                      {sceneData.map((scene) => {
-                        return block.id == scene._id ? (
-                          <div
-                            className="thumb-section"
-                            key={scene._id}
-                            style={{
-                              "background-image":
-                                "url(" + apiPath + scene.sceneThumbnail + ") ",
-                              width:
-                                parseFloat(scene.sceneData.time) * 80 + "px",
-                            }}
-                          >
-                            <Link
-                              to={
-                                "/template/" +
-                                props.bottomData._id +
-                                "/" +
-                                scene.sceneId +
-                                "/" +
-                                scene._id
-                              }
-                            />
-                          </div>
-                        ) : null;
-                      })}
-                    </HOC> 
-                  );
-                })}
+              {sceneOrder.map((block) => {
+                return (
+                  <HOC>
+                    {sceneData.map((scene) => {
+                      return block.id == scene._id ? (
+                        <div
+                          className="thumb-section"
+                          key={scene._id}
+                          style={{
+                            "background-image":
+                              "url(" + apiPath + scene.sceneThumbnail + ") ",
+                            width: parseFloat(scene.sceneData.time) * 80 + "px",
+                            minWidth:
+                              parseFloat(scene.sceneData.time) * 80 + "px",
+                          }}
+                        >
+                          <Link
+                            to={
+                              "/template/" +
+                              props.bottomData._id +
+                              "/" +
+                              scene.sceneId +
+                              "/" +
+                              scene._id
+                            }
+                          />
+                        </div>
+                      ) : null;
+                    })}
+                  </HOC>
+                );
+              })}
             </div>
           </div>
           <div

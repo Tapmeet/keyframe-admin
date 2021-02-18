@@ -22,6 +22,7 @@ import Scene from "./../../../../../assets/images/templates/img11.png";
 import Scene2 from "./../../../../../assets/images/templates/img12.png";
 import Player from "../../Player";
 const TemplateSceneThree = (props) => {
+  const [bottomData, setBottomData] = React.useState("");
   const [userId, setUserId] = React.useState("");
   const [blocks, setBlocks] = React.useState("");
   const match = useRouteMatch("/template/:templateId/3/:sceneId");
@@ -231,6 +232,7 @@ const TemplateSceneThree = (props) => {
       .then(function (response) {
         if (response.data.data.length > 0) {
           if (typeof response.data.data[0] !== undefined) {
+            setBottomData(response.data.data[0]);
             if (response.data.data[0].blocks.length > 0) {
               setBlocks(response.data.data[0].blocks);
               response.data.data[0].blocks.map((block) => {
@@ -355,6 +357,7 @@ const TemplateSceneThree = (props) => {
         showEditbutton={showEditbutton}
         showAddScene={showAddScene}
         playVideo={playVideo}
+        bottomData={bottomData}
       />
     </section>
   );

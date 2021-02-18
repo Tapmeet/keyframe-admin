@@ -46,7 +46,7 @@ const AllScenesCategories = () => {
   ];
   useEffect(() => {
     axios.get(`${apiGetSceneCategories}`, {}).then(function (response) {
-      console.log(response.data.scenes);
+      console.log(response.data);
       setData(response.data.scenes);
     });
   }, []);

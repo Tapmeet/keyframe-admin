@@ -182,7 +182,7 @@ const PlayerSceneFour = (props) => {
           className={
             activeClass
               ? " playerui-wrapper active slider-section section4 "
-              : " playerui-wrapper active slider-section section4 "
+              : " playerui-wrapper  slider-section section4 "
           }
         >
           <div className="d-flex">

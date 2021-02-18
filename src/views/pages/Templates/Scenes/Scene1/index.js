@@ -29,6 +29,7 @@ const TemplateSceneOne = (props) => {
   const [data, setData] = React.useState("");
   const [blocks, setBlocks] = React.useState("");
   const [bottomData, setBottomData] = React.useState("");
+  const [sceneOrder, setSceneOrder] = React.useState("");
   const [userToken, setUserToken] = React.useState("");
   const cookies = new Cookies();
   const [textAligmnet, setTextAligmnet] = React.useState("text-center");
@@ -215,6 +216,7 @@ const TemplateSceneOne = (props) => {
           if (typeof response.data.data[0] !== undefined) {
             if (response.data.data[0].blocks.length > 0) {
               setBlocks(response.data.data[0].blocks);
+              setSceneOrder(response.data.data[0].sceneOrder)
               setBottomData(response.data.data[0]);
               response.data.data[0].blocks.map((block) => {
                 if (block.sceneId == 1) {
@@ -293,7 +295,7 @@ const TemplateSceneOne = (props) => {
         {addMedia ? (
           <AddMedia closeAddMedia={closeAddMedia} />
         ) : addScene ? (
-          <AddScenes closeAddScene={closeAddScene} />
+          <AddScenes sceneOrder={sceneOrder} closeAddScene={closeAddScene} />
         ) : data != "" ? (
           playActive ? (
             <Player blocks={blocks} />
