@@ -1,9 +1,15 @@
 /* eslint-disable array-callback-return */
 import React from "react";
+import { useRouteMatch } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { apiPath } from "./../../../../Utility/Utility";
-
+import trash from "./../../../../assets/images/templates/trash.svg";
 import HOC from "./../Player/HOC";
+import axios from "axios";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import Loader from "./../../../../Utility/Loader/Loader";
+import Box from "./Box";
+import { apideleteBlock, apiUpdateBlock } from "./../../../../Utility/Utility";
 import Reorder, {
   reorder,
   reorderImmutable,
@@ -11,11 +17,24 @@ import Reorder, {
   reorderFromToImmutable,
 } from "react-reorder";
 const BottomSection = (props) => {
-  //console.log( props.bottomData.sceneOrder)
+  const match = useRouteMatch("/template/:templateId/:id/:sceneId");
+  const {
+    params: { templateId },
+  } = match;
+  const {
+    params: { sceneId },
+  } = match;
   const [showStop, setShowStop] = React.useState(false);
-  const [sceneOrder, setSceneOrder] = React.useState(
-    props.bottomData.sceneOrder
-  );
+  const [processing, setProcessing] = React.useState(false);
+  const [dragId, setDragId] = React.useState();
+  const [blockCount, setblockCount] = React.useState("1");
+  const [blockIndex, setBlockIndex] = React.useState("");
+  const [blockToDelete, setblockToDelete] = React.useState("");
+  const { buttonLabel, className } = props;
+
+  const [modal, setModal] = React.useState(false);
+
+  const toggle = () => setModal(!modal);
   const [playerTime, setPlayerTime] = React.useState();
   const [sceneData, setSceneData] = React.useState(props.bottomData.blocks);
   function addScene() {
@@ -88,21 +107,76 @@ const BottomSection = (props) => {
     console.log("Data: ", data);
   };
   React.useEffect(() => {
-    setSceneOrder(props.bottomData.sceneOrder);
-    setSceneData(props.bottomData.blocks);
+    // setSceneOrder(props.bottomData.sceneOrder);
+    // setSceneData(props.bottomData.blocks);
     var time = 0;
     sceneData.map((scene) => {
       time = parseFloat(time) + parseFloat(scene.sceneData.time);
     });
     setPlayerTime(time);
   }, []);
-  function onReorder(event, previousIndex, nextIndex, fromId, toId) {
-    console.log(event);
-    setSceneOrder(reorder(sceneOrder, previousIndex, nextIndex));
+
+  function confirmDelete(id) {
+    setModal(!modal);
+    setblockToDelete(id);
+    console.log(id);
   }
+  function deleteBlock() {
+    setModal(!modal);
+    setProcessing(true);
+    let blockId = blockToDelete;
+    axios
+      .delete(`${apideleteBlock}`, {
+        params: {
+          blockId: blockId,
+        },
+      })
+      .then(function (response) {
+        //console.log(response.data.message)
+        if (response.data.message) {
+          setProcessing(false);
+        } else {
+          setProcessing(false);
+        }
+        window.location.reload();
+      });
+  }
+
+  const handleDrag = (ev) => {
+    setDragId(ev.currentTarget.id);
+  };
+
+  const handleDrop = (ev) => {
+    const dragBox = sceneData.find((box) => box._id === dragId);
+    const dropBox = sceneData.find((box) => box._id === ev.currentTarget.id);
+    console.log(dragBox);
+    const dragBoxOrder = dragBox.order;
+    const dropBoxOrder = dropBox.order;
+
+    const newBoxState = sceneData.map((box, index) => {
+      if (box._id === dragId) {
+        box.order = dropBoxOrder;
+      }
+      if (box._id === ev.currentTarget.id) {
+        box.order = dragBoxOrder;
+      }
+      return box;
+    });
+    sceneData.map((box, index) => {
+      axios
+        .put(`${apiUpdateBlock}/${box._id}`, {
+          id: box._id,
+          order: box.order,
+        })
+        .then(function (response) {
+          console.log(response);
+        });
+    });
+    setSceneData(newBoxState);
+  };
   return (
     <section className="template-new-wrapper-bottom">
-       
+      <Loader open={processing} />
       <div className="d-flex">
         <div className="play-button-section">
           <div className="duration-view">Length: {playerTime}s</div>
@@ -153,38 +227,32 @@ const BottomSection = (props) => {
           </div>
           <div className="inner-section">
             <div className="player-thumb" id="player-thumb">
-              {sceneOrder.map((block) => {
-                return (
-                  <HOC>
-                    {sceneData.map((scene) => {
-                      return block.id == scene._id ? (
-                        <div
-                          className="thumb-section"
-                          key={scene._id}
-                          style={{
-                            "background-image":
-                              "url(" + apiPath + scene.sceneThumbnail + ") ",
-                            width: parseFloat(scene.sceneData.time) * 80 + "px",
-                            minWidth:
-                              parseFloat(scene.sceneData.time) * 80 + "px",
-                          }}
-                        >
-                          <Link
-                            to={
-                              "/template/" +
-                              props.bottomData._id +
-                              "/" +
-                              scene.sceneId +
-                              "/" +
-                              scene._id
-                            }
-                          />
-                        </div>
-                      ) : null;
-                    })}
-                  </HOC>
-                );
-              })}
+              <HOC>
+                {sceneData
+                  .sort((a, b) => a.order - b.order)
+                  .map((scene) => {
+                    return (
+                      <Box
+                        key={scene._id}
+                        boxBg={apiPath + scene.sceneThumbnail}
+                        boxWidth={parseFloat(scene.sceneData.time) * 80}
+                        handleDrag={handleDrag}
+                        handleDrop={handleDrop}
+                        confirmDelete={confirmDelete}
+                        boxLink={
+                          "/template/" +
+                          props.bottomData._id +
+                          "/" +
+                          scene.sceneId +
+                          "/" +
+                          scene._id
+                        }
+                        boxId={scene._id}
+                        sceneId={sceneId}
+                      ></Box>
+                    );
+                  })}
+              </HOC>
             </div>
           </div>
           <div
@@ -206,6 +274,34 @@ const BottomSection = (props) => {
             <span>Add Scene</span>
           </div>
         </div>
+      </div>
+      <div>
+        <Modal
+          isOpen={modal}
+          toggle={toggle}
+          className={className + " modal-custom"}
+        >
+          <ModalHeader toggle={toggle}>Delete Block</ModalHeader>
+          <ModalBody>
+            <p>Are you sure you want to delete this block?</p>
+          </ModalBody>
+          <ModalFooter>
+            <div className="container">
+              <div className="row modal-block">
+                <div className="col-12 col-sm-6">
+                  <Button color="primary" onClick={deleteBlock}>
+                    confirm
+                  </Button>
+                </div>
+                <div className="col-12 col-sm-6">
+                  <Button color="secondary" onClick={toggle}>
+                    Cancel
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </ModalFooter>
+        </Modal>
       </div>
     </section>
   );

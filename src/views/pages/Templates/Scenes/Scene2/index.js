@@ -21,6 +21,7 @@ import {
 import Player from "../../Player";
 const TemplateSceneTwo = (props) => {
   const [bottomData, setBottomData] = React.useState("");
+  const [sceneOrder, setSceneOrder] = React.useState("");
   const [userId, setUserId] = React.useState("");
   const [blocks, setBlocks] = React.useState("");
   const match = useRouteMatch("/template/:templateId/2/:sceneId");
@@ -218,6 +219,7 @@ const TemplateSceneTwo = (props) => {
         if (response.data.data.length > 0) {
           if (typeof response.data.data[0] !== undefined) {
             setBottomData(response.data.data[0]);
+            setSceneOrder(response.data.data[0].sceneOrder)
             if (response.data.data[0].blocks.length > 0) {
               setBlocks(response.data.data[0].blocks);
               response.data.data[0].blocks.map((block) => {
@@ -270,7 +272,7 @@ const TemplateSceneTwo = (props) => {
         {addMedia ? (
           <AddMedia closeAddMedia={closeAddMedia} />
         ) : addScene ? (
-          <AddScenes closeAddScene={closeAddScene} />
+          <AddScenes sceneOrder={sceneOrder} closeAddScene={closeAddScene} />
         ) : data != "" && content != "" ? (
           playActive ? (
             <Player blocks={blocks} />
@@ -309,12 +311,14 @@ const TemplateSceneTwo = (props) => {
           <ChangeBg showAddMedia={showAddMedia} type={bgType} scene={bgScene} />
         )}
       </div>
-      <BottomSection
-        showEditbutton={showEditbutton}
-        showAddScene={showAddScene}
-        playVideo={playVideo}
-        bottomData={bottomData}
-      />
+      {bottomData ? (
+        <BottomSection
+          showEditbutton={showEditbutton}
+          showAddScene={showAddScene}
+          playVideo={playVideo}
+          bottomData={bottomData}
+        />
+      ) : null}
     </section>
   );
 };

@@ -40,9 +40,9 @@ const AllTemplates = () => {
             "/#/template/" +
             row._id +
             "/" +
-            row.sceneOrder[0].sceneId +
+            row.blocks[0].sceneId +
             "/" +
-            row.sceneOrder[0].id
+            row.blocks[0]._id
           }
           target="_blank"
           rel="noopener noreferrer"

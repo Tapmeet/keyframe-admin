@@ -211,7 +211,7 @@ const TemplateSceneOne = (props) => {
     axios
       .get(`${apigetAdminTemplate}` + "?templateId=" + templateId, {})
       .then(function (response) {
-        // console.log(response.data.data[0]);
+         console.log(response.data);
         if (response.data.data.length > 0) {
           if (typeof response.data.data[0] !== undefined) {
             if (response.data.data[0].blocks.length > 0) {

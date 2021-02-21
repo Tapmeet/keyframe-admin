@@ -13,7 +13,7 @@ import Loader from "./../../../../Utility/Loader/Loader";
 const ScenesListings = (props) => {
   const [media, setMedia] = React.useState("");
   const [data, setData] = React.useState([]);
-  const match = useRouteMatch("/template/:templateId/1/:sceneId");
+  const match = useRouteMatch("/template/:templateId/:id/:sceneId");
   const [loader, setLoader] = React.useState(false);
   const [successMessage, setSuccessMessage] = React.useState("");
   const [errorMessage, setErrorMessage] = React.useState("");
@@ -69,16 +69,9 @@ const ScenesListings = (props) => {
   }
   function addScene(data) {
     setLoader(true)
-    let newArray = sceneOrder;
-    newArray.push({
-      id: data._id,
-      sceneId: data.sceneId,
-      sceneTitle: data.sceneTitle,
-    });
     axios
       .put(apiupdateAdminTemplate + "?templateId=" + templateId, {
         id: templateId,
-        sceneOrder: newArray,
         data: data,
       })
       .then((response) => {
