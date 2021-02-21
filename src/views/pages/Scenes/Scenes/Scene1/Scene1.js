@@ -1,6 +1,7 @@
 import React from "react";
 import { useRouteMatch } from "react-router-dom";
 import DragResizeContainer from "react-drag-resize";
+import { apiPath } from "./../../../../../Utility/Utility";
 const Scene1 = (props) => {
   const [mediaArray, setMediaArray] = React.useState(props.mediaArray);
   const [transformX, setTransformX] = React.useState(0);
@@ -117,7 +118,7 @@ const Scene1 = (props) => {
                     setshowbg(true, data.url, data.type, false, index)
                   }
                   className="bg box-1"
-                  style={{ "background-image": "url(" + data.url + ") " }}
+                  style={{ "background-image": "url(" + apiPath + data.url + ") " }}
                 >
                   
                 </div>

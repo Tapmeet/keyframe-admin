@@ -174,7 +174,7 @@ const AddMedia = (props) => {
               let updatedImage = mediaurl;
               return (
                 <li key={block.path}
-                  className={media == apiPath + updatedImage ? "active" : null}
+                  className={media ==  updatedImage ? "active" : null}
                 >
                   {block.mimetype == "image/jpeg" ||
                   block.mimetype == "image/png" ||
@@ -183,7 +183,7 @@ const AddMedia = (props) => {
                     <img
                       src={apiPath + updatedImage}
                       alt="Thumbnail"
-                      onClick={() => setImage(apiPath + updatedImage, "image")}
+                      onClick={() => setImage( updatedImage, "image")}
                     />
                   ) : null}
                 </li>

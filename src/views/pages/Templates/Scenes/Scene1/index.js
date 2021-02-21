@@ -217,6 +217,8 @@ const TemplateSceneOne = (props) => {
             if (response.data.data[0].blocks.length > 0) {
               setBlocks(response.data.data[0].blocks);
               setSceneOrder(response.data.data[0].sceneOrder)
+              setSceneThumbnail(response.data.data[0].templateImage)
+              setSelectedCategory(response.data.data[0].templateCategory)
               setBottomData(response.data.data[0]);
               response.data.data[0].blocks.map((block) => {
                 if (block.sceneId == 1) {
@@ -287,6 +289,9 @@ const TemplateSceneOne = (props) => {
   function playVideo(click) {
     setPlayActive(click);
   }
+  function reFetchData(){
+    getData();
+  }
   return (
     <section className="template-new-wrapper ">
       <TopSection />
@@ -332,6 +337,8 @@ const TemplateSceneOne = (props) => {
               id={1}
               thumbnails={sceneThumbnail}
               category={selectedCategory}
+              template={true}
+              templateId={templateId}
             />
           ) : null
         ) : (
@@ -344,6 +351,7 @@ const TemplateSceneOne = (props) => {
           showAddScene={showAddScene}
           playVideo={playVideo}
           bottomData={bottomData}
+          reFetchData={reFetchData}
         />
       ) : null}
     </section>

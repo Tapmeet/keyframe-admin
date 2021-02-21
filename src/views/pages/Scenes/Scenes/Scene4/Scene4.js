@@ -5,10 +5,10 @@ import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import DragResizeContainer from "react-drag-resize";
-
+import { apiPath } from "./../../../../../Utility/Utility";
 const SceneFour = (props) => {
   const [mediaArray, setMediaArray] = React.useState(props.mediaArray);
-  var textArrays = props.textArray
+  var textArrays = props.textArray;
   const [mediaArray1, setMediaArray1] = React.useState([]);
   const [mediaArray2, setMediaArray2] = React.useState([]);
   function setshowbg(option, scene, type, titleColor, index, textIndex) {
@@ -25,7 +25,7 @@ const SceneFour = (props) => {
     showIndicators: false,
     swipeable: true,
     stopOnHover: true,
-    showThumbs:false
+    showThumbs: false,
   };
   const settings2 = {
     arrows: false,
@@ -38,17 +38,17 @@ const SceneFour = (props) => {
     showIndicators: false,
     swipeable: true,
     stopOnHover: true,
-    showThumbs:false
+    showThumbs: false,
   };
 
   React.useEffect(() => {
-   props.mediaArray.map((data, index) => {
-    {
-      index <= 1
-        ? setMediaArray1((media) => [...media, data])
-        : setMediaArray2((media) => [...media, data]);
-    }
-  });
+    props.mediaArray.map((data, index) => {
+      {
+        index <= 1
+          ? setMediaArray1((media) => [...media, data])
+          : setMediaArray2((media) => [...media, data]);
+      }
+    });
     if (props.data) {
       props.mediaArray.map((data, index) => {
         {
@@ -59,50 +59,49 @@ const SceneFour = (props) => {
       });
     }
   }, [textArrays]);
-    textArrays.map((data, index) => {
-      window["layout" + index] = [
-        {
-          key: "test" + index,
-          x: data.x,
-          y: data.y,
-          width: data.boxWidth,
-          height: data.boxHeight,
-          zIndex: 1,
-        },
-      ];
-      window["canResizable" + index] = (isResize) => {
-        return {
-          top: isResize,
-          right: isResize,
-          bottom: isResize,
-          left: isResize,
-          topRight: isResize,
-          bottomRight: isResize,
-          bottomLeft: isResize,
-          topLeft: isResize,
-        };
+  textArrays.map((data, index) => {
+    window["layout" + index] = [
+      {
+        key: "test" + index,
+        x: data.x,
+        y: data.y,
+        width: data.boxWidth,
+        height: data.boxHeight,
+        zIndex: 1,
+      },
+    ];
+    window["canResizable" + index] = (isResize) => {
+      return {
+        top: isResize,
+        right: isResize,
+        bottom: isResize,
+        left: isResize,
+        topRight: isResize,
+        bottomRight: isResize,
+        bottomLeft: isResize,
+        topLeft: isResize,
       };
-      window["onLayoutChange" + index] = (e, index) => {
-        let newArr = [...textArrays]; // copying the old datas array
-        newArr[index] = {
-          text: newArr[index].text,
-          fontSize: newArr[index].fontSize,
-          fontFamily: newArr[index].fontFamily,
-          fontWeight: newArr[index].fontWeight,
-          fontLineHeight: newArr[index].fontLineHeight,
-          fontAlignment: newArr[index].fontAlignment,
-          fontColor: newArr[index].fontColor,
-          fontCapitalize: newArr[index].fontCapitalize,
-          x: e[0].x,
-          y: e[0].y,
-          boxWidth: e[0].width,
-          boxHeight: e[0].height,
-        };
-        props.getContent(newArr);
-        textArrays = newArr
+    };
+    window["onLayoutChange" + index] = (e, index) => {
+      let newArr = [...textArrays]; // copying the old datas array
+      newArr[index] = {
+        text: newArr[index].text,
+        fontSize: newArr[index].fontSize,
+        fontFamily: newArr[index].fontFamily,
+        fontWeight: newArr[index].fontWeight,
+        fontLineHeight: newArr[index].fontLineHeight,
+        fontAlignment: newArr[index].fontAlignment,
+        fontColor: newArr[index].fontColor,
+        fontCapitalize: newArr[index].fontCapitalize,
+        x: e[0].x,
+        y: e[0].y,
+        boxWidth: e[0].width,
+        boxHeight: e[0].height,
       };
-
-    });
+      props.getContent(newArr);
+      textArrays = newArr;
+    };
+  });
   function getcontent(e, index) {
     let newArr = [...textArrays]; // copying the old datas array
     newArr[index] = {
@@ -173,13 +172,7 @@ const SceneFour = (props) => {
                         <div className="slider-box">
                           <div
                             onClick={() =>
-                              setshowbg(
-                                true,
-                                data.url,
-                                data.type,
-                                false,
-                                index
-                              )
+                              setshowbg(true, data.url, data.type, false, index)
                             }
                             className="bg box-1"
                             style={{
@@ -253,7 +246,8 @@ const SceneFour = (props) => {
                             }
                             className="bg box-1"
                             style={{
-                              "background-image": "url(" + data.url + ") ",
+                              "background-image":
+                                "url(" + apiPath + data.url + ") ",
                             }}
                           ></div>
                         </div>

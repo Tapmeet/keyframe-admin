@@ -5,7 +5,7 @@ import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import DragResizeContainer from "react-drag-resize";
-
+import { apiPath } from "./../../../../../Utility/Utility";
 const SceneFour = (props) => {
   const [mediaArray, setMediaArray] = React.useState(props.mediaArray);
   var textArrays = props.textArray
@@ -183,7 +183,7 @@ const SceneFour = (props) => {
                             }
                             className="bg box-1"
                             style={{
-                              "background-image": "url(" + data.url + ") ",
+                              "background-image": "url(" + apiPath + data.url + ") ",
                             }}
                           ></div>
                         </div>
@@ -253,7 +253,7 @@ const SceneFour = (props) => {
                             }
                             className="bg box-1"
                             style={{
-                              "background-image": "url(" + data.url + ") ",
+                              "background-image": "url(" + apiPath + data.url + ") ",
                             }}
                           ></div>
                         </div>

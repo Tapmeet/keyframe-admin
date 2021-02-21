@@ -1,6 +1,7 @@
 import React from "react";
 import { useRouteMatch } from "react-router-dom";
 import DragResizeContainer from "react-drag-resize";
+import { apiPath } from "./../../../../../Utility/Utility";
 const Scene1 = (props) => {
   const [mediaArray, setMediaArray] = React.useState(props.mediaArray);
   const [transformX, setTransformX] = React.useState(0);
@@ -43,34 +44,32 @@ const Scene1 = (props) => {
       x: e[0].x,
       y: e[0].y,
     };
-    props.getTextAreaData(newObj)
+    props.getTextAreaData(newObj);
   };
   function setshowbg(option, scene, type, titleColor, container) {
     props.showBg(option, type, scene, false, container);
   }
   React.useEffect(() => {
-   
-    setContent(props.content) 
+    setContent(props.content);
     setMediaArray(props.mediaArray);
     if (props.data) {
-      console.log(props.data.content)
+      console.log(props.data.content);
       setWidth(props.data.boxwidth);
       setHeight(props.data.boxheight);
       setTransformX(props.data.x);
       setTransformY(props.data.y);
-      setContent(props.data.content)  
+      setContent(props.data.content);
     }
   }, []);
 
-  function getcontent(e){
-    setContent(e.target.value)
-    props.getContent(e.target.value)
+  function getcontent(e) {
+    setContent(e.target.value);
+    props.getContent(e.target.value);
   }
   return (
     <section className="template-new-wrapper-scene1">
       <div className="d-flex">
-        <div className="img-section" 
-        height="1020" width="1920">
+        <div className="img-section" height="1020" width="1920">
           {props.mediaArray ? (
             <DragResizeContainer
               className="resize-container"
@@ -102,9 +101,7 @@ const Scene1 = (props) => {
                     }
                     onChange={getcontent}
                     value={content}
-                  >
-                    
-                  </textarea>
+                  ></textarea>
                 );
               })}
             </DragResizeContainer>
@@ -117,10 +114,10 @@ const Scene1 = (props) => {
                     setshowbg(true, data.url, data.type, false, index)
                   }
                   className="bg box-1"
-                  style={{ "background-image": "url(" + data.url + ") " }}
-                >
-                  
-                </div>
+                  style={{
+                    "background-image": "url(" + apiPath + data.url + ") ",
+                  }}
+                ></div>
               );
             })}
           </div>

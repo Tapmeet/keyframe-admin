@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-no-duplicate-props */
 import React from "react";
+import { useRouteMatch } from "react-router-dom";
 import FontPicker from "font-picker-react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
@@ -10,17 +11,27 @@ import {
   apiPath,
   apiUpdateScene,
   apiGetSceneCategories,
+  apiupdateAdminTemplate,
+  apiGetTemplateCategories,
 } from "./../../../../Utility/Utility";
 const TextEditor = (props) => {
+  // const match = useRouteMatch("/template/:templateId/:id/:sceneId");
+  // const {
+  //   params: { templateId },
+  // } = match;
   const [categories, setCategories] = React.useState([]);
   const [userToken, setUserToken] = React.useState("");
+  const [template, setTemplate] = React.useState(false);
   const cookies = new Cookies();
   const [userId, setUserId] = React.useState("");
   const [sceneId, setSceneId] = React.useState(props.id);
+  const [templateId, setTemplateId] = React.useState(props.templateId);
   const [titleColor, setTitleColor] = React.useState(props.textColor);
   const [thumbnail, setThumbnail] = React.useState(props.thumbnails);
   //var thumbnail = props.thumbnail;
-  const [selectedCategory, setSelectedCategory] = React.useState(props.category);
+  const [selectedCategory, setSelectedCategory] = React.useState(
+    props.category
+  );
   const [processing, setProcessing] = React.useState(false);
   const [titleColorShow, setTitleColorShow] = React.useState(false);
   const [activeCapitalize, setactiveCapitalize] = React.useState(false);
@@ -52,29 +63,51 @@ const TextEditor = (props) => {
           let imageUrl = fileUrl.replace("sets/", "");
           let updatedImage = imageUrl;
           setThumbnail(imageUrl);
-          axios
-            .put(`${apiUpdateScene}${sceneId}`, {
-              id: sceneId,
-              sceneThumbnail: updatedImage,
-            })
-            .then(function (response) {
-              console.log(response);
-            });
+          if (props.template) {
+            axios
+              .put(`${apiupdateAdminTemplate}${templateId}`, {
+                id: templateId,
+                templateImage: updatedImage,
+              })
+              .then(function (response) {
+                console.log(response);
+              });
+          } else {
+            axios
+              .put(`${apiUpdateScene}${sceneId}`, {
+                id: sceneId,
+                sceneThumbnail: updatedImage,
+              })
+              .then(function (response) {
+                console.log(response);
+              });
+          }
         })
         .catch((error) => {});
     }
   }
   function updateCategory(e) {
-    setSelectedCategory(e.target.value)
+    setSelectedCategory(e.target.value);
     if (e.target.value != "") {
-      axios
-        .put(`${apiUpdateScene}${sceneId}`, {
-          id: sceneId,
-          sceneCategory: e.target.value,
+      if (props.template) {
+        axios
+        .put(`${apiupdateAdminTemplate}${templateId}`, {
+          id: templateId,
+          templateCategory: e.target.value,
         })
         .then(function (response) {
           console.log(response);
         });
+      } else {
+        axios
+          .put(`${apiUpdateScene}${sceneId}`, {
+            id: sceneId,
+            sceneCategory: e.target.value,
+          })
+          .then(function (response) {
+            console.log(response);
+          });
+      }
     }
   }
   React.useEffect(() => {
@@ -99,12 +132,20 @@ const TextEditor = (props) => {
     }
     if (props.category) {
       setSelectedCategory(props.category);
-     console.log(props.category)
+      console.log(props.category);
     }
-    axios.get(`${apiGetSceneCategories}`, {}).then(function (response) {
-      
-      setCategories(response.data.scenes);
-    });
+
+    if (props.template) {
+      setTemplate(props.template);
+      axios.get(`${apiGetTemplateCategories}`, {}).then(function (response) {
+        console.log(response.data);
+        setCategories(response.data.templates);
+      });
+    } else {
+      axios.get(`${apiGetSceneCategories}`, {}).then(function (response) {
+        setCategories(response.data.scenes);
+      });
+    }
   }, [props.thumbnails, props.category]);
   function setcapitalize() {
     if (activeCapitalize === true) {
@@ -354,7 +395,7 @@ const TextEditor = (props) => {
           </select>
         </div>
         <div className="thumbnail-wrapper sectionTwo">
-          <h4>Scene Thumbnail</h4>
+          <h4>{props.template ? "Template Thumbnail" : "Scene Thumbnail"} </h4>
           {thumbnail ? (
             <img
               className="img-fluid"
@@ -366,7 +407,7 @@ const TextEditor = (props) => {
           <input type="file" onChange={(e) => setformImage(e)} />
         </div>
         <div className=" animation-section  category-section">
-          <h4>Scene Category</h4>
+          <h4>{props.template ? "Template Category" : "Scene Category"}</h4>
           <select value={selectedCategory} onChange={updateCategory}>
             <option value="">Select Category</option>;
             {categories.map((data, index) => {

@@ -13,7 +13,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import DragResizeContainer from 'react-drag-resize';
 import { CommentTwoTone } from "@material-ui/icons";
-
+import { apiPath } from "./../../../../../Utility/Utility";
 const SceneThree = (props) => {
   const [mediaArray, setMediaArray] = React.useState(props.mediaArray);
   const [transformX, setTransformX] = React.useState(0);
@@ -179,7 +179,7 @@ const SceneThree = (props) => {
                     setshowbg(true, data.url, data.type, false, index)
                   } 
                   className="bg box-1" 
-                  style={{ "background-image": "url(" + data.url + ") " }}
+                  style={{ "background-image": "url(" + apiPath + data.url + ") " }}
                   >
                   </div>
                 </div>

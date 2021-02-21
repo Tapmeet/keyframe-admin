@@ -146,7 +146,7 @@ const BottomSection = (props) => {
     setDragId(ev.currentTarget.id);
   };
 
-  const handleDrop = (ev) => {
+  const handleDrop = async (ev) => {
     const dragBox = sceneData.find((box) => box._id === dragId);
     const dropBox = sceneData.find((box) => box._id === ev.currentTarget.id);
     console.log(dragBox);
@@ -162,7 +162,7 @@ const BottomSection = (props) => {
       }
       return box;
     });
-    sceneData.map((box, index) => {
+     await sceneData.map((box, index) => {
       axios
         .put(`${apiUpdateBlock}/${box._id}`, {
           id: box._id,
@@ -170,9 +170,11 @@ const BottomSection = (props) => {
         })
         .then(function (response) {
           console.log(response);
+          props.reFetchData();
         });
     });
     setSceneData(newBoxState);
+    
   };
   return (
     <section className="template-new-wrapper-bottom">
