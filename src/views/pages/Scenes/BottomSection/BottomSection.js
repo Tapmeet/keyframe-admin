@@ -9,7 +9,12 @@ import axios from "axios";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import Loader from "./../../../../Utility/Loader/Loader";
 import Box from "./Box";
-import { apideleteBlock, apiUpdateBlock } from "./../../../../Utility/Utility";
+
+import {
+  apideleteBlock,
+  apiUpdateBlock,
+  apiGetLastScene,
+} from "./../../../../Utility/Utility";
 import Reorder, {
   reorder,
   reorderImmutable,
@@ -25,6 +30,8 @@ const BottomSection = (props) => {
     params: { sceneId },
   } = match;
   const [showStop, setShowStop] = React.useState(false);
+  const [lastScenetime, setLastScenetime] = React.useState("");
+  const [lastSceneData, setLastSceneData] = React.useState([]);
   const [processing, setProcessing] = React.useState(false);
   const [dragId, setDragId] = React.useState();
   const [blockCount, setblockCount] = React.useState("1");
@@ -113,6 +120,15 @@ const BottomSection = (props) => {
     sceneData.map((scene) => {
       time = parseFloat(time) + parseFloat(scene.sceneData.time);
     });
+
+    axios
+      .get(`${apiGetLastScene}` + "?id=" + templateId, {})
+      .then(function (response) {
+        console.log(response.data.scene.sceneData.time);
+        setPlayerTime(parseFloat(time) + response.data.scene.sceneData.time);
+        setLastScenetime(response.data.scene.sceneData.time);
+        setLastSceneData(response.data.scene);
+      });
     setPlayerTime(time);
   }, []);
 
@@ -149,7 +165,6 @@ const BottomSection = (props) => {
   const handleDrop = async (ev) => {
     const dragBox = sceneData.find((box) => box._id === dragId);
     const dropBox = sceneData.find((box) => box._id === ev.currentTarget.id);
-    console.log(dragBox);
     const dragBoxOrder = dragBox.order;
     const dropBoxOrder = dropBox.order;
 
@@ -162,7 +177,9 @@ const BottomSection = (props) => {
       }
       return box;
     });
-     await sceneData.map((box, index) => {
+    setSceneData(newBoxState);
+    //console.log(newBoxState)
+    await newBoxState.map((box, index) => {
       axios
         .put(`${apiUpdateBlock}/${box._id}`, {
           id: box._id,
@@ -173,8 +190,7 @@ const BottomSection = (props) => {
           props.reFetchData();
         });
     });
-    setSceneData(newBoxState);
-    
+   
   };
   return (
     <section className="template-new-wrapper-bottom">
@@ -227,8 +243,15 @@ const BottomSection = (props) => {
               })}
             </div>
           </div>
-          <div className="inner-section">
-            <div className="player-thumb" id="player-thumb">
+          <div
+            className="inner-section"
+            style={{ width: playerTime * 80 + "px" }}
+          >
+            <div
+              className="player-thumb"
+              id="player-thumb"
+              style={{ width: playerTime * 80 + "px" }}
+            >
               <HOC>
                 {sceneData
                   .sort((a, b) => a.order - b.order)
@@ -254,6 +277,28 @@ const BottomSection = (props) => {
                       ></Box>
                     );
                   })}
+                {
+                  <div
+                    className="thumb-section"
+                    style={{
+                      "background-image":
+                        "url(" + apiPath + lastSceneData.sceneThumbnail + ") ",
+                      width: parseFloat(lastScenetime) * 80 + "px",
+                      minWidth: parseFloat(lastScenetime) * 80 + "px",
+                    }}
+                  >
+                    <Link
+                      to={
+                        "/template/" +
+                        props.bottomData._id +
+                        "/" +
+                        lastSceneData.sceneId +
+                        "/" +
+                        lastSceneData._id
+                      }
+                    />
+                  </div>
+                }
               </HOC>
             </div>
           </div>

@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import DragResizeContainer from "react-drag-resize";
 import { CommentTwoTone } from "@material-ui/icons";
+import { apiPath } from "../../../../Utility/Utility";
 import HOC from "./HOC";
 const PlayerSceneThree = (props) => {
   const [sceneIndex, setSceneIndex] = React.useState(props.index);
@@ -182,7 +183,7 @@ const PlayerSceneThree = (props) => {
                           <div
                             className="bg box-1"
                             style={{
-                              "background-image": "url(" + data.url + ") ",
+                              "background-image": "url(" +apiPath + data.url + ") ",
                             }}
                           ></div>
                         </div>

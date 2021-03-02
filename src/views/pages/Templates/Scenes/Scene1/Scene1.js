@@ -21,16 +21,17 @@ const Scene1 = (props) => {
     },
   ];
   const canResizable = (isResize) => {
-    return {
-      top: isResize,
-      right: isResize,
-      bottom: isResize,
-      left: isResize,
-      topRight: isResize,
-      bottomRight: isResize,
-      bottomLeft: isResize,
-      topLeft: isResize,
-    };
+    console.log(isResize)
+    // return {
+    //   top: isResize,
+    //   right: isResize,
+    //   bottom: isResize,
+    //   left: isResize,
+    //   topRight: isResize,
+    //   bottomRight: isResize,
+    //   bottomLeft: isResize,
+    //   topLeft: isResize,
+    // };
   };
   const onLayoutChange = (e) => {
     //console.log(e[0])

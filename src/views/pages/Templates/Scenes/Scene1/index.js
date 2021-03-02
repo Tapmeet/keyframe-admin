@@ -26,6 +26,7 @@ const TemplateSceneOne = (props) => {
   const {
     params: { sceneId },
   } = match;
+  const [templateTitle, setTemplateTitle] = React.useState("");
   const [data, setData] = React.useState("");
   const [blocks, setBlocks] = React.useState("");
   const [bottomData, setBottomData] = React.useState("");
@@ -211,14 +212,14 @@ const TemplateSceneOne = (props) => {
     axios
       .get(`${apigetAdminTemplate}` + "?templateId=" + templateId, {})
       .then(function (response) {
-         console.log(response.data);
         if (response.data.data.length > 0) {
+          setTemplateTitle(response.data.data[0].title);
           if (typeof response.data.data[0] !== undefined) {
             if (response.data.data[0].blocks.length > 0) {
               setBlocks(response.data.data[0].blocks);
-              setSceneOrder(response.data.data[0].sceneOrder)
-              setSceneThumbnail(response.data.data[0].templateImage)
-              setSelectedCategory(response.data.data[0].templateCategory)
+              setSceneOrder(response.data.data[0].sceneOrder);
+              setSceneThumbnail(response.data.data[0].templateImage);
+              setSelectedCategory(response.data.data[0].templateCategory);
               setBottomData(response.data.data[0]);
               response.data.data[0].blocks.map((block) => {
                 if (block.sceneId == 1) {
@@ -247,7 +248,6 @@ const TemplateSceneOne = (props) => {
       const token = cookies.get("token");
       const decoded = jwt_decode(token);
       setUserId(decoded.id);
-      //console.log(decoded.id)
       getData();
     }
     // getData();
@@ -261,6 +261,7 @@ const TemplateSceneOne = (props) => {
       })
       .then(function (response) {
         console.log(response);
+        getData();
       });
   }
 
@@ -289,12 +290,12 @@ const TemplateSceneOne = (props) => {
   function playVideo(click) {
     setPlayActive(click);
   }
-  function reFetchData(){
+  function reFetchData() {
     getData();
   }
   return (
     <section className="template-new-wrapper ">
-      <TopSection />
+      {templateTitle ? <TopSection templateTitle={templateTitle} /> : null}
       <div className="d-flex justify-content-between outervh">
         <SidebarLeft />
         {addMedia ? (

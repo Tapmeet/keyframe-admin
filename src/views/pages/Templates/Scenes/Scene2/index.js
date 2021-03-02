@@ -45,6 +45,8 @@ const TemplateSceneTwo = (props) => {
   //     text: '5'
   //   }
   // ]);
+  const [templateTitle, setTemplateTitle] = React.useState("");
+  
   const [content, setContent] = React.useState([]);
   const [data, setData] = React.useState("");
   const [userToken, setUserToken] = React.useState("");
@@ -218,6 +220,7 @@ const TemplateSceneTwo = (props) => {
    .then(function (response) {
         if (response.data.data.length > 0) {
           if (typeof response.data.data[0] !== undefined) {
+            setTemplateTitle(response.data.data[0].title);
             setBottomData(response.data.data[0]);
             setSceneOrder(response.data.data[0].sceneOrder)
             setSceneThumbnail(response.data.data[0].templateImage)
@@ -260,6 +263,7 @@ const TemplateSceneTwo = (props) => {
       })
       .then(function (response) {
         console.log(response);
+        getData();
       });
   }
   function playVideo(click) {
@@ -270,7 +274,7 @@ const TemplateSceneTwo = (props) => {
   }
   return (
     <section className="template-new-wrapper">
-      <TopSection />
+     {templateTitle ? <TopSection templateTitle={templateTitle} /> : null}
       <div className="d-flex justify-content-between outervh">
       
         <SidebarLeft />

@@ -33,6 +33,7 @@ const TemplateSceneThree = (props) => {
   const {
     params: { sceneId },
   } = match;
+  const [templateTitle, setTemplateTitle] = React.useState("");
   const [data, setData] = React.useState("");
   const [userToken, setUserToken] = React.useState("");
   const cookies = new Cookies();
@@ -233,6 +234,7 @@ const TemplateSceneThree = (props) => {
       .then(function (response) {
         if (response.data.data.length > 0) {
           if (typeof response.data.data[0] !== undefined) {
+            setTemplateTitle(response.data.data[0].title);
             setBottomData(response.data.data[0]);
             setSceneThumbnail(response.data.data[0].templateImage)
             setSelectedCategory(response.data.data[0].templateCategory)
@@ -311,7 +313,7 @@ const TemplateSceneThree = (props) => {
   }
   return (
     <section className="template-new-wrapper">
-       <TopSection />
+     {templateTitle ? <TopSection templateTitle={templateTitle} /> : null}
       <div className="d-flex justify-content-between outervh">
      
         <SidebarLeft />

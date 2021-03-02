@@ -46,11 +46,13 @@ export const apiSupportTicket = `${url}api/common/support`
 export const apiGetUsers = `${url}api/user/`
 export const apiGetUser = `${url}api/user/` 
 export const apiUpdateUser = `${url}api/user/`
+
 export const apiAddScene = `${url}api/scene/add-scene`
 export const apiAllScene = `${url}api/scene/all-scenes`
 export const apigetUploads = `${url}api/template/get-uploads/`
 export const apiUpdateBlock = `${url}api/template/update-scene`
 export const apiUpdateScene = `${url}api/scene/`
+
 export const apiGetScene = `${url}api/scene/get-scene/`
 export const apiGetCategoryScenes = `${url}api/scene/category-scenes`
 
@@ -68,3 +70,7 @@ export const apiGetTemplates = `${url}api/template/all-templates`
 export const apiaddAdminTemplate = `${url}api/template/create-template`
 export const apigetAdminTemplate = `${url}api/template/get-admin-template`
 export const apiupdateAdminTemplate = `${url}api/template/update-template/`
+
+export const apiAddLastScene = `${url}api/last-block/add-scene`
+export const apiUpdatLastScene = `${url}api/last-block/`
+export const apiGetLastScene = `${url}api/last-block/get-scene/`

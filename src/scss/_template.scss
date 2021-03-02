@@ -1,5 +1,5 @@
 .outervh {
-  min-height: 720px;
+  min-height: 75vh;
 }
 .template-new-wrapper-sidebar {
   nav {
@@ -214,8 +214,9 @@
 
 .template-new-wrapper-scene1 {
   margin-top: 30px;
-  width: 55%;
+  width: 60%;
   max-width: 1920px;
+  max-height: 73vh;
   .d-flex {
     height: 100%;
     .bg-section {
@@ -991,6 +992,21 @@
     }
     .col-12:last-of-type {
       text-align: left;
+      
     }
   }
 }
+.lastScene-section {
+  .img-section {
+    .col-12:first-of-type {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .col-12:nth-of-type(2) {
+      img {
+        padding-left: 15px;
+      }
+    }
+  }
+}
+

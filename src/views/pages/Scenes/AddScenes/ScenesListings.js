@@ -68,9 +68,9 @@ const ScenesListings = (props) => {
     props.closeAddScene(false, media);
   }
   function addScene(data) {
-    setLoader(true)
+    setLoader(true);
     axios
-      .put(apiupdateAdminTemplate + "?templateId=" + templateId, {
+      .put(apiupdateAdminTemplate + templateId, {
         id: templateId,
         data: data,
       })

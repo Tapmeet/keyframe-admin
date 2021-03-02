@@ -1,6 +1,7 @@
 import React from "react";
 import DragResizeContainer from "react-drag-resize";
 import HOC from "./HOC";
+import { apiPath } from "../../../../Utility/Utility";
 const PlayerSceneOne = (props) => {
   const [mediaArray, setMediaArray] = React.useState(props.data.media);
   const [sceneIndex, setSceneIndex] = React.useState(props.index);
@@ -79,7 +80,6 @@ const PlayerSceneOne = (props) => {
         clearTimeout(timeout);
       }, parseFloat(props.time) * 1000);
     } else {
-    
       timeout = setTimeout(function () {
         setSceneActive(true);
         activeClassTimer = setTimeout(function () {
@@ -148,7 +148,10 @@ const PlayerSceneOne = (props) => {
                     return (
                       <div
                         className="bg box-1"
-                        style={{ "background-image": "url(" + data.url + ") " }}
+                        style={{
+                          "background-image":
+                            "url(" + apiPath + data.url + ") ",
+                        }}
                       ></div>
                     );
                   })}

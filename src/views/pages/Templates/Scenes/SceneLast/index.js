@@ -1,48 +1,49 @@
 import React from "react";
 import axios from "axios";
-import Scene from "./../../../../../assets/images/templates/img11.png";
-import Scene2 from "./../../../../../assets/images/templates/img12.png";
-import Scene3 from "./../../../../../assets/images/templates/img13.png";
-import Scene4 from "./../../../../../assets/images/templates/img14.png";
 import { useRouteMatch } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import Cookies from "universal-cookie";
 import SidebarLeft from "../../../Scenes/SidebarLeft/SidebarLeft";
 import TextEditor from "../../../Scenes/TextEditor/TextEditor";
 import ChangeBg from "../../../Scenes/ChangeBg";
-import SceneFour from "./Scene4";
+import SceneLast from "./SceneLast";
 import AddMedia from "../../../Scenes/AddMedia/AddMedia";
 import AddScenes from "../../../Scenes/AddScenes/AddScenes";
-import TopSection from "./../../../Scenes/TopSection/TopSection";
-import BottomSection from "./../../../Scenes/BottomSection/BottomSection";
+import TopSection from "../../../Scenes/TopSection/TopSection";
+import BottomSection from "../../../Scenes/BottomSection/BottomSection";
+import userImg from "../../../../../assets/images/User/Template/user.png";
+import LogoImg from "../../../../../assets/images/User/Template/Resizer.webp";
 import {
   apigetAdminTemplate,
-  apiUpdateBlock,
+  apiUpdatLastScene,
   apiUpdateScene,
-  apiGetScene,
-} from "./../../../../../Utility/Utility";
+  apiGetLastScene,
+} from "../../../../../Utility/Utility";
 import Player from "../../Player";
-const TemplateSceneFour = (props) => {
+const TemplateSceneLast = (props) => {
   const [sceneOrder, setSceneOrder] = React.useState("");
   const [bottomData, setBottomData] = React.useState("");
   const [userId, setUserId] = React.useState("");
-  const match = useRouteMatch("/template/:templateId/4/:sceneId");
+  const match = useRouteMatch("/template/:templateId/last/:sceneId");
   const {
     params: { templateId },
   } = match;
   const {
     params: { sceneId },
   } = match;
-  const [templateTitle, setTemplateTitle] = React.useState("");
+
   const [data, setData] = React.useState("");
   const [blocks, setBlocks] = React.useState("");
   const [userToken, setUserToken] = React.useState("");
   const cookies = new Cookies();
+  // const [textAligmnet, setTextAligmnet] = React.useState("text-center");
   const [bgType, setBgType] = React.useState("");
   const [bgScene, setBgScene] = React.useState("");
+  // const [textColor, setTextColor] = React.useState("#333");
   const [content, setContent] = React.useState("");
   const [textlineHeight, setTextlineHeight] = React.useState("1.4");
   const [textSize, setTextSize] = React.useState("");
+  // const [textTransform, setTexttransform] = React.useState("");
   const [changeBg, setChangeBg] = React.useState(false);
   const [addMedia, setAddMedia] = React.useState(false);
   const [addScene, setAddScene] = React.useState(false);
@@ -52,9 +53,62 @@ const TemplateSceneFour = (props) => {
   const [playActive, setPlayActive] = React.useState(false);
   const [sceneThumbnail, setSceneThumbnail] = React.useState("");
   const [selectedCategory, setSelectedCategory] = React.useState("");
-  
-  const [mediaArray, setMediaArray] = React.useState([]);
-  const [textArray, setTextArray] = React.useState([]);
+  const [mediaArray, setMediaArray] = React.useState([
+    {
+      url: userImg,
+      type: "image/png",
+    },
+    {
+      url: LogoImg,
+      type: "image/png",
+    },
+ 
+  ]);
+  const [textArray, setTextArray] = React.useState([
+    {
+      text: "Devon Carrick",
+      fontSize: "35",
+      fontFamily: "",
+      fontWeight: "600",
+      fontLineHeight: "1.4",
+      fontAlignment: "text-left",
+      fontColor: "#333",
+      fontCapitalize: "",
+
+    },
+    {
+      text: "devon-carrick.kw.com",
+      fontSize: "22",
+      fontFamily: "",
+      fontWeight: "500",
+      fontLineHeight: "1.4",
+      fontAlignment: "text-left",
+      fontColor: "#333",
+      fontCapitalize: "",
+    },
+    {
+      text: "devoncarrick@kw.com",
+      fontSize: "22",
+      fontFamily: "",
+      fontWeight: "500",
+      fontLineHeight: "1.4",
+      fontAlignment: "text-left",
+      fontColor: "#333",
+      fontCapitalize: "",
+    },
+    {
+      text: "99-628-32220",
+      fontSize: "22",
+      fontFamily: "",
+      fontWeight: "500",
+      fontLineHeight: "1.4",
+      fontAlignment: "text-left",
+      fontColor: "#333",
+      fontCapitalize: "",
+    }, 
+  ]);
+  //const [mediaArray, setMediaArray] = React.useState([]);
+  //const [textArray, setTextArray] = React.useState([]);
   function getAlignment(alignment) {
     let newArr = [...textArray]; // copying the old datas array
     newArr[arrayIndex] = {
@@ -74,7 +128,7 @@ const TemplateSceneFour = (props) => {
     setTextArray(newArr);
     const data = {
       media: mediaArray,
-      time: 6,
+      time: 4,
       textArray: newArr,
     };
     updateData(data);
@@ -98,7 +152,7 @@ const TemplateSceneFour = (props) => {
     setTextArray(newArr);
     const data = {
       media: mediaArray,
-      time: 6,
+      time: 4,
       textArray: newArr,
     };
     updateData(data);
@@ -122,7 +176,7 @@ const TemplateSceneFour = (props) => {
     setTextArray(newArr);
     const data = {
       media: mediaArray,
-      time: 6,
+      time: 4,
       textArray: newArr,
     };
     updateData(data);
@@ -147,7 +201,7 @@ const TemplateSceneFour = (props) => {
     setTextArray(newArr);
     const data = {
       media: mediaArray,
-      time: 6,
+      time: 4,
       textArray: newArr,
     };
     updateData(data);
@@ -174,13 +228,13 @@ const TemplateSceneFour = (props) => {
     //console.log(newArr)
     const data = {
       media: mediaArray,
-      time: 6,
+      time: 4,
       textArray: newArr,
     };
     updateData(data);
   }
   function showBg(changeBg, type, scene, titleColor, container, index) {
-    console.log(scene);
+    console.log(index);
     if (index) {
       setTextSize(textArray[index].fontSize);
     }
@@ -207,7 +261,7 @@ const TemplateSceneFour = (props) => {
       setMediaArray(newArr);
       const data = {
         media: newArr,
-        time: 6,
+        time: 4,
         textArray: textArray,
       };
       updateData(data);
@@ -222,24 +276,25 @@ const TemplateSceneFour = (props) => {
     setShowEditbutton(false);
   }
   function getContent(content) {
+    console.log(content)
     setTextArray(content);
     const data = {
       textArray: content,
-      time: 6,
+      time: 4,
       media: mediaArray,
     };
     updateData(data);
   }
   function updateData(data) {
     axios
-      .put(`${apiUpdateBlock}/${sceneId}`, {
-        id: sceneId,
-        sceneData: data,
-      })
-      .then(function (response) {
-        getData();
-        console.log(response);
-      });
+    .put(`${apiUpdatLastScene}/${sceneId}`, {
+      id: sceneId,
+      sceneData: data,
+    })
+    .then(function (response) {
+      getData();
+      console.log(response);
+    });
   }
 
   React.useEffect(() => {
@@ -261,26 +316,20 @@ const TemplateSceneFour = (props) => {
         if (response.data.data.length > 0) {
           setBlocks(response.data.data[0].blocks);
           if (typeof response.data.data[0] !== undefined) {
-            setTemplateTitle(response.data.data[0].title);
             setBottomData(response.data.data[0]);
             setSceneOrder(response.data.data[0].sceneOrder)
             setSceneThumbnail(response.data.data[0].templateImage)
             setSelectedCategory(response.data.data[0].templateCategory)
-            if (response.data.data[0].blocks.length > 0) {
-              //setBlocks(response.data.data[0].blocks);
-              response.data.data[0].blocks.map((block) => {
-                if (block.sceneId == 4) {
-                  console.log(block);
-                  setData(block.sceneData);
-                  setMediaArray(block.sceneData.media);
-                  setTextArray(block.sceneData.textArray);
-                  setTextSize(block.sceneData.textArray[0].fontSize);
-                  // console.log(block.sceneData.textArray[0].fontSize);
-                }
-              });
-            }
           }
         }
+      });
+      axios.get(`${apiGetLastScene}` + "?id=" + templateId, {})
+      .then(function (response) {
+        console.log(response) 
+        setData(response.data.scene.sceneData);
+            setMediaArray(response.data.scene.sceneData.media);
+            setTextArray(response.data.scene.sceneData.textArray);
+            setTextSize(response.data.scene.sceneData.textArray[0].fontSize);
       });
   }
   function playVideo(click) {
@@ -291,8 +340,9 @@ const TemplateSceneFour = (props) => {
   }
   return (
     <section className="template-new-wrapper">
-       {templateTitle ? <TopSection templateTitle={templateTitle} /> : null}
-      <div className="d-flex justify-content-between outervh">   
+       <TopSection />
+      <div className="d-flex justify-content-between outervh">
+       
         <SidebarLeft />
         {addMedia ? (
           <AddMedia closeAddMedia={closeAddMedia} />
@@ -302,7 +352,7 @@ const TemplateSceneFour = (props) => {
           playActive ? (
             <Player blocks={blocks} />
           ) : (
-            <SceneFour
+            <SceneLast
               showBg={showBg}
               changeBg={changeBg}
               container={container}
@@ -347,4 +397,4 @@ const TemplateSceneFour = (props) => {
     </section>
   );
 };
-export default TemplateSceneFour;
+export default TemplateSceneLast;

@@ -10,18 +10,18 @@ const Box = ({
   boxLink,
   handleDrag,
   handleDrop,
-  confirmDelete
+  confirmDelete,
+  deleteFalse,
 }) => {
-
   return (
     <div
       id={boxId}
       className="thumb-section"
-      draggable={true}
+      draggable={deleteFalse != false ? true : false}
       id={boxId}
-      onDragOver={(ev) => ev.preventDefault()}
-      onDragStart={handleDrag}
-      onDrop={handleDrop}
+      onDragOver={deleteFalse == false ? null : (ev) => ev.preventDefault()}
+      onDragStart={deleteFalse == false ? null : handleDrag}
+      onDrop={deleteFalse == false ? null : handleDrop}
       style={{
         "background-image": "url(" + boxBg + ") ",
         width: boxWidth + "px",
@@ -29,11 +29,13 @@ const Box = ({
       }}
     >
       {boxId != sceneId ? (
-        <img
-          src={trash}
-          alt="Delete Section"
-           onClick={() => confirmDelete(boxId)}
-        />
+        deleteFalse != false ? (
+          <img
+            src={trash}
+            alt="Delete Section"
+            onClick={() => confirmDelete(boxId)}
+          />
+        ) : null
       ) : null}
       <Link to={boxLink} />
     </div>

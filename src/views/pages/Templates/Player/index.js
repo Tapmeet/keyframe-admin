@@ -2,13 +2,21 @@
 /* eslint-disable no-lone-blocks */
 /* eslint-disable array-callback-return */
 import React from "react";
+import axios from "axios";
+import { useRouteMatch } from "react-router-dom";
 import PlayerSceneOne from "./Scene1";
 import PlayerSceneTwo from "./Scene2";
 import PlayerSceneThree from "./Scene3";
 import PlayerSceneFour from "./Scene4";
+import PlayerSceneLast from "./SceneLast";
 import HOC from "./HOC";
 import $ from "jquery";
+import { apiGetLastScene,} from "../../../../Utility/Utility";
 const Player = (props) => {
+  const match = useRouteMatch("/template/:templateId/:id/:sceneId");
+  const {
+    params: { templateId },
+  } = match;
   const [blocks, setBlocks] = React.useState(props.blocks);
   React.useEffect(() => {
     // var myInterval, myVar;
@@ -33,12 +41,15 @@ const Player = (props) => {
         
       // });
     }
+    axios.get(`${apiGetLastScene}` + "?id=" + templateId, {})
+      .then(function (response) {
+        setBlocks(oldArray => [...oldArray, response.data.scene]);
+      });
   }, []);
   var  timer = 0;
   return (
     <section className="template-new-wrapper-scene1 player-new ">
       {blocks.map((data, index) => {
-        
         return (
           <HOC>
             {data.sceneId == 1 ? (
@@ -53,6 +64,10 @@ const Player = (props) => {
             {data.sceneId == 4 ? (
               <PlayerSceneFour data={data.sceneData} index={index} timer={timer} time={data.sceneData.time}  />
             ) : null}
+              {data.sceneId == 'last' ? (
+              <PlayerSceneLast data={data.sceneData} index={index} timer={timer} time={data.sceneData.time}  />
+            ) : null}
+            
             <div className="d-none"> {timer = (parseFloat(timer)+ parseFloat(data.sceneData.time))}</div>
           </HOC>
           

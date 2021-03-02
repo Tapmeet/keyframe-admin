@@ -6,6 +6,7 @@ import { Carousel } from "react-responsive-carousel";
 import DragResizeContainer from "react-drag-resize";
 import HOC from "./HOC";
 import $ from "jquery";
+import { apiPath } from "../../../../Utility/Utility";
 const PlayerSceneFour = (props) => {
   //console.log(props);
   const [sceneIndex, setSceneIndex] = React.useState(props.index);
@@ -248,7 +249,7 @@ const PlayerSceneFour = (props) => {
                                 }
                                 className="bg box-1"
                                 style={{
-                                  "background-image": "url(" + data.url + ") ",
+                                  "background-image": "url(" + apiPath+ data.url + ") ",
                                 }}
                               ></div>
                             </div>
@@ -321,7 +322,7 @@ const PlayerSceneFour = (props) => {
                                 }
                                 className="bg box-1"
                                 style={{
-                                  "background-image": "url(" + data.url + ") ",
+                                  "background-image": "url(" + apiPath+ data.url + ") ",
                                 }}
                               ></div>
                             </div>
