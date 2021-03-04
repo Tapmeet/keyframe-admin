@@ -176,7 +176,8 @@ const SceneFour = (props) => {
                             }
                             className="bg box-1"
                             style={{
-                              "background-image": "url(" + data.url + ") ",
+                              "background-image":
+                                "url(" + apiPath + data.url + ") ",
                             }}
                           ></div>
                         </div>

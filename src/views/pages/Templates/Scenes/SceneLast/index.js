@@ -31,7 +31,7 @@ const TemplateSceneLast = (props) => {
   const {
     params: { sceneId },
   } = match;
-
+  const [templateTitle, setTemplateTitle] = React.useState("");
   const [data, setData] = React.useState("");
   const [blocks, setBlocks] = React.useState("");
   const [userToken, setUserToken] = React.useState("");
@@ -62,7 +62,6 @@ const TemplateSceneLast = (props) => {
       url: LogoImg,
       type: "image/png",
     },
- 
   ]);
   const [textArray, setTextArray] = React.useState([
     {
@@ -74,7 +73,6 @@ const TemplateSceneLast = (props) => {
       fontAlignment: "text-left",
       fontColor: "#333",
       fontCapitalize: "",
-
     },
     {
       text: "devon-carrick.kw.com",
@@ -105,7 +103,7 @@ const TemplateSceneLast = (props) => {
       fontAlignment: "text-left",
       fontColor: "#333",
       fontCapitalize: "",
-    }, 
+    },
   ]);
   //const [mediaArray, setMediaArray] = React.useState([]);
   //const [textArray, setTextArray] = React.useState([]);
@@ -276,7 +274,7 @@ const TemplateSceneLast = (props) => {
     setShowEditbutton(false);
   }
   function getContent(content) {
-    console.log(content)
+    console.log(content);
     setTextArray(content);
     const data = {
       textArray: content,
@@ -287,14 +285,14 @@ const TemplateSceneLast = (props) => {
   }
   function updateData(data) {
     axios
-    .put(`${apiUpdatLastScene}/${sceneId}`, {
-      id: sceneId,
-      sceneData: data,
-    })
-    .then(function (response) {
-      getData();
-      console.log(response);
-    });
+      .put(`${apiUpdatLastScene}/${sceneId}`, {
+        id: sceneId,
+        sceneData: data,
+      })
+      .then(function (response) {
+        getData();
+        console.log(response);
+      });
   }
 
   React.useEffect(() => {
@@ -309,40 +307,47 @@ const TemplateSceneLast = (props) => {
     // console.log(textSize);
   }, [userId]);
 
-  
   function getData() {
-    axios .get(`${apigetAdminTemplate}` + "?templateId=" + templateId, {})
+    axios
+      .get(`${apigetAdminTemplate}` + "?templateId=" + templateId, {})
       .then(function (response) {
         if (response.data.data.length > 0) {
           setBlocks(response.data.data[0].blocks);
           if (typeof response.data.data[0] !== undefined) {
+            setTemplateTitle(response.data.data[0].title);
             setBottomData(response.data.data[0]);
-            setSceneOrder(response.data.data[0].sceneOrder)
-            setSceneThumbnail(response.data.data[0].templateImage)
-            setSelectedCategory(response.data.data[0].templateCategory)
+            setSceneOrder(response.data.data[0].sceneOrder);
+            setSceneThumbnail(response.data.data[0].templateImage);
+            setSelectedCategory(response.data.data[0].templateCategory);
           }
         }
       });
-      axios.get(`${apiGetLastScene}` + "?id=" + templateId, {})
+    axios
+      .get(`${apiGetLastScene}` + "?id=" + templateId, {})
       .then(function (response) {
-        console.log(response) 
+        console.log(response);
         setData(response.data.scene.sceneData);
-            setMediaArray(response.data.scene.sceneData.media);
-            setTextArray(response.data.scene.sceneData.textArray);
-            setTextSize(response.data.scene.sceneData.textArray[0].fontSize);
+        setMediaArray(response.data.scene.sceneData.media);
+        setTextArray(response.data.scene.sceneData.textArray);
+        setTextSize(response.data.scene.sceneData.textArray[0].fontSize);
       });
   }
   function playVideo(click) {
     setPlayActive(click);
   }
-  function reFetchData(){
+  function reFetchData() {
     getData();
   }
   return (
     <section className="template-new-wrapper">
-       <TopSection />
+      {templateTitle ? (
+        <TopSection
+          templateTitle={templateTitle}
+          template={true}
+          templateId={templateId}
+        />
+      ) : null}
       <div className="d-flex justify-content-between outervh">
-       
         <SidebarLeft />
         {addMedia ? (
           <AddMedia closeAddMedia={closeAddMedia} />

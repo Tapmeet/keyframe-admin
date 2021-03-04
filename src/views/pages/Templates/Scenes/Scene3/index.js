@@ -298,6 +298,7 @@ const TemplateSceneThree = (props) => {
       boxheight: obj.boxheight,
       textTransform: textTransform,
       media: mediaArray,
+      time: 4,
     };
     setTransformX(obj.x);
     setTransformY(obj.y);
@@ -313,7 +314,8 @@ const TemplateSceneThree = (props) => {
   }
   return (
     <section className="template-new-wrapper">
-     {templateTitle ? <TopSection templateTitle={templateTitle} /> : null}
+     {templateTitle ? <TopSection templateTitle={templateTitle} template={true}
+              templateId={templateId} /> : null}
       <div className="d-flex justify-content-between outervh">
      
         <SidebarLeft />

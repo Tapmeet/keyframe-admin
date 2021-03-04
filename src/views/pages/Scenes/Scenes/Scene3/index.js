@@ -10,7 +10,7 @@ import ChangeBg from "./../../ChangeBg";
 import SceneThree from "./Scene3";
 import AddMedia from "./../../AddMedia/AddMedia";
 import AddScenes from "./../../AddScenes/AddScenes";
-
+import TopSection from "./../../TopSection/TopSection";
 import {
   apigetTemplate,
   apiUpdateScene,
@@ -22,8 +22,9 @@ import Player from "../../Player";
 const TemplateScene3 = (props) => {
   const [userId, setUserId] = React.useState("");
   const [blocks, setBlocks] = React.useState("");
-  const match = useRouteMatch("/template/:templateId");
-  const templateId = "5f4a7da816b5091d38dd97a1";
+  const [templateTitle, setTemplateTitle] = React.useState("");
+  // const match = useRouteMatch("/template/:templateId");
+  // const templateId = "5f4a7da816b5091d38dd97a1";
   const [data, setData] = React.useState("");
   const [userToken, setUserToken] = React.useState("");
   const cookies = new Cookies();
@@ -223,6 +224,7 @@ const TemplateScene3 = (props) => {
     axios.get(`${apiGetScene}?id=3`, {}).then(function (response) {
       if (response.data.scene) {
         setBlocks(response.data.scene);
+        setTemplateTitle(response.data.scene.sceneTitle);
         setMediaArray(response.data.scene.sceneData.media);
         setTextSize(response.data.scene.sceneData.textSize);
         setTextlineHeight(response.data.scene.sceneData.textlineHeight);
@@ -288,6 +290,12 @@ const TemplateScene3 = (props) => {
   }
   return (
     <section className="template-new-wrapper">
+      {templateTitle ? (
+        <TopSection
+          templateTitle={templateTitle}
+          id="3"
+        />
+      ) : null}
       <div className="d-flex justify-content-between outervh">
         <SidebarLeft />
         {addMedia ? (

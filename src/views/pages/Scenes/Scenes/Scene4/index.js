@@ -19,12 +19,13 @@ import {
   apiUpdateScene,
   apiGetScene,
 } from "./../../../../../Utility/Utility";
+import TopSection from "./../../TopSection/TopSection";
 import Player from "../../Player";
 const TemplateScene4 = (props) => {
   const [userId, setUserId] = React.useState("");
   const match = useRouteMatch("/template/:templateId");
   const templateId = "5f4a7da816b5091d38dd97a1";
-
+  const [templateTitle, setTemplateTitle] = React.useState("");
   const [data, setData] = React.useState("");
   const [blocks, setBlocks] = React.useState("");
   const [userToken, setUserToken] = React.useState("");
@@ -297,6 +298,7 @@ const TemplateScene4 = (props) => {
     axios.get(`${apiGetScene}?id=4`, {}).then(function (response) {
       if (response.data.scene) {
       setBlocks(response.data.scene);
+      setTemplateTitle(response.data.scene.sceneTitle);
       setData(response.data.scene.sceneData);
       setMediaArray(response.data.scene.sceneData.media);
       setTextArray(response.data.scene.sceneData.textArray);
@@ -312,6 +314,12 @@ const TemplateScene4 = (props) => {
   }
   return (
     <section className="template-new-wrapper">
+      {templateTitle ? (
+        <TopSection
+          templateTitle={templateTitle}
+          id="4"
+        />
+      ) : null}
       <div className="d-flex justify-content-between outervh">
         <SidebarLeft />
         {addMedia ? (

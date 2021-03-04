@@ -110,8 +110,8 @@ const BottomSection = (props) => {
     setShowStop(false);
   }
   const handleStop = (e, data) => {
-    console.log("Event: ", e);
-    console.log("Data: ", data);
+    // console.log("Event: ", e);
+    // console.log("Data: ", data);
   };
   React.useEffect(() => {
     // setSceneOrder(props.bottomData.sceneOrder);
@@ -124,7 +124,7 @@ const BottomSection = (props) => {
     axios
       .get(`${apiGetLastScene}` + "?id=" + templateId, {})
       .then(function (response) {
-        console.log(response.data.scene.sceneData.time);
+      //  console.log(response.data.scene.sceneData.time);
         setPlayerTime(parseFloat(time) + response.data.scene.sceneData.time);
         setLastScenetime(response.data.scene.sceneData.time);
         setLastSceneData(response.data.scene);

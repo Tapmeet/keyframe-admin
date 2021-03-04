@@ -213,9 +213,10 @@ const TemplateSceneOne = (props) => {
       .get(`${apigetAdminTemplate}` + "?templateId=" + templateId, {})
       .then(function (response) {
         if (response.data.data.length > 0) {
-          setTemplateTitle(response.data.data[0].title);
+        
           if (typeof response.data.data[0] !== undefined) {
             if (response.data.data[0].blocks.length > 0) {
+              setTemplateTitle(response.data.data[0].title);
               setBlocks(response.data.data[0].blocks);
               setSceneOrder(response.data.data[0].sceneOrder);
               setSceneThumbnail(response.data.data[0].templateImage);
@@ -295,7 +296,8 @@ const TemplateSceneOne = (props) => {
   }
   return (
     <section className="template-new-wrapper ">
-      {templateTitle ? <TopSection templateTitle={templateTitle} /> : null}
+      {templateTitle ? <TopSection templateTitle={templateTitle} template={true}
+              templateId={templateId} /> : null}
       <div className="d-flex justify-content-between outervh">
         <SidebarLeft />
         {addMedia ? (

@@ -274,7 +274,8 @@ const TemplateSceneTwo = (props) => {
   }
   return (
     <section className="template-new-wrapper">
-     {templateTitle ? <TopSection templateTitle={templateTitle} /> : null}
+     {templateTitle ? <TopSection templateTitle={templateTitle} template={true}
+              templateId={templateId} /> : null}
       <div className="d-flex justify-content-between outervh">
       
         <SidebarLeft />

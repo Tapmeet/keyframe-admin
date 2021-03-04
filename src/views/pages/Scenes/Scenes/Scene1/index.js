@@ -10,7 +10,7 @@ import ChangeBg from "./../../ChangeBg";
 import Scene1 from "./Scene1";
 import AddMedia from "./../../AddMedia/AddMedia";
 import AddScenes from "./../../AddScenes/AddScenes";
-
+import TopSection from "./../../TopSection/TopSection";
 import { apiGetScene, apiUpdateScene } from "./../../../../../Utility/Utility";
 import Player from "../../Player";
 // import Scene from "./../../../../../assets/images/templates/img11.png";
@@ -20,7 +20,7 @@ import Player from "../../Player";
 const TemplateNew1 = (props) => {
   const [userId, setUserId] = React.useState("");
   //const match = useRouteMatch("/template/:templateId");
-  const templateId = "5f4a7da816b5091d38dd97a1";
+  const [templateTitle, setTemplateTitle] = React.useState("");
   const [data, setData] = React.useState("");
   const [blocks, setBlocks] = React.useState("");
   const [userToken, setUserToken] = React.useState("");
@@ -41,24 +41,6 @@ const TemplateNew1 = (props) => {
   const [showEditbutton, setShowEditbutton] = React.useState(false);
   const [playActive, setPlayActive] = React.useState(false);
   const [selectedCategory, setSelectedCategory] = React.useState('');
-  // const [mediaArray, setMediaArray] = React.useState([
-  //   {
-  //     url: Scene,
-  //     type:'image/png'
-  //   },
-  //   {
-  //     url: Scene2,
-  //     type:'image/png'
-  //   },
-  //   {
-  //     url: Scene3,
-  //     type:'image/png'
-  //   },
-  //   {
-  //     url: Scene4,
-  //     type:'image/png'
-  //   }
-  // ]);
   const [mediaArray, setMediaArray] = React.useState([]);
   const [transformX, setTransformX] = React.useState(0);
   const [transformY, setTransformY] = React.useState(0);
@@ -226,6 +208,7 @@ const TemplateNew1 = (props) => {
       //console.log(response);
       if (response.data.scene) {
         setBlocks(response.data.scene);
+        setTemplateTitle(response.data.scene.sceneTitle);
         setMediaArray(response.data.scene.sceneData.media);
         setTextSize(response.data.scene.sceneData.textSize);
         setTextlineHeight(response.data.scene.sceneData.textlineHeight);
@@ -249,7 +232,7 @@ const TemplateNew1 = (props) => {
       setUserToken(cookies.get("token"));
       const token = cookies.get("token");
       const decoded = jwt_decode(token);
-      setUserId("5fb23662f0b30f2d6c9ff48c");
+      setUserId(decoded.id);
       //console.log(decoded.id)
       getData();
     }
@@ -294,6 +277,12 @@ const TemplateNew1 = (props) => {
   }
   return (
     <section className="template-new-wrapper ">
+      {templateTitle ? (
+        <TopSection
+          templateTitle={templateTitle}
+          id="1"
+        />
+      ) : null}
       <div className="d-flex justify-content-between outervh">
         <SidebarLeft />
         {addMedia ? (

@@ -23,21 +23,20 @@ const SceneTwo = (props) => {
   }
 
   const settings = {
-    dots: false,
+    dots: true,
     speed: 1500,
     autoplaySpeed: 3500,
     slidesToShow: 1,
     infinite: true,
     slidesToScroll: 1,
     autoplay: true,
-    arrows: false,
     responsive: [
       {
         breakpoint: 1600,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          dots: false,
+          dots: true,
         },
       },
       {
@@ -45,7 +44,7 @@ const SceneTwo = (props) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          dots: false,
+          dots: true,
         },
       },
       {
@@ -53,7 +52,7 @@ const SceneTwo = (props) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          dots: false,
+          dots: true,
         },
       },
       {

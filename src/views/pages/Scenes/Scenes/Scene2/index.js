@@ -9,6 +9,7 @@ import ChangeBg from "./../../ChangeBg";
 import SceneTwo from "./Scene2";
 import AddMedia from "./../../AddMedia/AddMedia";
 import AddScenes from "./../../AddScenes/AddScenes";
+import TopSection from "./../../TopSection/TopSection";
 import {
   apigetTemplate,
   apiUpdateScene,
@@ -17,6 +18,7 @@ import {
 import Player from "../../Player";
 const TemplateScene2 = (props) => {
   const [userId, setUserId] = React.useState("");
+  const [templateTitle, setTemplateTitle] = React.useState("");
   const [blocks, setBlocks] = React.useState("");
   const match = useRouteMatch("/template/:templateId");
   const templateId = "5f4a7da816b5091d38dd97a1";
@@ -206,6 +208,7 @@ const TemplateScene2 = (props) => {
     axios.get(`${apiGetScene}?id=2`, {}).then(function (response) {
       if (response.data.scene) {
       setBlocks(response.data.scene);
+      setTemplateTitle(response.data.scene.sceneTitle);
       setMediaArray(response.data.scene.sceneData.media);
       setTextSize(response.data.scene.sceneData.textSize);
       setTextlineHeight(response.data.scene.sceneData.textlineHeight);
@@ -246,6 +249,12 @@ const TemplateScene2 = (props) => {
   }
   return (
     <section className="template-new-wrapper">
+      {templateTitle ? (
+        <TopSection
+          templateTitle={templateTitle}
+          id="2"
+        />
+      ) : null}
       <div className="d-flex justify-content-between outervh">
         <SidebarLeft />
         {addMedia ? (
