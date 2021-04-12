@@ -40,12 +40,56 @@ const TemplateNew1 = (props) => {
   const [container, setContainer] = React.useState("");
   const [showEditbutton, setShowEditbutton] = React.useState(false);
   const [playActive, setPlayActive] = React.useState(false);
-  const [selectedCategory, setSelectedCategory] = React.useState('');
+  const [selectedCategory, setSelectedCategory] = React.useState("");
   const [mediaArray, setMediaArray] = React.useState([]);
   const [transformX, setTransformX] = React.useState(0);
   const [transformY, setTransformY] = React.useState(0);
   const [width, setWidth] = React.useState(350);
   const [height, setHeight] = React.useState(100);
+  const [fontFamily, setFontFamily] = React.useState("");
+  const [fontWeight, setFontWeight] = React.useState("");
+
+  function getFontfamily(fontfamily) {
+    setFontFamily(fontfamily);
+    const data = {
+      content: content,
+      textAligmnet: textAligmnet,
+      textColor: textColor,
+      textlineHeight: textlineHeight,
+      textSize: textSize,
+      x: transformX,
+      y: transformY,
+      boxwidth: width,
+      boxheight: height,
+      textTransform: textTransform,
+      media: mediaArray,
+      fontFamily: fontfamily,
+      fontWeight: fontWeight,
+      time: 4,
+    };
+    updateData(data);
+  }
+  function getFontWeight(fontweight) {
+    setFontWeight(fontweight);
+    const data = {
+      content: content,
+      textAligmnet: textAligmnet,
+      textColor: textColor,
+      textlineHeight: textlineHeight,
+      textSize: textSize,
+      x: transformX,
+      y: transformY,
+      boxwidth: width,
+      boxheight: height,
+      textTransform: textTransform,
+      media: mediaArray,
+      fontFamily: fontFamily,
+      fontWeight: fontweight,
+      time: 4,
+    };
+    updateData(data);
+  }
+
   function getAlignment(alignment) {
     setTextAligmnet(alignment);
     const data = {
@@ -61,6 +105,8 @@ const TemplateNew1 = (props) => {
       textTransform: textTransform,
       media: mediaArray,
       time: 4,
+      fontFamily:fontFamily,
+      fontWeight:fontWeight,
     };
     updateData(data);
   }
@@ -79,6 +125,8 @@ const TemplateNew1 = (props) => {
       textTransform: textTransform,
       media: mediaArray,
       time: 4,
+      fontFamily:fontFamily,
+      fontWeight:fontWeight,
     };
     updateData(data);
   }
@@ -98,7 +146,8 @@ const TemplateNew1 = (props) => {
       textTransform: texttransform,
       media: mediaArray,
       time: 4,
-   
+      fontFamily:fontFamily,
+      fontWeight:fontWeight,
     };
     updateData(data);
   }
@@ -117,7 +166,8 @@ const TemplateNew1 = (props) => {
       textTransform: textTransform,
       media: mediaArray,
       time: 4,
-      sceneTitle: " Scene 1",
+      fontFamily:fontFamily,
+      fontWeight:fontWeight,
     };
     updateData(data);
   }
@@ -137,7 +187,8 @@ const TemplateNew1 = (props) => {
       textTransform: textTransform,
       media: mediaArray,
       time: 4,
-
+      fontFamily:fontFamily,
+      fontWeight:fontWeight,
     };
     updateData(data);
   }
@@ -156,6 +207,8 @@ const TemplateNew1 = (props) => {
       textTransform: textTransform,
       media: mediaArray,
       time: 4,
+      fontFamily:fontFamily,
+      fontWeight:fontWeight,
     };
     updateData(data);
   }
@@ -191,6 +244,8 @@ const TemplateNew1 = (props) => {
         textTransform: textTransform,
         media: newArr,
         time: 4,
+        fontFamily:fontFamily,
+        fontWeight:fontWeight,
       };
       updateData(data);
     }
@@ -215,15 +270,16 @@ const TemplateNew1 = (props) => {
         setTextColor(response.data.scene.sceneData.textColor);
         setTexttransform(response.data.scene.sceneData.textTransform);
         setTextAligmnet(response.data.scene.sceneData.textAligmnet);
-        setData(response.data.scene.sceneData);
         setTransformX(response.data.scene.sceneData.x);
         setTransformY(response.data.scene.sceneData.y);
         setWidth(response.data.scene.sceneData.boxwidth);
         setHeight(response.data.scene.sceneData.boxheight);
         setContent(response.data.scene.sceneData.content);
-        setSceneThumbnail(response.data.scene.sceneThumbnail)
-        setSelectedCategory(response.data.scene.sceneCategory)
-        
+        setSceneThumbnail(response.data.scene.sceneThumbnail);
+        setSelectedCategory(response.data.scene.sceneCategory);
+        setFontWeight(response.data.scene.sceneData.fontWeight);
+        setFontFamily(response.data.scene.sceneData.fontFamily)
+        setData(response.data.scene.sceneData);
       }
     });
   }
@@ -247,6 +303,7 @@ const TemplateNew1 = (props) => {
       })
       .then(function (response) {
         console.log(response);
+        getData();
       });
   }
 
@@ -264,6 +321,8 @@ const TemplateNew1 = (props) => {
       textTransform: textTransform,
       media: mediaArray,
       time: 4,
+      fontFamily:fontFamily,
+      fontWeight:fontWeight,
     };
     setTransformX(obj.x);
     setTransformY(obj.y);
@@ -276,15 +335,11 @@ const TemplateNew1 = (props) => {
     setPlayActive(click);
   }
   return (
-    <section className="template-new-wrapper ">
+    <section className="template-new-wrapper scene-warpper">
       {templateTitle ? (
-        <TopSection
-          templateTitle={templateTitle}
-          id="1"
-        />
+        <TopSection templateTitle={templateTitle} id="1" />
       ) : null}
       <div className="d-flex justify-content-between outervh">
-        <SidebarLeft />
         {addMedia ? (
           <AddMedia closeAddMedia={closeAddMedia} />
         ) : addScene ? (
@@ -308,7 +363,7 @@ const TemplateNew1 = (props) => {
               data={data}
               getTextAreaData={getTextAreaData}
               getContent={getContent}
-              content ={content}
+              content={content}
             />
           )
         ) : null}
@@ -320,11 +375,15 @@ const TemplateNew1 = (props) => {
               getTextColor={getTextColor}
               getTextlineHeight={getTextlineHeight}
               getTextSize={getTextSize}
+              getFontfamily={getFontfamily}
+              getFontWeight={getFontWeight}
               textSize={textSize}
               textlineHeight={textlineHeight}
               id={1}
               thumbnails={sceneThumbnail}
               category={selectedCategory}
+              fontFamily={fontFamily}
+              fontWeight={fontWeight}
             />
           ) : null
         ) : (

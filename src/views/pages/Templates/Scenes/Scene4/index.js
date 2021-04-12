@@ -52,9 +52,63 @@ const TemplateSceneFour = (props) => {
   const [playActive, setPlayActive] = React.useState(false);
   const [sceneThumbnail, setSceneThumbnail] = React.useState("");
   const [selectedCategory, setSelectedCategory] = React.useState("");
-  
+
   const [mediaArray, setMediaArray] = React.useState([]);
   const [textArray, setTextArray] = React.useState([]);
+  const [fontFamily, setFontFamily] = React.useState("");
+  const [fontWeight, setFontWeight] = React.useState("");
+
+  function getFontfamily(fontfamily) {
+    setFontFamily(fontfamily);
+    let newArr = [...textArray];
+    newArr[arrayIndex] = {
+      text: newArr[arrayIndex].text,
+      fontSize: newArr[arrayIndex].fontSize,
+      fontFamily: fontfamily,
+      fontWeight: newArr[arrayIndex].fontWeight,
+      fontLineHeight: newArr[arrayIndex].fontLineHeight,
+      fontAlignment: newArr[arrayIndex].fontAlignment,
+      fontColor: newArr[arrayIndex].fontColor,
+      fontCapitalize: newArr[arrayIndex].fontCapitalize,
+      x: newArr[arrayIndex].x,
+      y: newArr[arrayIndex].y,
+      boxWidth: newArr[arrayIndex].boxWidth,
+      boxHeight: newArr[arrayIndex].boxHeight,
+    };
+    setTextArray(newArr);
+    const data = {
+      media: mediaArray,
+      time: 6,
+      textArray: newArr,
+    };
+    updateData(data);
+  }
+  function getFontWeight(fontweight) {
+    setFontWeight(fontweight);
+    let newArr = [...textArray]; // copying the old datas array
+    newArr[arrayIndex] = {
+      text: newArr[arrayIndex].text,
+      fontSize: newArr[arrayIndex].fontSize,
+      fontFamily: newArr[arrayIndex].fontFamily,
+      fontWeight: fontweight,
+      fontLineHeight: newArr[arrayIndex].fontLineHeight,
+      fontAlignment: newArr[arrayIndex].fontAlignment,
+      fontColor: newArr[arrayIndex].fontColor,
+      fontCapitalize: newArr[arrayIndex].fontCapitalize,
+      x: newArr[arrayIndex].x,
+      y: newArr[arrayIndex].y,
+      boxWidth: newArr[arrayIndex].boxWidth,
+      boxHeight: newArr[arrayIndex].boxHeight,
+    };
+    setTextArray(newArr);
+    const data = {
+      media: mediaArray,
+      time: 6,
+      textArray: newArr,
+    };
+    updateData(data);
+  }
+
   function getAlignment(alignment) {
     let newArr = [...textArray]; // copying the old datas array
     newArr[arrayIndex] = {
@@ -183,6 +237,8 @@ const TemplateSceneFour = (props) => {
     console.log(scene);
     if (index) {
       setTextSize(textArray[index].fontSize);
+      setFontWeight(textArray[index].fontWeight);
+      setFontFamily(textArray[index].fontFamily);
     }
     setArrayIndex(index);
     setChangeBg(changeBg);
@@ -237,7 +293,7 @@ const TemplateSceneFour = (props) => {
         sceneData: data,
       })
       .then(function (response) {
-        getData();
+      //  getData();
         console.log(response);
       });
   }
@@ -247,34 +303,37 @@ const TemplateSceneFour = (props) => {
       setUserToken(cookies.get("token"));
       const token = cookies.get("token");
       const decoded = jwt_decode(token);
-      setUserId("5fb23662f0b30f2d6c9ff48c");
+      setUserId(decoded.id);
       //console.log(decoded.id)
       getData();
     }
     // console.log(textSize);
   }, [userId]);
 
-  
   function getData() {
-    axios .get(`${apigetAdminTemplate}` + "?templateId=" + templateId, {})
+    axios
+      .get(`${apigetAdminTemplate}` + "?templateId=" + templateId, {})
       .then(function (response) {
         if (response.data.data.length > 0) {
           setBlocks(response.data.data[0].blocks);
           if (typeof response.data.data[0] !== undefined) {
             setTemplateTitle(response.data.data[0].title);
             setBottomData(response.data.data[0]);
-            setSceneOrder(response.data.data[0].sceneOrder)
-            setSceneThumbnail(response.data.data[0].templateImage)
-            setSelectedCategory(response.data.data[0].templateCategory)
+            setSceneOrder(response.data.data[0].sceneOrder);
+            setSceneThumbnail(response.data.data[0].templateImage);
+            setSelectedCategory(response.data.data[0].templateCategory);
             if (response.data.data[0].blocks.length > 0) {
               //setBlocks(response.data.data[0].blocks);
               response.data.data[0].blocks.map((block) => {
                 if (block.sceneId == 4) {
                   console.log(block);
-                  setData(block.sceneData);
+
                   setMediaArray(block.sceneData.media);
                   setTextArray(block.sceneData.textArray);
                   setTextSize(block.sceneData.textArray[0].fontSize);
+                  setFontFamily(block.sceneData.textArray[0].fontFamily);
+                  setFontWeight(block.sceneData.textArray[0].fontWeight);
+                  setData(block.sceneData);
                   // console.log(block.sceneData.textArray[0].fontSize);
                 }
               });
@@ -286,14 +345,19 @@ const TemplateSceneFour = (props) => {
   function playVideo(click) {
     setPlayActive(click);
   }
-  function reFetchData(){
+  function reFetchData() {
     getData();
   }
   return (
     <section className="template-new-wrapper">
-       {templateTitle ? <TopSection templateTitle={templateTitle}  template={true}
-              templateId={templateId}/> : null}
-      <div className="d-flex justify-content-between outervh">   
+      {templateTitle ? (
+        <TopSection
+          templateTitle={templateTitle}
+          template={true}
+          templateId={templateId}
+        />
+      ) : null}
+      <div className="d-flex justify-content-between outervh">
         <SidebarLeft />
         {addMedia ? (
           <AddMedia closeAddMedia={closeAddMedia} />
@@ -318,20 +382,26 @@ const TemplateSceneFour = (props) => {
         ) : null}
 
         {addMedia ? null : addScene ? null : changeBg === false ? (
-          <TextEditor
-            getTextTransform={getTextTransform}
-            getAlignment={getAlignment}
-            getTextColor={getTextColor}
-            getTextlineHeight={getTextlineHeight}
-            getTextSize={getTextSize}
-            textSize={textSize}
-            textlineHeight={textlineHeight}
-            id={4}
-            thumbnails={sceneThumbnail}
-            category={selectedCategory}
-            template={true}
-            templateId={templateId}
-          />
+          data != "" ? (
+            <TextEditor
+              getTextTransform={getTextTransform}
+              getAlignment={getAlignment}
+              getTextColor={getTextColor}
+              getTextlineHeight={getTextlineHeight}
+              getTextSize={getTextSize}
+              textSize={textSize}
+              textlineHeight={textlineHeight}
+              id={4}
+              thumbnails={sceneThumbnail}
+              category={selectedCategory}
+              template={true}
+              templateId={templateId}
+              getFontfamily={getFontfamily}
+              getFontWeight={getFontWeight}
+              fontFamily={fontFamily}
+              fontWeight={fontWeight}
+            />
+          ) : null
         ) : (
           <ChangeBg showAddMedia={showAddMedia} type={bgType} scene={bgScene} />
         )}

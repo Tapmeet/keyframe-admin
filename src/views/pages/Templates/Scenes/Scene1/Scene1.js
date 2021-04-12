@@ -68,7 +68,7 @@ const Scene1 = (props) => {
     props.getContent(e.target.value);
   }
   return (
-    <section className="template-new-wrapper-scene1">
+    <section className="template-new-wrapper-scene1 scene1">
       <div className="d-flex">
         <div className="img-section" height="1020" width="1920">
           {props.mediaArray ? (
@@ -93,6 +93,8 @@ const Scene1 = (props) => {
                       "font-size": props.settextSize + "px",
                       color: props.setColor,
                       "line-height": props.setTextLineHeight,
+                      "fontFamily":props.data.fontFamily,
+                      "fontWeight":props.data.fontWeight
                     }}
                     className={
                       "child-container form-control border  size-auto " +

@@ -47,56 +47,62 @@ const TemplateScene4 = (props) => {
   const [playActive, setPlayActive] = React.useState(false);
   const [sceneThumbnail, setSceneThumbnail] = React.useState("");
   const [selectedCategory, setSelectedCategory] = React.useState('');
-  // const [mediaArray, setMediaArray] = React.useState([
-  //   {
-  //     url: Scene,
-  //     type: "image/png",
-  //   },
-  //   {
-  //     url: Scene2,
-  //     type: "image/png",
-  //   },
-  //   {
-  //     url: Scene3,
-  //     type: "image/png",
-  //   },
-  //   {
-  //     url: Scene4,
-  //     type: "image/png",
-  //   },
-  // ]);
-  // const [textArray, setTextArray] = React.useState([
-  //   {
-  //     text: "Main Street Two story living room with open kitchen",
-  //     fontSize: "18",
-  //     fontFamily: "",
-  //     fontWeight: "500",
-  //     fontLineHeight: "1.4",
-  //     fontAlignment: "text-center",
-  //     fontColor: "#333",
-  //     fontCapitalize: "",
-  //     x: 0,
-  //     y: 350,
-  //     boxWidth: 300,
-  //     boxHeight: 80,
-  //   },
-  //   {
-  //     text: "54322 Main Street Two story living room with open kitchen",
-  //     fontSize: "18",
-  //     fontFamily: "",
-  //     fontWeight: "500",
-  //     fontLineHeight: "1.4",
-  //     fontAlignment: "text-center",
-  //     fontColor: "#333",
-  //     fontCapitalize: "",
-  //     x: 0,
-  //     y: 350,
-  //     boxWidth: 300,
-  //     boxHeight: 80,
-  //   },
-  // ]);
   const [mediaArray, setMediaArray] = React.useState([]);
   const [textArray, setTextArray] = React.useState([]);
+  const [fontFamily, setFontFamily] = React.useState("");
+  const [fontWeight, setFontWeight] = React.useState("");
+
+  function getFontfamily(fontfamily) {
+    setFontFamily(fontfamily)
+    let newArr = [...textArray];
+    newArr[arrayIndex] = {
+      text: newArr[arrayIndex].text,
+      fontSize: newArr[arrayIndex].fontSize,
+      fontFamily: fontfamily,
+      fontWeight: newArr[arrayIndex].fontWeight,
+      fontLineHeight: newArr[arrayIndex].fontLineHeight,
+      fontAlignment: newArr[arrayIndex].fontAlignment,
+      fontColor: newArr[arrayIndex].fontColor,
+      fontCapitalize: newArr[arrayIndex].fontCapitalize,
+      x: newArr[arrayIndex].x,
+      y: newArr[arrayIndex].y,
+      boxWidth: newArr[arrayIndex].boxWidth,
+      boxHeight: newArr[arrayIndex].boxHeight,
+    };
+    setTextArray(newArr);
+    const data = {
+      media: mediaArray,
+      time: 6,
+      textArray: newArr,
+    };
+    updateData(data);
+  }
+  function getFontWeight(fontweight) {
+    setFontWeight(fontweight);
+    let newArr = [...textArray]; // copying the old datas array
+    newArr[arrayIndex] = {
+      text: newArr[arrayIndex].text,
+      fontSize: newArr[arrayIndex].fontSize,
+      fontFamily: newArr[arrayIndex].fontFamily,
+      fontWeight: fontweight,
+      fontLineHeight: newArr[arrayIndex].fontLineHeight,
+      fontAlignment: newArr[arrayIndex].fontAlignment,
+      fontColor: newArr[arrayIndex].fontColor,
+      fontCapitalize: newArr[arrayIndex].fontCapitalize,
+      x: newArr[arrayIndex].x,
+      y: newArr[arrayIndex].y,
+      boxWidth: newArr[arrayIndex].boxWidth,
+      boxHeight: newArr[arrayIndex].boxHeight,
+    };
+    setTextArray(newArr);
+    const data = {
+      media: mediaArray,
+      time: 6,
+      textArray: newArr,
+    };
+    updateData(data);
+  }
+
   function getAlignment(alignment) {
     let newArr = [...textArray]; // copying the old datas array
     newArr[arrayIndex] = {
@@ -225,6 +231,8 @@ const TemplateScene4 = (props) => {
     console.log(scene);
     if (index) {
       setTextSize(textArray[index].fontSize);
+      setFontWeight(textArray[index].fontWeight);
+      setFontFamily(textArray[index].fontFamily)
     }
     setArrayIndex(index);
     setChangeBg(changeBg);
@@ -280,6 +288,7 @@ const TemplateScene4 = (props) => {
       })
       .then(function (response) {
         console.log(response);
+       // getData();
       });
   }
   React.useEffect(() => {
@@ -287,7 +296,7 @@ const TemplateScene4 = (props) => {
       setUserToken(cookies.get("token"));
       const token = cookies.get("token");
       const decoded = jwt_decode(token);
-      setUserId("5fb23662f0b30f2d6c9ff48c");
+      setUserId(decoded.id);
       //console.log(decoded.id)
       getData();
     }
@@ -299,12 +308,14 @@ const TemplateScene4 = (props) => {
       if (response.data.scene) {
       setBlocks(response.data.scene);
       setTemplateTitle(response.data.scene.sceneTitle);
-      setData(response.data.scene.sceneData);
       setMediaArray(response.data.scene.sceneData.media);
       setTextArray(response.data.scene.sceneData.textArray);
       setTextSize(response.data.scene.sceneData.textArray[0].fontSize);
+      setFontFamily(response.data.scene.sceneData.textArray[0].fontFamily);
+      setFontWeight(response.data.scene.sceneData.textArray[0].fontWeight);
       setSceneThumbnail(response.data.scene.sceneThumbnail)
       setSelectedCategory(response.data.scene.sceneCategory)
+      setData(response.data.scene.sceneData);
       // console.log(block.sceneData.textArray[0].fontSize);
       }
     });
@@ -313,7 +324,7 @@ const TemplateScene4 = (props) => {
     setPlayActive(click);
   }
   return (
-    <section className="template-new-wrapper">
+    <section className="template-new-wrapper scene-warpper">
       {templateTitle ? (
         <TopSection
           templateTitle={templateTitle}
@@ -356,6 +367,10 @@ const TemplateScene4 = (props) => {
             id={4}
             thumbnails={sceneThumbnail}
             category={selectedCategory}
+            getFontfamily={getFontfamily}
+            getFontWeight={getFontWeight}
+            fontFamily={fontFamily}
+            fontWeight={fontWeight}
           />
         ) : (
           <ChangeBg showAddMedia={showAddMedia} type={bgType} scene={bgScene} />

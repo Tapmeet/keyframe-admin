@@ -12,6 +12,7 @@ const Box = ({
   handleDrop,
   confirmDelete,
   deleteFalse,
+  length
 }) => {
   return (
     <div
@@ -28,7 +29,7 @@ const Box = ({
         minWidth: boxWidth + "px",
       }}
     >
-      {boxId != sceneId ? (
+      {boxId != sceneId  && length > 1 ? (
         deleteFalse != false ? (
           <img
             src={trash}

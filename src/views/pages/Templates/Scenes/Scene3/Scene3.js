@@ -1,17 +1,17 @@
 /* eslint-disable eqeqeq */
 import React from "react";
-import Scenes from './../../../../../assets/images/templates/img11.png';
-import Scene2 from './../../../../../assets/images/templates/img12.png';
-import Scene3 from './../../../../../assets/images/templates/img13.png';
-import Scene4 from './../../../../../assets/images/templates/img14.png';
+import Scenes from "./../../../../../assets/images/templates/img11.png";
+import Scene2 from "./../../../../../assets/images/templates/img12.png";
+import Scene3 from "./../../../../../assets/images/templates/img13.png";
+import Scene4 from "./../../../../../assets/images/templates/img14.png";
 
-import trash from './../../../../../assets/images/templates/trash.svg';
-import add from './../../../../../assets/images/templates/add.svg';
+import trash from "./../../../../../assets/images/templates/trash.svg";
+import add from "./../../../../../assets/images/templates/add.svg";
 import Slider from "react-slick";
 import $ from "jquery";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import DragResizeContainer from 'react-drag-resize';
+import DragResizeContainer from "react-drag-resize";
 import { CommentTwoTone } from "@material-ui/icons";
 import { apiPath } from "./../../../../../Utility/Utility";
 const SceneThree = (props) => {
@@ -55,16 +55,16 @@ const SceneThree = (props) => {
       x: e[0].x,
       y: e[0].y,
     };
-    props.getTextAreaData(newObj)
+    props.getTextAreaData(newObj);
   };
   function setshowbg(option, scene, type, titleColor, container) {
-     console.log(scene);
+    console.log(scene);
     props.showBg(option, type, scene, false, container);
   }
 
   const settings = {
     dots: false,
-    arrows:false,
+    arrows: false,
     speed: 1500,
     autoplaySpeed: 3000,
     slidesToShow: 1,
@@ -72,7 +72,7 @@ const SceneThree = (props) => {
     slidesToScroll: 1,
     autoplay: true,
     fade: true,
-    cssEase: 'linear',
+    cssEase: "linear",
     responsive: [
       {
         breakpoint: 1600,
@@ -86,7 +86,6 @@ const SceneThree = (props) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-
         },
       },
       {
@@ -94,7 +93,6 @@ const SceneThree = (props) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-
         },
       },
       {
@@ -116,31 +114,31 @@ const SceneThree = (props) => {
   React.useEffect(() => {
     setMediaArray(props.mediaArray);
     if (props.data) {
-      console.log(props.data.content)
+      console.log(props.data.content);
       setWidth(props.data.boxwidth);
       setHeight(props.data.boxheight);
       setTransformX(props.data.x);
       setTransformY(props.data.y);
-      setContent(props.data.content)
+      setContent(props.data.content);
     }
   }, []);
 
-  function getcontent(e){
-    setContent(e.target.value)
-    props.getContent(e.target.value)
+  function getcontent(e) {
+    setContent(e.target.value);
+    props.getContent(e.target.value);
   }
   return (
     <section className="template-new-wrapper-scene1 slider-section">
       <div className="d-flex">
         <div className="img-section">
-        <DragResizeContainer
-            className='resize-container'
+          <DragResizeContainer
+            className="resize-container"
             resizeProps={{
               minWidth: 100,
               minHeight: 70,
-              enable: canResizable(50)
+              enable: canResizable(50),
             }}
-            onClick={()=> setshowbg(false, '', '', false)}
+            onClick={() => setshowbg(false, "", "", false)}
             layout={layout}
             onLayoutChange={onLayoutChange}
             dragProps={{ disabled: false }}
@@ -149,45 +147,47 @@ const SceneThree = (props) => {
             {layout.map((single) => {
               return (
                 <textarea
-                key={single.key}
-                style={{
-                  "font-size": props.settextSize + "px",
-                  color: props.setColor,
-                  "line-height": props.setTextLineHeight,
-                }}
-                className={
-                  "child-container form-control border  size-auto " +
-                  props.setAlignment +
-                  " " +
-                  props.setTextTransform
-                }
-                onChange={getcontent}
-                value={content}
-              >
-                
-              </textarea>
+                  key={single.key}
+                  style={{
+                    "font-size": props.settextSize + "px",
+                    color: props.setColor,
+                    "line-height": props.setTextLineHeight,
+                    fontFamily: props.data.fontFamily,
+                    fontWeight: props.data.fontWeight,
+                  }}
+                  className={
+                    "child-container form-control border  size-auto " +
+                    props.setAlignment +
+                    " " +
+                    props.setTextTransform
+                  }
+                  onChange={getcontent}
+                  value={content}
+                ></textarea>
               );
             })}
           </DragResizeContainer>
           <div className="bg-section">
             <Slider {...settings}>
-            {mediaArray.map((data, index) => {
-              return (
-              <div key={index}>
-                <div className="slider-box">
-                  <div  onClick={() =>
-                    setshowbg(true, data.url, data.type, false, index)
-                  } 
-                  className="bg box-1" 
-                  style={{ "background-image": "url(" + apiPath + data.url + ") " }}
-                  >
+              {mediaArray.map((data, index) => {
+                return (
+                  <div key={index}>
+                    <div className="slider-box">
+                      <div
+                        onClick={() =>
+                          setshowbg(true, data.url, data.type, false, index)
+                        }
+                        className="bg box-1"
+                        style={{
+                          "background-image":
+                            "url(" + apiPath + data.url + ") ",
+                        }}
+                      ></div>
+                    </div>
                   </div>
-                </div>
-              </div>
-               );
+                );
               })}
             </Slider>
-
           </div>
         </div>
       </div>

@@ -18,8 +18,8 @@ const SceneTwo = (props) => {
   const [content, setContent] = React.useState([]);
   const [counter, setCounter] = React.useState(content.length);
   function setshowbg(option, scene, type, titleColor, container) {
-    console.log(scene);
-    props.showBg(option, type, scene, false, container);
+    //console.log(titleColor);
+    props.showBg(option, type, scene, titleColor, container);
   }
 
   const settings = {
@@ -86,6 +86,7 @@ const SceneTwo = (props) => {
   const deleteSection = (e) => {
     setCounter(counter - 1);
     content.splice(e, 1);
+    props.getContent(content);
   };
 
   const updateFieldChanged = (index) => (e) => {
@@ -147,7 +148,12 @@ const SceneTwo = (props) => {
                             type="text"
                             onChange={updateTile(index)}
                             value={data.title}
-                            style={{ color: props.setTitleColor }}
+                            style={{
+                              color: props.setTitleColor,
+                              fontSize: props.data.titletextSize + "px",
+                              fontWeight: props.data.fontWeight,
+                              fontFamily: props.data.fontFamily,
+                            }}
                             className={
                               "child-container form-control border  size-auto " +
                               props.setAlignment +
@@ -164,7 +170,12 @@ const SceneTwo = (props) => {
                             type="text"
                             onChange={updateFieldChanged(index)}
                             value={data.text}
-                            style={{ color: props.setColor }}
+                            style={{
+                              color: props.setColor,
+                              fontSize: props.data.textSize + "px",
+                              fontWeight: props.data.fontWeight,
+                              fontFamily: props.data.fontFamily,
+                            }}
                             className={
                               "child-container form-control border  size-auto " +
                               props.setAlignment +

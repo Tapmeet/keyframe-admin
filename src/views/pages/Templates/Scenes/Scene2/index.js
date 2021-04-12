@@ -16,7 +16,7 @@ import {
   apiUpdateScene,
   apiGetScene,
   apiUpdateBlock,
-  apigetAdminTemplate
+  apigetAdminTemplate,
 } from "./../../../../../Utility/Utility";
 import Player from "../../Player";
 const TemplateSceneTwo = (props) => {
@@ -46,7 +46,7 @@ const TemplateSceneTwo = (props) => {
   //   }
   // ]);
   const [templateTitle, setTemplateTitle] = React.useState("");
-  
+
   const [content, setContent] = React.useState([]);
   const [data, setData] = React.useState("");
   const [userToken, setUserToken] = React.useState("");
@@ -59,6 +59,7 @@ const TemplateSceneTwo = (props) => {
   const [textlineHeight, setTextlineHeight] = React.useState("1.4");
   const [textColor, setTextColor] = React.useState("#333");
   const [texAreatextColor, setTexAreatextColor] = React.useState("#333");
+  const [titletextSize, setTitletextSize] = React.useState("");
   const [titletextColor, setTitletextColor] = React.useState("#333");
   const [textTransform, setTexttransform] = React.useState("");
   const [changeBg, setChangeBg] = React.useState(false);
@@ -69,7 +70,101 @@ const TemplateSceneTwo = (props) => {
   const [mediaArray, setMediaArray] = React.useState([]);
   const [playActive, setPlayActive] = React.useState(false);
   const [sceneThumbnail, setSceneThumbnail] = React.useState("");
-  const [selectedCategory, setSelectedCategory] = React.useState('');
+  const [selectedCategory, setSelectedCategory] = React.useState("");
+  const [fontFamily, setFontFamily] = React.useState("");
+  const [fontWeight, setFontWeight] = React.useState("");
+
+  const [titleFontFamily, setTitleFontFamily] = React.useState("");
+  const [titleFontWeight, setTitleFontWeight] = React.useState("");
+  const [fontfamilySet, setFontfamilySet] = React.useState("");
+  const [fontweightSet, setFontweightSet] = React.useState("");
+
+  function getFontfamily(fontfamily) {
+    // console.log(fontfamily)
+    setFontfamilySet(fontfamily);
+    if (titleactive) {
+      setTitleFontFamily(fontfamily);
+      const data = {
+        content: content,
+        textAligmnet: textAligmnet,
+        textColor: textColor,
+        textlineHeight: textlineHeight,
+        textSize: textSize,
+        titleColor: titletextColor,
+        titletextSize: titletextSize,
+        textTransform: textTransform,
+        media: mediaArray,
+        fontFamily: fontFamily,
+        fontWeight: fontWeight,
+        titleFontFamily: fontfamily,
+        titleFontWeight: titleFontWeight,
+        time: 4,
+      };
+      updateData(data);
+    } else {
+      setFontFamily(fontfamily);
+      const data = {
+        content: content,
+        textAligmnet: textAligmnet,
+        textColor: textColor,
+        textlineHeight: textlineHeight,
+        textSize: textSize,
+        titleColor: titletextColor,
+        titletextSize: titletextSize,
+        textTransform: textTransform,
+        media: mediaArray,
+        fontFamily: fontfamily,
+        fontWeight: fontWeight,
+        titleFontFamily: titleFontFamily,
+        titleFontWeight: titleFontWeight,
+        time: 4,
+      };
+      updateData(data);
+    }
+  }
+  function getFontWeight(fontweight) {
+    setFontweightSet(fontweight);
+    if (titleactive) {
+      setTitleFontWeight(fontweight);
+      const data = {
+        content: content,
+        textAligmnet: textAligmnet,
+        textColor: textColor,
+        textlineHeight: textlineHeight,
+        textSize: textSize,
+        titleColor: titletextColor,
+        titletextSize: titletextSize,
+        textTransform: textTransform,
+        media: mediaArray,
+        fontFamily: fontFamily,
+        fontWeight: fontWeight,
+        titleFontFamily: titleFontFamily,
+        titleFontWeight: fontweight,
+        time: 4,
+      };
+      updateData(data);
+    } else {
+      setFontWeight(fontweight);
+      const data = {
+        content: content,
+        textAligmnet: textAligmnet,
+        textColor: textColor,
+        textlineHeight: textlineHeight,
+        textSize: textSize,
+        titleColor: titletextColor,
+        titletextSize: titletextSize,
+        textTransform: textTransform,
+        media: mediaArray,
+        fontFamily: fontFamily,
+        fontWeight: fontweight,
+        titleFontFamily: titleFontFamily,
+        titleFontWeight: titleFontWeight,
+        time: 4,
+      };
+      updateData(data);
+    }
+  }
+
   function getAlignment(alignment) {
     setTextAligmnet(alignment);
     const data = {
@@ -78,8 +173,14 @@ const TemplateSceneTwo = (props) => {
       textColor: textColor,
       textlineHeight: textlineHeight,
       textSize: textSize,
+      titleColor: titletextColor,
+      titletextSize: titletextSize,
       textTransform: textTransform,
       media: mediaArray,
+      fontFamily: fontFamily,
+      fontWeight: fontWeight,
+      titleFontFamily: titleFontFamily,
+      titleFontWeight: titleFontWeight,
       time: 4,
     };
     updateData(data);
@@ -90,10 +191,16 @@ const TemplateSceneTwo = (props) => {
       content: content,
       textAligmnet: textAligmnet,
       textColor: textColor,
+      titleColor: titletextColor,
+      titletextSize: titletextSize,
       textlineHeight: textlineHeight,
       textSize: textSize,
       textTransform: texttransform,
       media: mediaArray,
+      fontFamily: fontFamily,
+      fontWeight: fontWeight,
+      titleFontFamily: titleFontFamily,
+      titleFontWeight: titleFontWeight,
       time: 4,
     };
     updateData(data);
@@ -107,10 +214,13 @@ const TemplateSceneTwo = (props) => {
         textAligmnet: textAligmnet,
         textColor: textColor,
         titleColor: color,
+        titletextSize: titletextSize,
         textlineHeight: textlineHeight,
         textSize: textSize,
         textTransform: textTransform,
         media: mediaArray,
+        fontFamily: fontFamily,
+        fontWeight: fontWeight,
         time: 4,
       };
       updateData(data);
@@ -120,10 +230,13 @@ const TemplateSceneTwo = (props) => {
         textAligmnet: textAligmnet,
         textColor: color,
         titleColor: titletextColor,
+        titletextSize: titletextSize,
         textlineHeight: textlineHeight,
         textSize: textSize,
         textTransform: textTransform,
         media: mediaArray,
+        fontFamily: fontFamily,
+        fontWeight: fontWeight,
         time: 4,
       };
       updateData(data);
@@ -134,33 +247,98 @@ const TemplateSceneTwo = (props) => {
 
   function getContent(content) {
     setContent(content);
-    console.log(content);
     const data = {
       content: content,
       textAligmnet: textAligmnet,
       textColor: textColor,
+      titleColor: titletextColor,
+      titletextSize: titletextSize,
       textlineHeight: textlineHeight,
       textSize: textSize,
       textTransform: textTransform,
       media: mediaArray,
+      fontFamily: fontFamily,
+      fontWeight: fontWeight,
+      titleFontFamily: titleFontFamily,
+      titleFontWeight: titleFontWeight,
       time: 4,
     };
     updateData(data);
   }
 
-  function getTextSize(size) {
-    setTextSize(size);
+  function getTextlineHeight(lineHeight) {
+    setTextlineHeight(lineHeight);
     const data = {
       content: content,
       textAligmnet: textAligmnet,
       textColor: textColor,
+      titleColor: titletextColor,
+      titletextSize: titletextSize,
       textlineHeight: textlineHeight,
-      textSize: size,
+      textSize: textSize,
       textTransform: textTransform,
       media: mediaArray,
+      fontFamily: fontFamily,
+      fontWeight: fontWeight,
+      titleFontFamily: titleFontFamily,
+      titleFontWeight: titleFontWeight,
       time: 4,
     };
     updateData(data);
+  }
+  function getTextSize(size) {
+    if (titleactive) {
+      setTitletextSize(size);
+      const data = {
+        content: content,
+        textAligmnet: textAligmnet,
+        textColor: textColor,
+        titleColor: titletextColor,
+        titletextSize: size,
+        textlineHeight: textlineHeight,
+        textSize: textSize,
+        textTransform: textTransform,
+        media: mediaArray,
+        fontFamily: fontFamily,
+        fontWeight: fontWeight,
+        titleFontFamily: titleFontFamily,
+        titleFontWeight: titleFontWeight,
+        time: 4,
+      };
+      updateData(data);
+    } else {
+      setTextSize(size);
+      const data = {
+        content: content,
+        textAligmnet: textAligmnet,
+        textColor: textColor,
+        titleColor: titletextColor,
+        titletextSize: titletextSize,
+        textlineHeight: textlineHeight,
+        textSize: size,
+        textTransform: textTransform,
+        media: mediaArray,
+        fontFamily: fontFamily,
+        fontWeight: fontWeight,
+        titleFontFamily: titleFontFamily,
+        titleFontWeight: titleFontWeight,
+        time: 4,
+      };
+      updateData(data);
+    }
+  
+  }
+  function showBg(changeBg, type, scene, titleColor, container) {
+    setChangeBg(changeBg);
+    setBgType(type);
+    setBgScene(scene);
+    setTitleactive(titleColor);
+    setContainer(container);
+    if (titleColor) {
+      setTexAreatextColor(titletextColor);
+    } else {
+      setTexAreatextColor(textColor);
+    }
   }
   function showBg(changeBg, type, scene, titleColor, container) {
     setChangeBg(changeBg);
@@ -209,6 +387,11 @@ const TemplateSceneTwo = (props) => {
         textTransform: textTransform,
         media: newArr,
         time: 4,
+        titletextSize: titletextSize,
+        fontFamily: fontFamily,
+        fontWeight: fontWeight,
+        titleFontFamily: titleFontFamily,
+        titleFontWeight: titleFontWeight,
       };
       updateData(data);
     }
@@ -216,15 +399,16 @@ const TemplateSceneTwo = (props) => {
   }
 
   function getData() {
-    axios .get(`${apigetAdminTemplate}` + "?templateId=" + templateId, {})
-   .then(function (response) {
+    axios
+      .get(`${apigetAdminTemplate}` + "?templateId=" + templateId, {})
+      .then(function (response) {
         if (response.data.data.length > 0) {
           if (typeof response.data.data[0] !== undefined) {
             setTemplateTitle(response.data.data[0].title);
             setBottomData(response.data.data[0]);
-            setSceneOrder(response.data.data[0].sceneOrder)
-            setSceneThumbnail(response.data.data[0].templateImage)
-            setSelectedCategory(response.data.data[0].templateCategory)
+            setSceneOrder(response.data.data[0].sceneOrder);
+            setSceneThumbnail(response.data.data[0].templateImage);
+            setSelectedCategory(response.data.data[0].templateCategory);
             if (response.data.data[0].blocks.length > 0) {
               setBlocks(response.data.data[0].blocks);
               response.data.data[0].blocks.map((block) => {
@@ -234,10 +418,23 @@ const TemplateSceneTwo = (props) => {
                   setTextlineHeight(block.sceneData.textlineHeight);
                   setTextColor(block.sceneData.textColor);
                   setTitletextColor(block.sceneData.titleColor);
+                  setTitletextSize(block.sceneData.titletextSize);
                   setTexttransform(block.sceneData.textTransform);
                   setTextAligmnet(block.sceneData.textAligmnet);
-                  setData(block.sceneData); 
+                  setFontWeight(block.sceneData.fontWeight);
+                  setFontFamily(block.sceneData.fontFamily);
+                  setTitleFontWeight(block.sceneData.titleFontWeight);
+                  setTitleFontFamily(block.sceneData.titleFontFamily);
+                  if (titleactive) {
+                    setFontfamilySet(block.sceneData.titleFontFamily);
+                    setFontweightSet(block.sceneData.titleFontWeight);
+                  } else {
+                    setFontfamilySet(block.sceneData.fontFamily);
+                    setFontweightSet(block.sceneData.fontWeight);
+                  }
+
                   setContent(block.sceneData.content);
+                  setData(block.sceneData);
                 }
               });
             }
@@ -251,7 +448,7 @@ const TemplateSceneTwo = (props) => {
       const token = cookies.get("token");
       const decoded = jwt_decode(token);
       //setUserId(decoded.id);
-      setUserId("5fb23662f0b30f2d6c9ff48c");
+      setUserId(decoded.id);
       getData();
     }
   }, [userId]);
@@ -269,15 +466,19 @@ const TemplateSceneTwo = (props) => {
   function playVideo(click) {
     setPlayActive(click);
   }
-  function reFetchData(){
+  function reFetchData() {
     getData();
   }
   return (
     <section className="template-new-wrapper">
-     {templateTitle ? <TopSection templateTitle={templateTitle} template={true}
-              templateId={templateId} /> : null}
+      {templateTitle ? (
+        <TopSection
+          templateTitle={templateTitle}
+          template={true}
+          templateId={templateId}
+        />
+      ) : null}
       <div className="d-flex justify-content-between outervh">
-      
         <SidebarLeft />
         {addMedia ? (
           <AddMedia closeAddMedia={closeAddMedia} />
@@ -305,20 +506,26 @@ const TemplateSceneTwo = (props) => {
           )
         ) : null}
         {addMedia ? null : addScene ? null : changeBg === false ? (
-          <TextEditor
-            getTextTransform={getTextTransform}
-            getAlignment={getAlignment}
-            getTextColor={getTextColor}
-            textColor={texAreatextColor}
-            getTextSize={getTextSize}
-            textSize={textSize}
-            textlineHeight={textlineHeight}
-            id={2}
-            thumbnails={sceneThumbnail}
-            category={selectedCategory}
-            template={true}
-            templateId={templateId}
-          />
+          data != "" ? (
+            <TextEditor
+              getTextTransform={getTextTransform}
+              getAlignment={getAlignment}
+              getTextColor={getTextColor}
+              textColor={texAreatextColor}
+              getTextSize={getTextSize}
+              textSize={textSize}
+              textlineHeight={textlineHeight}
+              id={2}
+              thumbnails={sceneThumbnail}
+              category={selectedCategory}
+              template={true}
+              templateId={templateId}
+              getFontfamily={getFontfamily}
+              getFontWeight={getFontWeight}
+              fontFamily={fontfamilySet}
+              fontWeight={fontweightSet}
+            />
+          ) : null
         ) : (
           <ChangeBg showAddMedia={showAddMedia} type={bgType} scene={bgScene} />
         )}

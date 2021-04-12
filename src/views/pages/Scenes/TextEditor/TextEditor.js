@@ -38,7 +38,8 @@ const TextEditor = (props) => {
   const [activeLeftAlign, setactiveLeftAlign] = React.useState(false);
   const [activeRightAlign, setactiveRightAlign] = React.useState(false);
   const [activeCenterAlign, setactiveCenterAlign] = React.useState(true);
-  const [activeFontFamily, setState] = React.useState("Open Sans");
+  const [activeFontFamily, setState] = React.useState(props.fontFamily);
+  const [fontWeight, setFontWeight] = React.useState("");
   const [activeFontlineHeight, setactiveFontlineHeight] = React.useState(
     props.textlineHeight
   );
@@ -126,13 +127,15 @@ const TextEditor = (props) => {
       // console.log(decoded.id)
       setUserId(decoded.id);
       setSceneId(props.id);
+      setState(props.fontFamily);
+      setFontWeight(props.fontWeight)
+     
     }
     if (props.thumbnails) {
       setThumbnail(props.thumbnails);
     }
     if (props.category) {
       setSelectedCategory(props.category);
-      console.log(props.category);
     }
 
     if (props.template) {
@@ -146,7 +149,8 @@ const TextEditor = (props) => {
         setCategories(response.data.scenes);
       });
     }
-  }, [props.thumbnails, props.category]);
+    console.log(props.fontFamily)
+  }, [props.thumbnails, props.category, userId]);
   function setcapitalize() {
     if (activeCapitalize === true) {
       props.getTextTransform("");
@@ -186,15 +190,27 @@ const TextEditor = (props) => {
     setactiveFontlineHeight(e);
     props.getTextlineHeight(e);
   }
+  function setfontWeight(e) {
+    console.log(e.target.value)
+    props.getFontWeight(e.target.value);
+    setFontWeight(e.target.value)
+  }
+  function setFontfamily(e) {
+    setState(e);
+    props.getFontfamily(e);
+  }
   return (
     <section className="template-new-wrapper-text-editor">
       <div className="text-editor">
         <h4>Text Properties</h4>
         <div className="sectionOne">
-          <FontPicker
+        <FontPicker
+            families={
+              "Arimo, Lato, Montserrat, Noto Serif, Oswald, Roboto, Josefin Sans, Barlow, Open Sans"
+            }
             apiKey="AIzaSyDaztQYmJQDMP2mVUtrHIq4XRBpLEr0dzk"
             activeFontFamily={activeFontFamily}
-            onChange={(nextFont) => setState(nextFont.family)}
+            onChange={(nextFont) => setFontfamily(nextFont.family)}
           />
           <input
             type="number"
@@ -206,12 +222,11 @@ const TextEditor = (props) => {
           />
         </div>
         <div className="sectionOne">
-          <select>
+        <select name="fontweight" onChange={e => setfontWeight(e)} value={fontWeight}>
             <option value="">Set Fonts Weight</option>
-            <option value="Thin">Thin</option>
-            <option value="Normal">Normal</option>
-            <option value="Medium">Medium</option>
-            <option value="Bold">Bold</option>
+            <option value="lighter">Light</option>
+            <option value="normal">Regular</option>
+            <option value="bold">Bold</option>
           </select>
           <input
             value={activeFontlineHeight}
@@ -384,7 +399,7 @@ const TextEditor = (props) => {
             </li>
           </ul>
         </div>
-        <div className="text-editor animation-section sectionTwo">
+        {/* <div className="text-editor animation-section sectionTwo">
           <h4>Text Animations</h4>
           <select>
             <option value="">No Animations</option>
@@ -393,7 +408,7 @@ const TextEditor = (props) => {
             <option value="1.6">Scale Down</option>
             <option value="2">Simple fade</option>
           </select>
-        </div>
+        </div> */}
         <div className="thumbnail-wrapper sectionTwo">
           <h4>{props.template ? "Template Thumbnail" : "Scene Thumbnail"} </h4>
           {thumbnail ? (
@@ -411,7 +426,7 @@ const TextEditor = (props) => {
           <select value={selectedCategory} onChange={updateCategory}>
             <option value="">Select Category</option>;
             {categories.map((data, index) => {
-              return <option value={data._id}>{data.title}</option>;
+              return <option value={data._id} key={index}>{data.title}</option>;
             })}
           </select>
         </div>

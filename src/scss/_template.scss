@@ -397,10 +397,10 @@
   .leftPanel {
     background: #f7f7f7;
     padding: 10px;
-    width: 200px;
+    width: 145px;
     ul {
       margin-top: 50px;
-      margin-left: 30px;
+      margin-left: 10px;
       li {
         margin-bottom: 30px;
       }
@@ -507,7 +507,7 @@
   .text-wrapper.left-section-text {
     left: 0;
     height: 100%;
-    padding: 20px 35px;
+    padding: 20px;
     text-align: left;
     max-width: 220px;
     position: absolute;
@@ -984,7 +984,7 @@
     }
   }
   .row.modal-block {
-    button{
+    button {
       min-width: 100px;
     }
     .col-12:first-of-type {
@@ -992,7 +992,6 @@
     }
     .col-12:last-of-type {
       text-align: left;
-      
     }
   }
 }
@@ -1010,3 +1009,375 @@
   }
 }
 
+.bg-gray {
+  background: #fff;
+}
+.text-content {
+  font-size: 22px;
+  h3 {
+    font-size: 35px;
+    font-weight: 600;
+  }
+  textarea.form-control {
+    min-height: auto !important;
+  }
+  input {
+    border: 0px !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+}
+.userimg {
+  padding: 0 20px;
+}
+
+.my-template {
+  .box-template {
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 10px;
+    margin-bottom: 30px;
+    &::after {
+      background: rgba(0, 0, 0, 0.5);
+      position: absolute;
+      content: "";
+      top: 0;
+      bottom: 0;
+      height: 100%;
+      width: 100%;
+      left: 0;
+      opacity: 0;
+      transition: all ease-in-out 0.4s;
+      z-index: 1;
+      border-radius: 5px;
+    }
+    &:hover &::after {
+      opacity: 1;
+    }
+    a,
+    button {
+      position: absolute;
+      top: 0%;
+      margin: auto;
+      left: 0;
+      right: 0;
+      opacity: 0;
+      transition: all ease-in-out 0.4s;
+      z-index: 2;
+      background: #24213f;
+      color: #fff;
+      padding: 6px 15px;
+      border: 1px solid #fff;
+      border-radius: 5px;
+      max-width: 160px;
+    }
+
+    &:hover a {
+      top: 40%;
+      opacity: 1;
+    }
+    &:hover button {
+      top: 60%;
+      opacity: 1;
+    }
+    img {
+      transition: all ease-in-out 0.4s;
+      border-radius: 10px;
+      box-shadow: 00 0 9px #999;
+    }
+    h4 {
+      font-size: 18px;
+      margin: 16px auto;
+    }
+    &:hover img {
+      transform: scale(1.04);
+    }
+  }
+  .box-template:hover::after {
+    opacity: 1;
+  }
+}
+.media-section {
+  position: absolute;
+  right: 6px;
+  bottom: 15px;
+
+  .link {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    color: #000a47;
+    border-radius: 20px;
+    min-width: 2rem;
+    min-height: 2rem;
+    &:hover {
+      background-color: #000a47;
+      color: #fff;
+    }
+  }
+}
+.listMedia {
+  flex-grow: 1;
+  overflow: auto;
+  min-height: 12rem;
+  .listBox:first-of-type {
+    margin-top: 0;
+  }
+
+  .listBox {
+    border: 1px solid #d6d7d9;
+    margin-top: -1px;
+    display: flex;
+    align-items: center;
+    grid-gap: 0.5rem;
+    position: relative;
+    .radioSection {
+      border-right: #d6d7d9 solid 1px;
+      min-width: 3rem;
+      max-width: 3rem;
+      display: flex;
+      align-self: stretch;
+      align-items: center;
+      justify-content: center;
+      transition: 0.15s;
+      cursor: pointer;
+      // &::before {
+      //   content: "";
+      //   align-items: center;
+      //   justify-content: center;
+      //   border: 1px solid #abacaf;
+      //   width: 1.25rem;
+      //   height: 1.25rem;
+      //   border-radius: 50%;
+      //   box-shadow: inset #e7ebee 0 0 0 4px;
+      // }
+    }
+    .radioSection[aria-selected="true"]::before {
+      box-shadow: inset #fff 0 0 0 4px;
+      background: #1de9b6;
+    }
+    .radioSection:hover::before {
+      border-color: #59616e;
+      background: #59616e;
+    }
+
+    .mediaName {
+      position: relative;
+      display: block;
+      align-items: center;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      max-width: 100%;
+      padding: 1rem 0;
+      z-index: 2;
+      margin-right: 1rem;
+      font-weight: 600;
+    }
+    .mediaDuration {
+      font-size: 0.875rem;
+      color: rgba(0, 10, 71, 0.5);
+    }
+    .mediaMute,
+    .mediaPlayback {
+      width: 1.75rem;
+      min-width: 1.75rem;
+      height: 1.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+      svg {
+        width: 1em;
+        height: 1em;
+      }
+    }
+    .mediaPlayback {
+      border: 0;
+      background: 0 0;
+      border-radius: 50%;
+      padding: 0;
+      cursor: pointer;
+      position: relative;
+      z-index: 2;
+      outline: none;
+      &:focus,
+      &:hover {
+        background: #d6d7d9;
+        outline: none;
+      }
+    }
+  }
+}
+.customtabs {
+  h4 {
+    margin: 20px 0;
+    font-size: 18px;
+    color: #000a47;
+  }
+}
+.uploadMusic {
+  border: 2px dashed currentColor;
+  border-radius: 3px;
+  min-height: 7.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.fsp-drop-pane__container {
+  border: 0;
+  color: #7c7d80;
+  cursor: pointer;
+  background: 0 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  padding: 15px;
+  background-color: #fff;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  -webkit-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+}
+.fsp-drop-pane__text {
+  color: inherit;
+  margin-top: 1rem;
+  font-size: 0.7em;
+  font-weight: 500;
+}
+.fsp-drop-pane__input {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+}
+.fsp-drop-pane__icon {
+  width: 3rem;
+  height: 3rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url("./../assets/images/templates/icon-add-files-grey.svg");
+}
+.nav-tabs {
+  border-bottom: 0px;
+  .nav-link {
+    border: 0;
+    color: #333;
+    cursor: pointer;
+    font-weight: 500;
+    &.active {
+      color: #1de9b6;
+      background-color: transparent;
+    }
+  }
+}
+.emptyList {
+  padding: 1rem;
+  border-radius: 3px;
+  border: 1px dashed #c3c6c9;
+  font-weight: 500;
+  font-size: 0.7em;
+  text-align: center;
+}
+.template-new-wrapper-scene1.scene1 .react-draggable {
+  transform: translate(-50%, -50%) !important;
+  margin: auto;
+  left: 50%;
+  top: 50%;
+}
+.scene1.playerscene1 .react-draggable {
+  transform: translate(-50%, -50%) !important;
+  margin: auto;
+  left: 50%;
+  top: 50%;
+}
+.scene-warpper .template-new-wrapper-scene1 {
+  width: 68%;
+}
+@media screen and (min-width: 1920px) {
+  .template-new-wrapper-scene1 {
+    max-height: 700px;
+  }
+}
+
+@media screen and (min-width: 2200px) {
+  .template-new-wrapper-scene1 {
+    max-height: 850px;
+  }
+}
+@media screen and (min-width: 2600px) {
+  .template-new-wrapper-scene1 {
+    max-height: 1080px;
+  }
+}
+
+.pad-custom {
+  padding: 50px;
+}
+.music-btn {
+  margin-top: 50px;
+  max-width: 150px;
+}
+.export-video {
+  .loader-wrapper {
+    margin-top: 50px;
+    p {
+      font-size: 18px;
+    }
+  }
+  .loader-wrapper.text-left {
+    padding-left: 80px;
+    .exportbtn {
+      display: flex;
+      border: 0;
+      width: 100%;
+      background: transparent;
+      background: 0 0;
+      border: 0;
+      color: #000021;
+      padding: 0;
+      margin: 0;
+      font-weight: 600;
+      box-shadow: none;
+      outline: none;
+      svg {
+        margin-right: 0.5rem;
+        height: 1.2rem;
+        width: 1.2rem;
+        fill: currentColor;
+      }
+    }
+  }
+}
+
+.slider-section .img-section .half-width .react-draggable {
+  bottom: 0 !important;
+  transform: none !important;
+  width: 100% !important;
+  div {
+    width: 100% !important;
+    height: 100px !important;
+    textarea{
+      z-index: 99;
+      max-width: 96%;
+    }
+  }
+}

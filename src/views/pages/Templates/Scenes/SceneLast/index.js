@@ -53,60 +53,111 @@ const TemplateSceneLast = (props) => {
   const [playActive, setPlayActive] = React.useState(false);
   const [sceneThumbnail, setSceneThumbnail] = React.useState("");
   const [selectedCategory, setSelectedCategory] = React.useState("");
-  const [mediaArray, setMediaArray] = React.useState([
-    {
-      url: userImg,
-      type: "image/png",
-    },
-    {
-      url: LogoImg,
-      type: "image/png",
-    },
-  ]);
-  const [textArray, setTextArray] = React.useState([
-    {
-      text: "Devon Carrick",
-      fontSize: "35",
-      fontFamily: "",
-      fontWeight: "600",
-      fontLineHeight: "1.4",
-      fontAlignment: "text-left",
-      fontColor: "#333",
-      fontCapitalize: "",
-    },
-    {
-      text: "devon-carrick.kw.com",
-      fontSize: "22",
-      fontFamily: "",
-      fontWeight: "500",
-      fontLineHeight: "1.4",
-      fontAlignment: "text-left",
-      fontColor: "#333",
-      fontCapitalize: "",
-    },
-    {
-      text: "devoncarrick@kw.com",
-      fontSize: "22",
-      fontFamily: "",
-      fontWeight: "500",
-      fontLineHeight: "1.4",
-      fontAlignment: "text-left",
-      fontColor: "#333",
-      fontCapitalize: "",
-    },
-    {
-      text: "99-628-32220",
-      fontSize: "22",
-      fontFamily: "",
-      fontWeight: "500",
-      fontLineHeight: "1.4",
-      fontAlignment: "text-left",
-      fontColor: "#333",
-      fontCapitalize: "",
-    },
-  ]);
-  //const [mediaArray, setMediaArray] = React.useState([]);
-  //const [textArray, setTextArray] = React.useState([]);
+  const [fontFamily, setFontFamily] = React.useState("");
+  const [fontWeight, setFontWeight] = React.useState("");
+  // const [mediaArray, setMediaArray] = React.useState([
+  //   {
+  //     url: userImg,
+  //     type: "image/png",
+  //   },
+  //   {
+  //     url: LogoImg,
+  //     type: "image/png",
+  //   },
+  // ]);
+  // const [textArray, setTextArray] = React.useState([
+  //   {
+  //     text: "Devon Carrick",
+  //     fontSize: "35",
+  //     fontFamily: "",
+  //     fontWeight: "600",
+  //     fontLineHeight: "1.4",
+  //     fontAlignment: "text-left",
+  //     fontColor: "#333",
+  //     fontCapitalize: "",
+  //   },
+  //   {
+  //     text: "devon-carrick.kw.com",
+  //     fontSize: "22",
+  //     fontFamily: "",
+  //     fontWeight: "500",
+  //     fontLineHeight: "1.4",
+  //     fontAlignment: "text-left",
+  //     fontColor: "#333",
+  //     fontCapitalize: "",
+  //   },
+  //   {
+  //     text: "devoncarrick@kw.com",
+  //     fontSize: "22",
+  //     fontFamily: "",
+  //     fontWeight: "500",
+  //     fontLineHeight: "1.4",
+  //     fontAlignment: "text-left",
+  //     fontColor: "#333",
+  //     fontCapitalize: "",
+  //   },
+  //   {
+  //     text: "99-628-32220",
+  //     fontSize: "22",
+  //     fontFamily: "",
+  //     fontWeight: "500",
+  //     fontLineHeight: "1.4",
+  //     fontAlignment: "text-left",
+  //     fontColor: "#333",
+  //     fontCapitalize: "",
+  //   },
+  // ]);
+  const [mediaArray, setMediaArray] = React.useState([]);
+  const [textArray, setTextArray] = React.useState([]);
+  function getFontfamily(fontfamily) {
+    let newArr = [...textArray]; // copying the old datas array
+    newArr[arrayIndex] = {
+      text: newArr[arrayIndex].text,
+      fontSize: newArr[arrayIndex].fontSize,
+      fontFamily: fontfamily,
+      fontWeight: newArr[arrayIndex].fontWeight,
+      fontLineHeight: newArr[arrayIndex].fontLineHeight,
+      fontAlignment: newArr[arrayIndex].fontAlignment,
+      fontColor: newArr[arrayIndex].fontColor,
+      fontCapitalize: newArr[arrayIndex].texttransform,
+      x: newArr[arrayIndex].x,
+      y: newArr[arrayIndex].y,
+      boxWidth: newArr[arrayIndex].boxWidth,
+      boxHeight: newArr[arrayIndex].boxHeight,
+    };
+    setTextArray(newArr);
+    const data = {
+      media: mediaArray,
+      time: 4,
+      textArray: newArr,
+    };
+    updateData(data);
+  }
+  function getFontWeight(fontweight) {
+    let newArr = [...textArray]; // copying the old datas array
+    newArr[arrayIndex] = {
+      text: newArr[arrayIndex].text,
+      fontSize: newArr[arrayIndex].fontSize,
+      fontFamily: newArr[arrayIndex].fontFamily,
+      fontWeight: fontweight,
+      fontLineHeight: newArr[arrayIndex].fontLineHeight,
+      fontAlignment: newArr[arrayIndex].fontAlignment,
+      fontColor: newArr[arrayIndex].fontColor,
+      fontCapitalize: newArr[arrayIndex].texttransform,
+      x: newArr[arrayIndex].x,
+      y: newArr[arrayIndex].y,
+      boxWidth: newArr[arrayIndex].boxWidth,
+      boxHeight: newArr[arrayIndex].boxHeight,
+    };
+    setTextArray(newArr);
+    const data = {
+      media: mediaArray,
+      time: 4,
+      textArray: newArr,
+    };
+    updateData(data);
+  }
+
   function getAlignment(alignment) {
     let newArr = [...textArray]; // copying the old datas array
     newArr[arrayIndex] = {
@@ -131,6 +182,7 @@ const TemplateSceneLast = (props) => {
     };
     updateData(data);
   }
+
   function getTextTransform(texttransform) {
     let newArr = [...textArray]; // copying the old datas array
     newArr[arrayIndex] = {
@@ -235,6 +287,8 @@ const TemplateSceneLast = (props) => {
     console.log(index);
     if (index) {
       setTextSize(textArray[index].fontSize);
+      setFontWeight(textArray[index].fontWeight);
+      setFontFamily(textArray[index].fontFamily);
     }
     setArrayIndex(index);
     setChangeBg(changeBg);
@@ -290,7 +344,7 @@ const TemplateSceneLast = (props) => {
         sceneData: data,
       })
       .then(function (response) {
-        getData();
+        // getData();
         console.log(response);
       });
   }
@@ -300,7 +354,7 @@ const TemplateSceneLast = (props) => {
       setUserToken(cookies.get("token"));
       const token = cookies.get("token");
       const decoded = jwt_decode(token);
-      setUserId("5fb23662f0b30f2d6c9ff48c");
+      setUserId(decoded.id);
       //console.log(decoded.id)
       getData();
     }
@@ -326,10 +380,13 @@ const TemplateSceneLast = (props) => {
       .get(`${apiGetLastScene}` + "?id=" + templateId, {})
       .then(function (response) {
         console.log(response);
-        setData(response.data.scene.sceneData);
+
         setMediaArray(response.data.scene.sceneData.media);
         setTextArray(response.data.scene.sceneData.textArray);
         setTextSize(response.data.scene.sceneData.textArray[0].fontSize);
+        setFontWeight(response.data.scene.sceneData.textArray[0].fontWeight);
+        setFontFamily(response.data.scene.sceneData.textArray[0].fontFamily);
+        setData(response.data.scene.sceneData);
       });
   }
   function playVideo(click) {
@@ -372,20 +429,26 @@ const TemplateSceneLast = (props) => {
         ) : null}
 
         {addMedia ? null : addScene ? null : changeBg === false ? (
-          <TextEditor
-            getTextTransform={getTextTransform}
-            getAlignment={getAlignment}
-            getTextColor={getTextColor}
-            getTextlineHeight={getTextlineHeight}
-            getTextSize={getTextSize}
-            textSize={textSize}
-            textlineHeight={textlineHeight}
-            id={4}
-            thumbnails={sceneThumbnail}
-            category={selectedCategory}
-            template={true}
-            templateId={templateId}
-          />
+          data != "" ? (
+            <TextEditor
+              getTextTransform={getTextTransform}
+              getAlignment={getAlignment}
+              getTextColor={getTextColor}
+              getTextlineHeight={getTextlineHeight}
+              getTextSize={getTextSize}
+              textSize={textSize}
+              textlineHeight={textlineHeight}
+              id={4}
+              thumbnails={sceneThumbnail}
+              category={selectedCategory}
+              template={true}
+              templateId={templateId}
+              getFontfamily={getFontfamily}
+              getFontWeight={getFontWeight}
+              fontFamily={fontFamily}
+              fontWeight={fontWeight}
+            />
+          ) : null
         ) : (
           <ChangeBg showAddMedia={showAddMedia} type={bgType} scene={bgScene} />
         )}

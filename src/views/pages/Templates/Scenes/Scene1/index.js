@@ -10,6 +10,7 @@ import ChangeBg from "./../../../Scenes/ChangeBg";
 import Scene1 from "./Scene1";
 import AddMedia from "./../../../Scenes/AddMedia/AddMedia";
 import AddScenes from "./../../../Scenes/AddScenes/AddScenes";
+import AddMusic from "./../../../Scenes/AddMusic/AddMusic";
 import {
   apigetAdminTemplate,
   apiUpdateBlock,
@@ -45,6 +46,8 @@ const TemplateSceneOne = (props) => {
   const [changeBg, setChangeBg] = React.useState(false);
   const [addMedia, setAddMedia] = React.useState(false);
   const [addScene, setAddScene] = React.useState(false);
+  const [addMusic, setAddMusic] = React.useState(false);
+  
   const [container, setContainer] = React.useState("");
   const [showEditbutton, setShowEditbutton] = React.useState(false);
   const [playActive, setPlayActive] = React.useState(false);
@@ -54,6 +57,50 @@ const TemplateSceneOne = (props) => {
   const [transformY, setTransformY] = React.useState(0);
   const [width, setWidth] = React.useState(350);
   const [height, setHeight] = React.useState(100);
+  const [fontFamily, setFontFamily] = React.useState("");
+  const [fontWeight, setFontWeight] = React.useState("");
+
+  function getFontfamily(fontfamily) {
+    setFontFamily(fontfamily);
+    const data = {
+      content: content,
+      textAligmnet: textAligmnet,
+      textColor: textColor,
+      textlineHeight: textlineHeight,
+      textSize: textSize,
+      x: transformX,
+      y: transformY,
+      boxwidth: width,
+      boxheight: height,
+      textTransform: textTransform,
+      media: mediaArray,
+      fontFamily: fontfamily,
+      fontWeight: fontWeight,
+      time: 4,
+    };
+    updateData(data);
+  }
+  function getFontWeight(fontweight) {
+    setFontWeight(fontweight);
+    const data = {
+      content: content,
+      textAligmnet: textAligmnet,
+      textColor: textColor,
+      textlineHeight: textlineHeight,
+      textSize: textSize,
+      x: transformX,
+      y: transformY,
+      boxwidth: width,
+      boxheight: height,
+      textTransform: textTransform,
+      media: mediaArray,
+      fontFamily: fontFamily,
+      fontWeight: fontweight,
+      time: 4,
+    };
+    updateData(data);
+  }
+
   function getAlignment(alignment) {
     setTextAligmnet(alignment);
     const data = {
@@ -69,6 +116,8 @@ const TemplateSceneOne = (props) => {
       textTransform: textTransform,
       media: mediaArray,
       time: 4,
+      fontFamily:fontFamily,
+      fontWeight:fontWeight,
     };
     updateData(data);
   }
@@ -87,6 +136,8 @@ const TemplateSceneOne = (props) => {
       textTransform: textTransform,
       media: mediaArray,
       time: 4,
+      fontFamily:fontFamily,
+      fontWeight:fontWeight,
     };
     updateData(data);
   }
@@ -105,6 +156,8 @@ const TemplateSceneOne = (props) => {
       textTransform: texttransform,
       media: mediaArray,
       time: 4,
+      fontFamily:fontFamily,
+      fontWeight:fontWeight,
     };
     updateData(data);
   }
@@ -123,7 +176,8 @@ const TemplateSceneOne = (props) => {
       textTransform: textTransform,
       media: mediaArray,
       time: 4,
-      sceneTitle: " Scene 1",
+      fontFamily:fontFamily,
+      fontWeight:fontWeight,
     };
     updateData(data);
   }
@@ -143,6 +197,8 @@ const TemplateSceneOne = (props) => {
       textTransform: textTransform,
       media: mediaArray,
       time: 4,
+      fontFamily:fontFamily,
+      fontWeight:fontWeight,
     };
     updateData(data);
   }
@@ -161,6 +217,8 @@ const TemplateSceneOne = (props) => {
       textTransform: textTransform,
       media: mediaArray,
       time: 4,
+      fontFamily:fontFamily,
+      fontWeight:fontWeight,
     };
     updateData(data);
   }
@@ -172,6 +230,11 @@ const TemplateSceneOne = (props) => {
   }
   function showAddMedia(media, mediaFile) {
     setAddMedia(media);
+    setAddMusic(false);
+  }
+  function showMusic(media) {
+    setAddMusic(media);
+    setAddMedia(false);
   }
   function closeAddMedia(media, mediaFile, mediaType) {
     if (mediaFile) {
@@ -196,6 +259,8 @@ const TemplateSceneOne = (props) => {
         textTransform: textTransform,
         media: newArr,
         time: 4,
+        fontFamily:fontFamily,
+        fontWeight:fontWeight,
       };
       updateData(data);
     }
@@ -203,6 +268,7 @@ const TemplateSceneOne = (props) => {
   }
   function showAddScene(mediaactive, scene) {
     setAddScene(mediaactive);
+    setAddMusic(false);
   }
   function closeAddScene(media) {
     setAddScene(media);
@@ -213,7 +279,6 @@ const TemplateSceneOne = (props) => {
       .get(`${apigetAdminTemplate}` + "?templateId=" + templateId, {})
       .then(function (response) {
         if (response.data.data.length > 0) {
-        
           if (typeof response.data.data[0] !== undefined) {
             if (response.data.data[0].blocks.length > 0) {
               setTemplateTitle(response.data.data[0].title);
@@ -230,12 +295,15 @@ const TemplateSceneOne = (props) => {
                   setTextColor(block.sceneData.textColor);
                   setTexttransform(block.sceneData.textTransform);
                   setTextAligmnet(block.sceneData.textAligmnet);
-                  setData(block.sceneData);
+                  
                   setTransformX(block.sceneData.x);
                   setTransformY(block.sceneData.y);
                   setWidth(block.sceneData.boxwidth);
                   setHeight(block.sceneData.boxheight);
                   setContent(block.sceneData.content);
+                  setFontWeight(block.sceneData.fontWeight);
+                  setFontFamily(block.sceneData.fontFamily)
+                  setData(block.sceneData);
                 }
               });
             }
@@ -280,6 +348,8 @@ const TemplateSceneOne = (props) => {
       textTransform: textTransform,
       media: mediaArray,
       time: 4,
+      fontFamily:fontFamily,
+      fontWeight:fontWeight,
     };
     setTransformX(obj.x);
     setTransformY(obj.y);
@@ -296,15 +366,28 @@ const TemplateSceneOne = (props) => {
   }
   return (
     <section className="template-new-wrapper ">
-      {templateTitle ? <TopSection templateTitle={templateTitle} template={true}
-              templateId={templateId} /> : null}
+      {templateTitle ? (
+        <TopSection
+          templateTitle={templateTitle}
+          template={true}
+          templateId={templateId}
+        />
+      ) : null}
       <div className="d-flex justify-content-between outervh">
-        <SidebarLeft />
+      <SidebarLeft
+            showAddScene={showAddScene}
+            addScene={addScene}
+            addMedia={addMedia}
+            showMusic={showMusic}
+            addMusic={addMusic}
+          />
         {addMedia ? (
           <AddMedia closeAddMedia={closeAddMedia} />
-        ) : addScene ? (
-          <AddScenes sceneOrder={sceneOrder} closeAddScene={closeAddScene} />
-        ) : data != "" ? (
+          ) : addScene ? (
+            <AddScenes sceneOrder={sceneOrder} closeAddScene={closeAddScene} />
+          ) : addMusic ? (
+            <AddMusic reFetchData={reFetchData} showMusic={showMusic} closeAddScene={closeAddScene}/>
+          ) : data != "" ? (
           playActive ? (
             <Player blocks={blocks} />
           ) : (
@@ -335,6 +418,8 @@ const TemplateSceneOne = (props) => {
               getTextColor={getTextColor}
               getTextlineHeight={getTextlineHeight}
               getTextSize={getTextSize}
+              getFontfamily={getFontfamily}
+              getFontWeight={getFontWeight}
               textSize={textSize}
               textlineHeight={textlineHeight}
               id={1}
@@ -342,6 +427,8 @@ const TemplateSceneOne = (props) => {
               category={selectedCategory}
               template={true}
               templateId={templateId}
+              fontFamily={fontFamily}
+              fontWeight={fontWeight}
             />
           ) : null
         ) : (

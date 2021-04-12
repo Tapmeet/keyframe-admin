@@ -43,7 +43,7 @@ const TemplateScene3 = (props) => {
   const [showEditbutton, setShowEditbutton] = React.useState(false);
   const [playActive, setPlayActive] = React.useState(false);
   const [sceneThumbnail, setSceneThumbnail] = React.useState("");
-  const [selectedCategory, setSelectedCategory] = React.useState('');
+  const [selectedCategory, setSelectedCategory] = React.useState("");
   // const [mediaArray, setMediaArray] = React.useState([
   //   {
   //     url: Scene,
@@ -67,10 +67,54 @@ const TemplateScene3 = (props) => {
   const [transformY, setTransformY] = React.useState(0);
   const [width, setWidth] = React.useState(350);
   const [height, setHeight] = React.useState(100);
+  const [fontFamily, setFontFamily] = React.useState("");
+  const [fontWeight, setFontWeight] = React.useState("");
+
+  function getFontfamily(fontfamily) {
+    setFontFamily(fontfamily);
+    const data = {
+      content: content,
+      textAligmnet: textAligmnet,
+      textColor: textColor,
+      textlineHeight: textlineHeight,
+      textSize: textSize,
+      x: transformX,
+      y: transformY,
+      boxwidth: width,
+      boxheight: height,
+      textTransform: textTransform,
+      media: mediaArray,
+      time: 4,
+      fontFamily: fontfamily,
+      fontWeight: fontWeight,
+    };
+    updateData(data);
+  }
+  function getFontWeight(fontweight) {
+    setFontWeight(fontweight);
+    const data = {
+      content: content,
+      textAligmnet: textAligmnet,
+      textColor: textColor,
+      textlineHeight: textlineHeight,
+      textSize: textSize,
+      x: transformX,
+      y: transformY,
+      boxwidth: width,
+      boxheight: height,
+      textTransform: textTransform,
+      media: mediaArray,
+      time: 4,
+      fontFamily: fontFamily,
+      fontWeight: fontweight,
+    };
+    updateData(data);
+  }
 
   function getAlignment(alignment) {
     setTextAligmnet(alignment);
     const data = {
+      content: content,
       textAligmnet: alignment,
       textColor: textColor,
       textlineHeight: textlineHeight,
@@ -82,6 +126,8 @@ const TemplateScene3 = (props) => {
       textTransform: textTransform,
       media: mediaArray,
       time: 4,
+      fontFamily: fontFamily,
+      fontWeight: fontWeight,
     };
     updateData(data);
   }
@@ -100,6 +146,8 @@ const TemplateScene3 = (props) => {
       textTransform: textTransform,
       media: mediaArray,
       time: 4,
+      fontFamily: fontFamily,
+      fontWeight: fontWeight,
     };
     updateData(data);
   }
@@ -119,6 +167,8 @@ const TemplateScene3 = (props) => {
       textTransform: texttransform,
       media: mediaArray,
       time: 4,
+      fontFamily: fontFamily,
+      fontWeight: fontWeight,
     };
     updateData(data);
   }
@@ -137,6 +187,8 @@ const TemplateScene3 = (props) => {
       textTransform: textTransform,
       media: mediaArray,
       time: 4,
+      fontFamily: fontFamily,
+      fontWeight: fontWeight,
     };
     updateData(data);
   }
@@ -154,6 +206,8 @@ const TemplateScene3 = (props) => {
       boxheight: height,
       textTransform: textTransform,
       media: mediaArray,
+      fontFamily: fontFamily,
+      fontWeight: fontWeight,
       time: 4,
     };
     updateData(data);
@@ -172,6 +226,8 @@ const TemplateScene3 = (props) => {
       boxheight: height,
       textTransform: textTransform,
       media: mediaArray,
+      fontFamily: fontFamily,
+      fontWeight: fontWeight,
       time: 4,
     };
     updateData(data);
@@ -208,6 +264,8 @@ const TemplateScene3 = (props) => {
         textTransform: textTransform,
         media: newArr,
         time: 4,
+        fontFamily: fontFamily,
+        fontWeight: fontWeight,
       };
       updateData(data);
     }
@@ -231,14 +289,17 @@ const TemplateScene3 = (props) => {
         setTextColor(response.data.scene.sceneData.textColor);
         setTexttransform(response.data.scene.sceneData.textTransform);
         setTextAligmnet(response.data.scene.sceneData.textAligmnet);
-        setData(response.data.scene.sceneData);
+
         setTransformX(response.data.scene.sceneData.x);
         setTransformY(response.data.scene.sceneData.y);
         setWidth(response.data.scene.sceneData.boxwidth);
         setHeight(response.data.scene.sceneData.boxheight);
         setContent(response.data.scene.sceneData.content);
-        setSceneThumbnail(response.data.scene.sceneThumbnail)
-        setSelectedCategory(response.data.scene.sceneCategory)
+        setSceneThumbnail(response.data.scene.sceneThumbnail);
+        setSelectedCategory(response.data.scene.sceneCategory);
+        setFontWeight(response.data.scene.sceneData.fontWeight);
+        setFontFamily(response.data.scene.sceneData.fontFamily);
+        setData(response.data.scene.sceneData);
       }
     });
   }
@@ -261,6 +322,7 @@ const TemplateScene3 = (props) => {
       })
       .then(function (response) {
         console.log(response);
+        getData();
       });
   }
 
@@ -278,6 +340,8 @@ const TemplateScene3 = (props) => {
       textTransform: textTransform,
       media: mediaArray,
       time: 4,
+      fontFamily: fontFamily,
+      fontWeight: fontWeight,
     };
     setTransformX(obj.x);
     setTransformY(obj.y);
@@ -289,15 +353,11 @@ const TemplateScene3 = (props) => {
     setPlayActive(click);
   }
   return (
-    <section className="template-new-wrapper">
+    <section className="template-new-wrapper scene-warpper">
       {templateTitle ? (
-        <TopSection
-          templateTitle={templateTitle}
-          id="3"
-        />
+        <TopSection templateTitle={templateTitle} id="3" />
       ) : null}
       <div className="d-flex justify-content-between outervh">
-        <SidebarLeft />
         {addMedia ? (
           <AddMedia closeAddMedia={closeAddMedia} />
         ) : addScene ? (
@@ -337,6 +397,10 @@ const TemplateScene3 = (props) => {
               id={3}
               thumbnails={sceneThumbnail}
               category={selectedCategory}
+              getFontfamily={getFontfamily}
+              getFontWeight={getFontWeight}
+              fontFamily={fontFamily}
+              fontWeight={fontWeight}
             />
           ) : null
         ) : (

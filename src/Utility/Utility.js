@@ -37,6 +37,7 @@ export const apiResetPassword = `${url}api/auth/recover`;
 export const apiVerificationToken = `${url}api/auth/reset/`;
 export const apiSetPassword = `${url}api/auth/reset/`;
 export const apiUploadImage = `${url}api/template/add-image/upload`;
+export const apiUploadMedia = `${url}api/template/add-media/upload`;
 export const apiAddTemplate = `${url}api/template/add-template`;
 export const apiAddBlock = `${url}api/template/add-block`;
 export const apiPreviewVideo = `${url}api/template/create-videos`;
@@ -46,7 +47,7 @@ export const apiSupportTicket = `${url}api/common/support`
 export const apiGetUsers = `${url}api/user/`
 export const apiGetUser = `${url}api/user/` 
 export const apiUpdateUser = `${url}api/user/`
-
+export const apigetMusicUploads = `${url}api/template/get-music/`
 export const apiAddScene = `${url}api/scene/add-scene`
 export const apiAllScene = `${url}api/scene/all-scenes`
 export const apigetUploads = `${url}api/template/get-uploads/`
@@ -74,3 +75,8 @@ export const apiupdateAdminTemplate = `${url}api/template/update-template/`
 export const apiAddLastScene = `${url}api/last-block/add-scene`
 export const apiUpdatLastScene = `${url}api/last-block/`
 export const apiGetLastScene = `${url}api/last-block/get-scene/`
+export const apideleteTemplate = `${url}api/template/delete-template/`
+export const apideleteMedia = `${url}api/template/delete-media/`
+
+export const apigetVideos = `${url}api/template/get-user-videos/`
+export const apideleteVideos = `${url}api/template/delete-user-videos/`

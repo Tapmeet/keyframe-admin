@@ -274,6 +274,7 @@ const BottomSection = (props) => {
                         }
                         boxId={scene._id}
                         sceneId={sceneId}
+                        length={sceneData.length}
                       ></Box>
                     );
                   })}

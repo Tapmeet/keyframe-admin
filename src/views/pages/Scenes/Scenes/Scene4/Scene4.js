@@ -45,16 +45,20 @@ const SceneFour = (props) => {
     props.mediaArray.map((data, index) => {
       {
         index <= 1
-          ? setMediaArray1((media) => [...media, data])
-          : setMediaArray2((media) => [...media, data]);
+        ? setMediaArray1((media) => [...media, data])
+        : index >= 1 && index <= 3
+        ? setMediaArray2((media) => [...media, data])
+        : null;
       }
     });
     if (props.data) {
       props.mediaArray.map((data, index) => {
         {
           index <= 1
-            ? setMediaArray1((media) => [...media, data])
-            : setMediaArray2((media) => [...media, data]);
+          ? setMediaArray1((media) => [...media, data])
+          : index >= 1 && index <= 3
+          ? setMediaArray2((media) => [...media, data])
+          : null;
         }
       });
     }
@@ -148,6 +152,8 @@ const SceneFour = (props) => {
                           "font-size": data.fontSize + "px",
                           color: data.fontColor,
                           "line-height": data.fontLineHeight,
+                          fontWeight: data.fontWeight,
+                          fontFamily: data.fontFamily,
                         }}
                         className={
                           "child-container form-control border  size-auto " +
@@ -213,6 +219,8 @@ const SceneFour = (props) => {
                           "font-size": data.fontSize + "px",
                           color: data.fontColor,
                           "line-height": data.fontLineHeight,
+                          fontWeight: data.fontWeight,
+                          fontFamily: data.fontFamily,
                         }}
                         className={
                           "child-container form-control border  size-auto " +

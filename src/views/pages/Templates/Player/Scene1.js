@@ -99,8 +99,8 @@ const PlayerSceneOne = (props) => {
         <section
           className={
             activeClass
-              ? " playerui-wrapper  playerscene1 active "
-              : " playerui-wrapper  playerscene1  "
+              ? " playerui-wrapper  playerscene1 active scene1 "
+              : " playerui-wrapper  playerscene1  scene1"
           }
         >
           {typeof mediaArray != undefined ? (

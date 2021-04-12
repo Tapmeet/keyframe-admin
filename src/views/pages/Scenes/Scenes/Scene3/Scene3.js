@@ -154,6 +154,8 @@ const SceneThree = (props) => {
                   "font-size": props.settextSize + "px",
                   color: props.setColor,
                   "line-height": props.setTextLineHeight,
+                  "fontFamily":props.data.fontFamily,
+                  "fontWeight":props.data.fontWeight
                 }}
                 className={
                   "child-container form-control border  size-auto " +

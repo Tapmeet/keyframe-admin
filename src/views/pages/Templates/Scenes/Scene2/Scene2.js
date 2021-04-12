@@ -18,18 +18,18 @@ const SceneTwo = (props) => {
   const [content, setContent] = React.useState([]);
   const [counter, setCounter] = React.useState(content.length);
   function setshowbg(option, scene, type, titleColor, container) {
-    console.log(scene);
-    props.showBg(option, type, scene, false, container);
+    props.showBg(option, type, scene, titleColor, container);
   }
 
   const settings = {
-    dots: true,
+    dots: false,
     speed: 1500,
     autoplaySpeed: 3500,
     slidesToShow: 1,
     infinite: true,
     slidesToScroll: 1,
     autoplay: true,
+    nav:false,
     responsive: [
       {
         breakpoint: 1600,
@@ -44,7 +44,7 @@ const SceneTwo = (props) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          dots: true,
+          dots: false,
         },
       },
       {
@@ -52,7 +52,7 @@ const SceneTwo = (props) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          dots: true,
+          dots: false,
         },
       },
       {
@@ -85,6 +85,7 @@ const SceneTwo = (props) => {
   const deleteSection = (e) => {
     setCounter(counter - 1);
     content.splice(e, 1);
+    props.getContent(content);
   };
 
   const updateFieldChanged = (index) => (e) => {
@@ -146,7 +147,12 @@ const SceneTwo = (props) => {
                             type="text"
                             onChange={updateTile(index)}
                             value={data.title}
-                            style={{ color: props.setTitleColor }}
+                            style={{
+                              color: props.setTitleColor,
+                              fontSize: props.data.titletextSize + "px",
+                              fontWeight:props.data.titleFontWeight,
+                              fontFamily:props.data.titleFontFamily
+                            }}
                             className={
                               "child-container form-control border  size-auto " +
                               props.setAlignment +
@@ -163,7 +169,12 @@ const SceneTwo = (props) => {
                             type="text"
                             onChange={updateFieldChanged(index)}
                             value={data.text}
-                            style={{ color: props.setColor }}
+                            style={{
+                              color: props.setColor,
+                              fontSize: props.data.textSize + "px",
+                              fontWeight:props.data.fontWeight,
+                              fontFamily:props.data.fontFamily
+                            }}
                             className={
                               "child-container form-control border  size-auto " +
                               props.setAlignment +

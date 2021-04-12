@@ -69,6 +69,8 @@ const SceneLast = (props) => {
                       "font-size": data.fontSize + "px",
                       color: data.fontColor,
                       "line-height": data.fontLineHeight,
+                      "fontWeight":data.fontWeight,
+                      "fontFamily":data.fontFamily
                     }}
                     className={
                       "child-container form-control border  size-auto " +
