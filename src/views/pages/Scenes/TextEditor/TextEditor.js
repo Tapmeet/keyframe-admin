@@ -28,6 +28,7 @@ const TextEditor = (props) => {
   const [templateId, setTemplateId] = React.useState(props.templateId);
   const [titleColor, setTitleColor] = React.useState(props.textColor);
   const [thumbnail, setThumbnail] = React.useState(props.thumbnails);
+  const [preview, setPreview] = React.useState(props.preview);
   //var thumbnail = props.thumbnail;
   const [selectedCategory, setSelectedCategory] = React.useState(
     props.category
@@ -87,18 +88,51 @@ const TextEditor = (props) => {
         .catch((error) => {});
     }
   }
+  function setformPreview(e) {
+    var parts = e.target.files[0].type.split("/");
+    var result = parts[0];
+    if (e.target.files[0] != "") {
+      const data = new FormData();
+      data.append("file", e.target.files[0]);
+      data.append("noUpload", "true");
+      data.append("userId", userId);
+      setProcessing(true);
+      axios
+        .post(`${apiUploadImage}`, data)
+        .then((response) => {
+          setProcessing(false);
+          let fileUrl = response.data.message
+            .replace(/\\/g, "/")
+            .substring("public".length);
+          let imageUrl = fileUrl.replace("sets/", "");
+          let updatedImage = imageUrl;
+          setThumbnail(imageUrl);
+          if (props.template) {
+            axios
+              .put(`${apiupdateAdminTemplate}${templateId}`, {
+                id: templateId,
+                templatePreview: updatedImage,
+              })
+              .then(function (response) {
+                console.log(response);
+              });
+          }
+        })
+        .catch((error) => {});
+    }
+  }
   function updateCategory(e) {
     setSelectedCategory(e.target.value);
     if (e.target.value != "") {
       if (props.template) {
         axios
-        .put(`${apiupdateAdminTemplate}${templateId}`, {
-          id: templateId,
-          templateCategory: e.target.value,
-        })
-        .then(function (response) {
-          console.log(response);
-        });
+          .put(`${apiupdateAdminTemplate}${templateId}`, {
+            id: templateId,
+            templateCategory: e.target.value,
+          })
+          .then(function (response) {
+            console.log(response);
+          });
       } else {
         axios
           .put(`${apiUpdateScene}${sceneId}`, {
@@ -128,8 +162,7 @@ const TextEditor = (props) => {
       setUserId(decoded.id);
       setSceneId(props.id);
       setState(props.fontFamily);
-      setFontWeight(props.fontWeight)
-     
+      setFontWeight(props.fontWeight);
     }
     if (props.thumbnails) {
       setThumbnail(props.thumbnails);
@@ -149,7 +182,7 @@ const TextEditor = (props) => {
         setCategories(response.data.scenes);
       });
     }
-    console.log(props.fontFamily)
+    console.log(props.fontFamily);
   }, [props.thumbnails, props.category, userId]);
   function setcapitalize() {
     if (activeCapitalize === true) {
@@ -191,9 +224,9 @@ const TextEditor = (props) => {
     props.getTextlineHeight(e);
   }
   function setfontWeight(e) {
-    console.log(e.target.value)
+    console.log(e.target.value);
     props.getFontWeight(e.target.value);
-    setFontWeight(e.target.value)
+    setFontWeight(e.target.value);
   }
   function setFontfamily(e) {
     setState(e);
@@ -204,7 +237,7 @@ const TextEditor = (props) => {
       <div className="text-editor">
         <h4>Text Properties</h4>
         <div className="sectionOne">
-        <FontPicker
+          <FontPicker
             families={
               "Arimo, Lato, Montserrat, Noto Serif, Oswald, Roboto, Josefin Sans, Barlow, Open Sans"
             }
@@ -222,7 +255,11 @@ const TextEditor = (props) => {
           />
         </div>
         <div className="sectionOne">
-        <select name="fontweight" onChange={e => setfontWeight(e)} value={fontWeight}>
+          <select
+            name="fontweight"
+            onChange={(e) => setfontWeight(e)}
+            value={fontWeight}
+          >
             <option value="">Set Fonts Weight</option>
             <option value="lighter">Light</option>
             <option value="normal">Regular</option>
@@ -421,12 +458,31 @@ const TextEditor = (props) => {
 
           <input type="file" onChange={(e) => setformImage(e)} />
         </div>
+        <div className="thumbnail-wrapper sectionTwo">
+          <h4> Video Preview </h4>
+          {preview ? (
+            <video
+              className="video-container video-container-overlay"
+              controls={true}
+              loop=""
+              poster={apiPath + thumbnail}
+            >
+              <source type="video/mp4" src={apiPath + preview} />
+            </video>
+          ) : null}
+
+          <input type="file" onChange={(e) => setformPreview(e)} />
+        </div>
         <div className=" animation-section  category-section">
           <h4>{props.template ? "Template Category" : "Scene Category"}</h4>
           <select value={selectedCategory} onChange={updateCategory}>
             <option value="">Select Category</option>;
             {categories.map((data, index) => {
-              return <option value={data._id} key={index}>{data.title}</option>;
+              return (
+                <option value={data._id} key={index}>
+                  {data.title}
+                </option>
+              );
             })}
           </select>
         </div>

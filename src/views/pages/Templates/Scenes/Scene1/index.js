@@ -47,7 +47,7 @@ const TemplateSceneOne = (props) => {
   const [addMedia, setAddMedia] = React.useState(false);
   const [addScene, setAddScene] = React.useState(false);
   const [addMusic, setAddMusic] = React.useState(false);
-  
+  const [preview, setPreview] = React.useState("");
   const [container, setContainer] = React.useState("");
   const [showEditbutton, setShowEditbutton] = React.useState(false);
   const [playActive, setPlayActive] = React.useState(false);
@@ -285,6 +285,7 @@ const TemplateSceneOne = (props) => {
               setBlocks(response.data.data[0].blocks);
               setSceneOrder(response.data.data[0].sceneOrder);
               setSceneThumbnail(response.data.data[0].templateImage);
+              setPreview(response.data.data[0].templatePreview)
               setSelectedCategory(response.data.data[0].templateCategory);
               setBottomData(response.data.data[0]);
               response.data.data[0].blocks.map((block) => {
@@ -407,6 +408,7 @@ const TemplateSceneOne = (props) => {
               getTextAreaData={getTextAreaData}
               getContent={getContent}
               content={content}
+              
             />
           )
         ) : null}
@@ -429,6 +431,7 @@ const TemplateSceneOne = (props) => {
               templateId={templateId}
               fontFamily={fontFamily}
               fontWeight={fontWeight}
+              preview={preview}
             />
           ) : null
         ) : (

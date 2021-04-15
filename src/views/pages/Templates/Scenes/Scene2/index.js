@@ -11,6 +11,7 @@ import AddMedia from "./../../../Scenes/AddMedia/AddMedia";
 import AddScenes from "./../../../Scenes/AddScenes/AddScenes";
 import TopSection from "./../../../Scenes/TopSection/TopSection";
 import BottomSection from "./../../../Scenes/BottomSection/BottomSection";
+import AddMusic from "./../../../Scenes/AddMusic/AddMusic";
 import {
   apigetTemplate,
   apiUpdateScene,
@@ -46,7 +47,7 @@ const TemplateSceneTwo = (props) => {
   //   }
   // ]);
   const [templateTitle, setTemplateTitle] = React.useState("");
-
+  const [preview, setPreview] = React.useState("");
   const [content, setContent] = React.useState([]);
   const [data, setData] = React.useState("");
   const [userToken, setUserToken] = React.useState("");
@@ -66,6 +67,7 @@ const TemplateSceneTwo = (props) => {
   const [titleactive, setTitleactive] = React.useState(false);
   const [addMedia, setAddMedia] = React.useState(false);
   const [addScene, setAddScene] = React.useState(false);
+  const [addMusic, setAddMusic] = React.useState(false);
   const [showEditbutton, setShowEditbutton] = React.useState(false);
   const [mediaArray, setMediaArray] = React.useState([]);
   const [playActive, setPlayActive] = React.useState(false);
@@ -354,13 +356,18 @@ const TemplateSceneTwo = (props) => {
   }
   function showAddMedia(media, mediaFile) {
     setAddMedia(media);
+    setAddMusic(false);
+  }
+  function showMusic(media) {
+    setAddMusic(media);
+    setAddMedia(false);
   }
   function closeAddMedia(media, mediaFile) {
     setAddMedia(media);
   }
 
   function showAddScene(mediaactive, scene) {
-    console.log(mediaactive);
+    setAddMusic(false);
     setAddScene(mediaactive);
   }
   function closeAddScene(media) {
@@ -408,6 +415,7 @@ const TemplateSceneTwo = (props) => {
             setBottomData(response.data.data[0]);
             setSceneOrder(response.data.data[0].sceneOrder);
             setSceneThumbnail(response.data.data[0].templateImage);
+            setPreview(response.data.data[0].templatePreview)
             setSelectedCategory(response.data.data[0].templateCategory);
             if (response.data.data[0].blocks.length > 0) {
               setBlocks(response.data.data[0].blocks);
@@ -479,11 +487,19 @@ const TemplateSceneTwo = (props) => {
         />
       ) : null}
       <div className="d-flex justify-content-between outervh">
-        <SidebarLeft />
+      <SidebarLeft
+            showAddScene={showAddScene}
+            addScene={addScene}
+            addMedia={addMedia}
+            showMusic={showMusic}
+            addMusic={addMusic}
+          />
         {addMedia ? (
           <AddMedia closeAddMedia={closeAddMedia} />
         ) : addScene ? (
           <AddScenes sceneOrder={sceneOrder} closeAddScene={closeAddScene} />
+          ) : addMusic ? (
+            <AddMusic reFetchData={reFetchData} showMusic={showMusic} closeAddScene={closeAddScene}/>
         ) : data != "" && content != "" ? (
           playActive ? (
             <Player blocks={blocks} />
@@ -524,6 +540,7 @@ const TemplateSceneTwo = (props) => {
               getFontWeight={getFontWeight}
               fontFamily={fontfamilySet}
               fontWeight={fontweightSet}
+              preview={preview}
             />
           ) : null
         ) : (

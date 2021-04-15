@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { apiPath } from "./../../../../Utility/Utility";
 import trash from "./../../../../assets/images/templates/trash.svg";
 import HOC from "./../Player/HOC";
+import MediaUpload from "./MediaUpload";
 import axios from "axios";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import Loader from "./../../../../Utility/Loader/Loader";
@@ -29,6 +30,11 @@ const BottomSection = (props) => {
   const {
     params: { sceneId },
   } = match;
+  const [activeTab, setActiveTab] = React.useState("1");
+
+  const toggles = (tab) => {
+    if (activeTab !== tab) setActiveTab(tab);
+  };
   const [showStop, setShowStop] = React.useState(false);
   const [lastScenetime, setLastScenetime] = React.useState("");
   const [lastSceneData, setLastSceneData] = React.useState([]);
@@ -40,10 +46,12 @@ const BottomSection = (props) => {
   const { buttonLabel, className } = props;
 
   const [modal, setModal] = React.useState(false);
-
+  const [modal2, setModal2] = React.useState(false);
   const toggle = () => setModal(!modal);
+  const toggle2 = () => setModal2(!modal2);
   const [playerTime, setPlayerTime] = React.useState();
   const [sceneData, setSceneData] = React.useState(props.bottomData.blocks);
+
   function addScene() {
     props.showAddScene("true", props.scene);
   }
@@ -82,6 +90,10 @@ const BottomSection = (props) => {
       i = 0;
       setShowStop(false);
       props.playVideo(false);
+      if (props.bottomData.musicFile) {
+        let audiox = document.getElementById("playerAudio");
+        pauseAudio(audiox);
+      }
     } else {
       if (width >= widthElement) {
         elmnt.scrollLeft += widthElement;
@@ -97,6 +109,10 @@ const BottomSection = (props) => {
     props.playVideo(true);
     i = 0;
     setShowStop(true);
+    if (props.bottomData.musicFile) {
+      let audiox = document.getElementById("playerAudio");
+      playAudio(audiox);
+    }
     move();
   }
   function stopScene() {
@@ -108,10 +124,14 @@ const BottomSection = (props) => {
     elem.style.width = width + "px";
     bar.style.width = width + "px";
     setShowStop(false);
+    if (props.bottomData.musicFile) {
+      let audiox = document.getElementById("playerAudio");
+      pauseAudio(audiox);
+    }
   }
   const handleStop = (e, data) => {
-    // console.log("Event: ", e);
-    // console.log("Data: ", data);
+    console.log("Event: ", e);
+    console.log("Data: ", data);
   };
   React.useEffect(() => {
     // setSceneOrder(props.bottomData.sceneOrder);
@@ -190,8 +210,22 @@ const BottomSection = (props) => {
           props.reFetchData();
         });
     });
-   
   };
+  const showMedia = () => {
+    setModal2(!modal2);
+  };
+  const saveMedia = () => {
+    props.reFetchData();
+  };
+  function playAudio(audioToplay) {
+    audioToplay.play();
+  }
+  function pauseAudio(audioTopause) {
+    if (props.bottomData.musicFile) {
+      audioTopause.currentTime = 0;
+      audioTopause.pause();
+    }
+  }
   return (
     <section className="template-new-wrapper-bottom">
       <Loader open={processing} />
@@ -205,7 +239,7 @@ const BottomSection = (props) => {
                   viewBox="0 0 24 24"
                   width="24"
                   height="24"
-                  class="__ef6b9__StopIcon"
+                  className="__ef6b9__StopIcon"
                 >
                   <path fill="currentColor" d="M6 6h12v12H6z"></path>
                 </svg>
@@ -227,19 +261,30 @@ const BottomSection = (props) => {
             )}
             <span>{showStop ? "Stop" : "Play"}</span>
           </div>
+          <div className="media-section">
+            <div className="link" onClick={showMedia}>
+              <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M14 10.17V3H6v10a3 3 0 1 1-2-2.83V0h12v13a3 3 0 1 1-2-2.83z"
+                  fill="currentColor"
+                  fillRule="nonzero"
+                ></path>
+              </svg>
+            </div>
+          </div>
         </div>
         <div className="scene-section" id="scene-section">
           <div className="progressBar" id="progressBar">
             <div className="time-internals">
               {rows.map((data, index) => {
-                return <div className="time-intervals">{index}</div>;
+                return <div key={index} className="time-intervals">{index}</div>;
               })}
             </div>
           </div>
           <div className="timebars">
             <div className="time-internals">
               {rows.map((data, index) => {
-                return <div className="time-intervals">{index}</div>;
+                return <div key={index}  className="time-intervals">{index}</div>;
               })}
             </div>
           </div>
@@ -272,9 +317,9 @@ const BottomSection = (props) => {
                           "/" +
                           scene._id
                         }
+                        length={sceneData.length}
                         boxId={scene._id}
                         sceneId={sceneId}
-                        length={sceneData.length}
                       ></Box>
                     );
                   })}
@@ -282,7 +327,7 @@ const BottomSection = (props) => {
                   <div
                     className="thumb-section"
                     style={{
-                      "background-image":
+                      "backgroundImage":
                         "url(" + apiPath + lastSceneData.sceneThumbnail + ") ",
                       width: parseFloat(lastScenetime) * 80 + "px",
                       minWidth: parseFloat(lastScenetime) * 80 + "px",
@@ -350,6 +395,21 @@ const BottomSection = (props) => {
             </div>
           </ModalFooter>
         </Modal>
+
+        <MediaUpload
+          toggles={toggles}
+          modal2={modal2}
+          toggle2={toggle2}
+          activeTab={activeTab}
+          musicfile={props.bottomData.musicFile}
+          saveMedia={saveMedia}
+        />
+        {props.bottomData.musicFile ? (
+          <audio
+            id="playerAudio"
+            src={apiPath + props.bottomData.musicFile}
+          ></audio>
+        ) : null}
       </div>
     </section>
   );

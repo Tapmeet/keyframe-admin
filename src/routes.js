@@ -59,6 +59,8 @@ const TemplateSceneTwo = React.lazy(() => import('./views/pages/Templates/Scenes
 const TemplateSceneThree = React.lazy(() => import('./views/pages/Templates/Scenes/Scene3'));
 const TemplateSceneFour= React.lazy(() => import('./views/pages/Templates/Scenes/Scene4'));
 const TemplateSceneLast= React.lazy(() => import('./views/pages/Templates/Scenes/SceneLast'));
+const MyVideos= React.lazy(() => import('./views/pages/MyVideos'));
+const ExportVideo= React.lazy(() => import('./views/pages/ExportVideo'));
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
@@ -123,6 +125,8 @@ const routes = [
   { path: '/template/:id/3/:sceneid', exact: true,  name: 'Scene 3', component: TemplateSceneThree },
   { path: '/template/:id/4/:sceneid', exact: true,  name: 'Scene 4', component: TemplateSceneFour },
   { path: '/template/:id/last/:sceneid', exact: true,  name: 'Scene 4', component: TemplateSceneLast },
+  { path: '/my-videos/', exact: true,  name: 'Scene 4', component: MyVideos },
+  { path: '/export-video/:templateId/download/', exact: true,  name: 'Export Video', component: ExportVideo }
 ];
 
 export default routes;

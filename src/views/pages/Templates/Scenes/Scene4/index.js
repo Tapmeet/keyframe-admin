@@ -1,9 +1,5 @@
 import React from "react";
 import axios from "axios";
-import Scene from "./../../../../../assets/images/templates/img11.png";
-import Scene2 from "./../../../../../assets/images/templates/img12.png";
-import Scene3 from "./../../../../../assets/images/templates/img13.png";
-import Scene4 from "./../../../../../assets/images/templates/img14.png";
 import { useRouteMatch } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import Cookies from "universal-cookie";
@@ -15,6 +11,7 @@ import AddMedia from "../../../Scenes/AddMedia/AddMedia";
 import AddScenes from "../../../Scenes/AddScenes/AddScenes";
 import TopSection from "./../../../Scenes/TopSection/TopSection";
 import BottomSection from "./../../../Scenes/BottomSection/BottomSection";
+import AddMusic from "./../../../Scenes/AddMusic/AddMusic";
 import {
   apigetAdminTemplate,
   apiUpdateBlock,
@@ -46,13 +43,14 @@ const TemplateSceneFour = (props) => {
   const [changeBg, setChangeBg] = React.useState(false);
   const [addMedia, setAddMedia] = React.useState(false);
   const [addScene, setAddScene] = React.useState(false);
+  const [addMusic, setAddMusic] = React.useState(false);
   const [container, setContainer] = React.useState("");
   const [arrayIndex, setArrayIndex] = React.useState(0);
   const [showEditbutton, setShowEditbutton] = React.useState(false);
   const [playActive, setPlayActive] = React.useState(false);
   const [sceneThumbnail, setSceneThumbnail] = React.useState("");
   const [selectedCategory, setSelectedCategory] = React.useState("");
-
+  const [preview, setPreview] = React.useState("");
   const [mediaArray, setMediaArray] = React.useState([]);
   const [textArray, setTextArray] = React.useState([]);
   const [fontFamily, setFontFamily] = React.useState("");
@@ -250,6 +248,11 @@ const TemplateSceneFour = (props) => {
   }
   function showAddMedia(media, mediaFile) {
     setAddMedia(media);
+    setAddMusic(false);
+  }
+  function showMusic(media) {
+    setAddMusic(media);
+    setAddMedia(false);
   }
   function closeAddMedia(media, mediaFile, mediaType) {
     if (mediaFile) {
@@ -272,6 +275,7 @@ const TemplateSceneFour = (props) => {
   }
   function showAddScene(mediaactive, scene) {
     setAddScene(mediaactive);
+    setAddMusic(false);
   }
   function closeAddScene(media) {
     setAddScene(media);
@@ -293,7 +297,7 @@ const TemplateSceneFour = (props) => {
         sceneData: data,
       })
       .then(function (response) {
-      //  getData();
+        //  getData();
         console.log(response);
       });
   }
@@ -321,6 +325,7 @@ const TemplateSceneFour = (props) => {
             setBottomData(response.data.data[0]);
             setSceneOrder(response.data.data[0].sceneOrder);
             setSceneThumbnail(response.data.data[0].templateImage);
+            setPreview(response.data.data[0].templatePreview);
             setSelectedCategory(response.data.data[0].templateCategory);
             if (response.data.data[0].blocks.length > 0) {
               //setBlocks(response.data.data[0].blocks);
@@ -358,11 +363,23 @@ const TemplateSceneFour = (props) => {
         />
       ) : null}
       <div className="d-flex justify-content-between outervh">
-        <SidebarLeft />
+        <SidebarLeft
+          showAddScene={showAddScene}
+          addScene={addScene}
+          addMedia={addMedia}
+          showMusic={showMusic}
+          addMusic={addMusic}
+        />
         {addMedia ? (
           <AddMedia closeAddMedia={closeAddMedia} />
         ) : addScene ? (
           <AddScenes closeAddScene={closeAddScene} sceneOrder={sceneOrder} />
+        ) : addMusic ? (
+          <AddMusic
+            reFetchData={reFetchData}
+            showMusic={showMusic}
+            closeAddScene={closeAddScene}
+          />
         ) : textArray != "" ? (
           playActive ? (
             <Player blocks={blocks} />
@@ -400,6 +417,7 @@ const TemplateSceneFour = (props) => {
               getFontWeight={getFontWeight}
               fontFamily={fontFamily}
               fontWeight={fontWeight}
+              preview={preview}
             />
           ) : null
         ) : (

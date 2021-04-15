@@ -47,11 +47,12 @@ export const apiSupportTicket = `${url}api/common/support`
 export const apiGetUsers = `${url}api/user/`
 export const apiGetUser = `${url}api/user/` 
 export const apiUpdateUser = `${url}api/user/`
+export const apigetUploads = `${url}api/template/get-uploads/`
 export const apigetMusicUploads = `${url}api/template/get-music/`
+export const apiUpdateBlock = `${url}api/template/update-scene`
+export const apiMergeVideo = `${url}api/template/merge-videos`;
 export const apiAddScene = `${url}api/scene/add-scene`
 export const apiAllScene = `${url}api/scene/all-scenes`
-export const apigetUploads = `${url}api/template/get-uploads/`
-export const apiUpdateBlock = `${url}api/template/update-scene`
 export const apiUpdateScene = `${url}api/scene/`
 
 export const apiGetScene = `${url}api/scene/get-scene/`
