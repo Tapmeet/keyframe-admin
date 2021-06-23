@@ -127,12 +127,15 @@ const PlayerSceneOne = (props) => {
                             "font-size": props.data.textSize + "px",
                             color: props.data.textColor,
                             "line-height": props.data.textlineHeight,
+                            "fontFamily":props.data.fontFamily,
+                            "fontWeight":props.data.fontWeight
                           }}
                           className={
                             "child-container sceneUi form-control border  size-auto " +
                             props.data.textAligmnet +
                             " " +
                             props.data.textTransform
+                            
                           }
                           readonly={true}
                         >

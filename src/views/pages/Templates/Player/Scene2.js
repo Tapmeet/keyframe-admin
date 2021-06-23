@@ -125,7 +125,12 @@ const PlayerSceneTwo = (props) => {
                               <input
                                 type="text"
                                 value={data.title}
-                                style={{ color: props.data.titleColor }}
+                                style={{
+                                  color: props.data.titleColor,
+                                  fontSize: props.data.titletextSize + "px",
+                                  fontWeight: props.data.fontWeight,
+                                  fontFamily: props.data.fontFamily,
+                                }}
                                 className={
                                   "child-container form-control border  size-auto " +
                                   props.data.textAligmnet +
@@ -138,7 +143,12 @@ const PlayerSceneTwo = (props) => {
                               <input
                                 type="text"
                                 value={data.text}
-                                style={{ color: props.data.textColor }}
+                                style={{
+                                  color: props.data.textColor,
+                                  fontSize: props.data.textSize + "px",
+                                  fontWeight: props.data.fontWeight,
+                                  fontFamily: props.data.fontFamily,
+                                }}
                                 className={
                                   "child-container form-control border  size-auto " +
                                   props.data.textAligmnet +
