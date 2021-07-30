@@ -332,7 +332,7 @@ const TemplateScene4 = (props) => {
         />
       ) : null}
       <div className="d-flex justify-content-between outervh">
-        <SidebarLeft />
+        {/* <SidebarLeft /> */}
         {addMedia ? (
           <AddMedia closeAddMedia={closeAddMedia} />
         ) : addScene ? (

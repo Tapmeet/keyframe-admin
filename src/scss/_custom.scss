@@ -7,6 +7,7 @@ span.error-message {
   color: #ff0000;
   font-size: 12px;
 }
+
 .alert-danger {
   color: #772b35;
   background-color: #fadddd;
@@ -19,6 +20,7 @@ span.error-message {
 button.mt-3.btn.btn-primary.active.red {
   background: #e74948;
 }
+
 .btn.primary {
   padding: 7px 50px;
   border-radius: 6px;
@@ -36,6 +38,7 @@ button.mt-3.btn.btn-primary.active.red {
   height: 50px;
   width: 100%;
 }
+
 .scene-wrapper {
   .btn {
     min-width: 150px;
@@ -44,69 +47,87 @@ button.mt-3.btn.btn-primary.active.red {
     padding: 7px 30px;
   }
 }
+
 ul li,
 ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
+
 .bg {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 .btn {
   background-color: #303c54;
   color: #fff;
 }
+
 .catgeory-wrapper {
   .d-flex {
     margin-bottom: 30px;
+
     .btn {
       margin-left: 30px;
       line-height: 26px;
     }
   }
+
   label {
     font-weight: 600;
   }
+
   .img-fluid {
     max-width: 300px;
   }
+
   .rdt_TableCell img.img-fluid {
     max-width: 110px;
     padding: 10px;
   }
 }
+
 .thumbnail-wrapper img {
   margin-bottom: 20px;
   max-width: 200px;
 }
+
 .search-wrapper {
   background: #fff;
+
   span {
     background: #303c54;
     border-radius: 4px;
   }
 }
+
 .bg-gray {
   background: #fff;
 }
+
 .text-content {
   font-size: 22px;
+
   h3 {
     font-size: 35px;
     font-weight: 600;
   }
+
   textarea.form-control {
     min-height: auto !important;
   }
+
   input {
     border: 0px !important;
     box-shadow: none !important;
     background: transparent !important;
   }
 }
+
 .userimg {
   padding: 0 20px;
 }
+

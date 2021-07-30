@@ -10,6 +10,7 @@ const SidebarLeft = (props) => {
   const {
     params: { templateId },
   } = match;
+  
   function addScene() {
     props.showAddScene("true", props.scene);
     props.showMusic("false");
