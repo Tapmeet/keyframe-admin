@@ -1608,7 +1608,8 @@
 
   background: #648d96;
   padding: 80px;
-  .content-part{
+
+  .content-part {
     position: absolute;
     z-index: 999;
     bottom: 0px;
@@ -1629,13 +1630,16 @@
     //   }
     //}
   }
-  .bg.box-1{
+
+  .bg.box-1 {
     position: relative;
     z-index: 33;
   }
-  .slider-box{
+
+  .slider-box {
     position: relative;
-    &::after{
+
+    &::after {
       position: absolute;
       content: "";
       background: #cddfe3;
@@ -1644,6 +1648,106 @@
       height: 100%;
       width: 100%;
     }
-    
+
+  }
+
+  .child-container.form-control.editable-div.size-auto.text-left {
+    border: 0px;
+    background: transparent;
+    display: inline-block;
+    padding-bottom: 10px;
+    border-bottom: 4px solid #fff;
+    padding-left: 0;
+    border-radius: 0px;
+    padding-right: 0px;
+    box-shadow: none;
+  }
+}
+
+section.template-new-wrapper-scene1.slider-section.section-six.section-seven {
+  padding: 50px;
+
+  .half-width {
+    display: flex;
+    justify-content: center;
+
+    .left-section .slider-boxs:first-of-type {
+      position: relative;
+
+      &::after {
+        position: absolute;
+        content: "";
+        background: #cddfe3;
+        left: 20px;
+        top: -15px;
+        height: 100%;
+        width: 95%;
+      }
+    }
+
+    .right-section .slider-boxs:last-of-type {
+      position: relative;
+
+      &::after {
+        position: absolute;
+        content: "";
+        background: #cddfe3;
+        left: 20px;
+        bottom: -15px;
+        height: 100%;
+        width: 95%;
+      }
+    }
+  }
+
+  .slider-boxs {
+    padding: 10px;
+  }
+
+  .bg-sections {
+    height: 50% !important;
+    width: 80%;
+  }
+}
+
+section.template-new-wrapper-scene1.slider-section.section-6 {
+
+  .react-draggable {
+    width: 100% !important;
+  }
+
+  .img-section .react-draggable>div {
+
+    width: 100% !important;
+
+    textarea.form-control {
+
+      width: 100% !important;
+    }
+
+  }
+}
+section.template-new-wrapper-scene1.slider-section.section-6.section-11 {
+
+  .react-draggable {
+    width: 100% !important;
+    bottom: 0 !important;
+  }
+}
+
+.slider-section .slider-box.half-height {
+  height: 50%;
+}
+
+.slider-section.scene-10 .img-section .half-width .react-draggable {
+  bottom: 35% !important;
+}
+
+.slider-section.scene-10 .img-section .half-width .react-draggable div {
+  width: 100% !important;
+  height: 127px !important;
+
+  textarea.form-control {
+    min-height: 110px;
   }
 }

@@ -14,18 +14,18 @@ import "slick-carousel/slick/slick-theme.css";
 import DragResizeContainer from 'react-drag-resize';
 import { CommentTwoTone } from "@material-ui/icons";
 import { apiPath } from "../../../../../Utility/Utility";
-const SceneSix= (props) => {
+const SceneNine = (props) => {
   const [mediaArray, setMediaArray] = React.useState(props.mediaArray);
   const [transformX, setTransformX] = React.useState(0);
   const [content, setContent] = React.useState(props.content);
   const [transformY, setTransformY] = React.useState(0);
   const [width, setWidth] = React.useState(350);
-  const [height, setHeight] = React.useState(50);
+  const [height, setHeight] = React.useState(100);
   const layout = [
     {
       key: "test",
       x: transformX,
-      y: transformY,
+      y: transformY, 
       width: width,
       height: height,
       zIndex: 1,
@@ -130,39 +130,12 @@ const SceneSix= (props) => {
     props.getContent(e.target.value)
   }
   return (
-    <section className="template-new-wrapper-scene1 slider-section section-five section-six">
+    <section className="template-new-wrapper-scene1 slider-section section-6">
       <div className="d-flex">
         <div className="img-section">
-        <div  className='content-part'>
-            {layout.map((single) => {
-              return (
-                <div 
-                contenteditable="true"
-                onClick={()=> setshowbg(false, '', '', false)}
-                key={single.key}
-                style={{
-                  "font-size": props.settextSize + "px",
-                  color: props.setColor,
-                  "line-height": props.setTextLineHeight,
-                  "fontFamily":props.data.fontFamily,
-                  "fontWeight":props.data.fontWeight
-                }}
-                className={
-                  "child-container form-control editable-div  size-auto " +
-                  props.setAlignment +
-                  " " +
-                  props.setTextTransform
-                }
-                onChange={getcontent}
-                value={content}
-              >
-                {content}
-              </div>
-              );
-            })}
-          </div>
+        
           <div className="bg-section">
-            
+            <Slider {...settings}>
             {mediaArray.map((data, index) => {
               return (
               <div key={index}>
@@ -178,7 +151,7 @@ const SceneSix= (props) => {
               </div>
                );
               })}
-           
+            </Slider>
 
           </div>
         </div>
@@ -186,4 +159,4 @@ const SceneSix= (props) => {
     </section>
   );
 };
-export default SceneSix;
+export default SceneNine;

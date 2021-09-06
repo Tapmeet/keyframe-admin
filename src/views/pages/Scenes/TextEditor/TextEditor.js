@@ -239,7 +239,7 @@ const TextEditor = (props) => {
         <div className="sectionOne">
           <FontPicker
             families={
-              "Arimo, Lato, Montserrat, Noto Serif, Oswald, Roboto, Josefin Sans, Barlow, Open Sans"
+              "Arimo, Lato, Montserrat, Noto Serif,Raleway, Oswald, Roboto, Josefin Sans, Barlow, Open Sans"
             }
             apiKey="AIzaSyDaztQYmJQDMP2mVUtrHIq4XRBpLEr0dzk"
             activeFontFamily={activeFontFamily}

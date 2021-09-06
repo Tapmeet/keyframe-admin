@@ -8,6 +8,11 @@ import PlayerSceneOne from "./Scene1";
 import PlayerSceneTwo from "./Scene2";
 import PlayerSceneThree from "./Scene3";
 import PlayerSceneFour from "./Scene4";
+import PlayerSceneEight from "./Scene8";
+import PlayerSceneNine from "./Scene9";
+import PlayerSceneTen from "./Scene10";
+import PlayerSceneEleven from "./Scene11"; 
+
 import PlayerSceneLast from "./SceneLast";
 import HOC from "./HOC";
 import $ from "jquery";
@@ -63,6 +68,18 @@ const Player = (props) => {
             ) : null}
             {data.sceneId == 4 ? (
               <PlayerSceneFour data={data.sceneData} index={index} timer={timer} time={data.sceneData.time}  />
+            ) : null}
+              {data.sceneId == 8 ? (
+              <PlayerSceneEight data={data.sceneData} index={index} timer={timer} time={data.sceneData.time}  />
+            ) : null}
+             {data.sceneId == 9 ? (
+              <PlayerSceneNine data={data.sceneData} index={index} timer={timer} time={data.sceneData.time}  />
+            ) : null}
+              {data.sceneId == 10 ? (
+              <PlayerSceneTen data={data.sceneData} index={index} timer={timer} time={data.sceneData.time}  />
+            ) : null}
+             {data.sceneId == 11 ? (
+              <PlayerSceneEleven data={data.sceneData} index={index} timer={timer} time={data.sceneData.time}  />
             ) : null}
               {data.sceneId == 'last' ? (
               <PlayerSceneLast data={data.sceneData} index={index} timer={timer} time={data.sceneData.time}  />

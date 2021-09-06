@@ -13,19 +13,19 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import DragResizeContainer from 'react-drag-resize';
 import { CommentTwoTone } from "@material-ui/icons";
-import { apiPath } from "../../../../../Utility/Utility";
-const SceneSix= (props) => {
+import { apiPath } from "./../../../../../Utility/Utility";
+const SceneEight = (props) => {
   const [mediaArray, setMediaArray] = React.useState(props.mediaArray);
   const [transformX, setTransformX] = React.useState(0);
   const [content, setContent] = React.useState(props.content);
   const [transformY, setTransformY] = React.useState(0);
   const [width, setWidth] = React.useState(350);
-  const [height, setHeight] = React.useState(50);
+  const [height, setHeight] = React.useState(100);
   const layout = [
     {
       key: "test",
       x: transformX,
-      y: transformY,
+      y: transformY, 
       width: width,
       height: height,
       zIndex: 1,
@@ -130,15 +130,25 @@ const SceneSix= (props) => {
     props.getContent(e.target.value)
   }
   return (
-    <section className="template-new-wrapper-scene1 slider-section section-five section-six">
+    <section className="template-new-wrapper-scene1 slider-section section-6">
       <div className="d-flex">
         <div className="img-section">
-        <div  className='content-part'>
+        <DragResizeContainer
+            className='resize-container'
+            resizeProps={{
+              minWidth: 100,
+              minHeight: 70,
+              enable: canResizable(50)
+            }}
+            onClick={()=> setshowbg(false, '', '', false)}
+            layout={layout}
+            onLayoutChange={onLayoutChange}
+            dragProps={{ disabled: true }}
+            scale={1}
+          >
             {layout.map((single) => {
               return (
-                <div 
-                contenteditable="true"
-                onClick={()=> setshowbg(false, '', '', false)}
+                <textarea
                 key={single.key}
                 style={{
                   "font-size": props.settextSize + "px",
@@ -148,7 +158,7 @@ const SceneSix= (props) => {
                   "fontWeight":props.data.fontWeight
                 }}
                 className={
-                  "child-container form-control editable-div  size-auto " +
+                  "child-container form-control border  size-auto " +
                   props.setAlignment +
                   " " +
                   props.setTextTransform
@@ -156,13 +166,13 @@ const SceneSix= (props) => {
                 onChange={getcontent}
                 value={content}
               >
-                {content}
-              </div>
+                
+              </textarea>
               );
             })}
-          </div>
+          </DragResizeContainer>
           <div className="bg-section">
-            
+            <Slider {...settings}>
             {mediaArray.map((data, index) => {
               return (
               <div key={index}>
@@ -178,7 +188,7 @@ const SceneSix= (props) => {
               </div>
                );
               })}
-           
+            </Slider>
 
           </div>
         </div>
@@ -186,4 +196,4 @@ const SceneSix= (props) => {
     </section>
   );
 };
-export default SceneSix;
+export default SceneEight;

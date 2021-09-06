@@ -6,6 +6,7 @@ import PlayerSceneOne from "./Scene1";
 import PlayerSceneTwo from "./Scene2";
 import PlayerSceneThree from "./Scene3";
 import PlayerSceneFour from "./Scene4";
+import PlayerSceneEight from "./Scene8";
 import HOC from "./HOC";
 import $ from "jquery";
 const Player = (props) => {
@@ -38,9 +39,9 @@ const Player = (props) => {
   return (
     <section className="template-new-wrapper-scene1 player-new ">
       {blocks.map((data, index) => {
-        
+        console.log(data)
         return (
-          <HOC>
+          <HOC key={index}>
             {data.sceneId == 1 ? (
               <PlayerSceneOne data={data.sceneData} index={index} timer={timer} time={data.sceneData.time}  />
             ) : null}
@@ -52,6 +53,9 @@ const Player = (props) => {
             ) : null}
             {data.sceneId == 4 ? (
               <PlayerSceneFour data={data.sceneData} index={index} timer={timer} time={data.sceneData.time}  />
+            ) : null}
+            {data.sceneId == 8 ? (
+              <PlayerSceneEight data={data.sceneData} index={index} timer={timer} time={data.sceneData.time}  />
             ) : null}
             <div className="d-none"> {timer = (parseFloat(timer)+ parseFloat(data.sceneData.time))}</div>
           </HOC>
