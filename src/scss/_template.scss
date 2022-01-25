@@ -1759,20 +1759,24 @@ video.video-container {
 }
 
 .slider-section.scene-13 {
-  
+
   background: #399891;
-   .text-wrapper.left-section-text {
+
+  .text-wrapper.left-section-text {
     background: transparent;
     left: auto;
     right: 0;
-    .listing-box{
+
+    .listing-box {
       border: 0px;
-      .form-control{
+
+      .form-control {
         background: transparent;
       }
     }
 
-    }
+  }
+
   .slick-slider.slick-initialized {
     width: 68% !important;
     position: absolute;
@@ -1787,4 +1791,71 @@ section.section-six.section-14 textarea.child-container.form-control.editable-di
   background: #fff !important;
   text-align: center !important;
   padding-top: 30px;
+}
+
+.template-new-wrapper-scene1.scene-16 {
+  background-color: #333;
+
+  .half-width {
+    width: 47%;
+    position: relative;
+    height: 90%;
+    margin: 0 2px;
+    overflow: visible;
+  }
+
+  .half-width.marginTop {
+    top: 10%
+  }
+
+  .d-flex .bg-section .bg {
+    margin: 0;
+  }
+
+  .img-section .half-width .react-draggable {
+    bottom: -30px !important;
+    left: 10%;
+  }
+}
+
+.template-new-wrapper-scene1.scene-16.scene-17 {
+  .half-width.width60 {
+    width: 57% !important;
+    margin-top: 2.7%;
+    margin-left: 20px;
+  }
+
+  .half-width.marginTop {
+    width: 37% !important;
+    margin-top: 2.7%;
+    margin-right: 20px;
+    top: 0%
+  }
+}
+
+section.template-new-wrapper-scene1.section-18.slider-section {
+  .d-flex.justify-end {
+    justify-content: flex-end;
+  }
+
+  .half-width {
+    width: 60% !important;
+  }
+
+  .text-wrapper.left-section-text {
+    max-width: 40% !important;
+    padding: 50px 100px;
+    background: #444
+  }
+
+  .text-wrapper.left-section-text .form-control {
+    background: transparent;
+  }
+
+  .text-wrapper.left-section-text .listing-box {
+    border: 0px;
+  }
+  .d-flex .bg-section .bg{
+    margin: 0;
+  }
 }
