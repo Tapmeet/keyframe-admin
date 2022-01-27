@@ -14,7 +14,7 @@ import "slick-carousel/slick/slick-theme.css";
 import DragResizeContainer from "react-drag-resize";
 import { CommentTwoTone } from "@material-ui/icons";
 import { apiPath } from "../../../../../Utility/Utility";
-const SceneSevenTeen = (props) => {
+const SceneNineTeen = (props) => {
   const [mediaArray, setMediaArray] = React.useState(props.mediaArray);
   const [transformX, setTransformX] = React.useState(0);
   const [content, setContent] = React.useState(props.content);
@@ -128,23 +128,11 @@ const SceneSevenTeen = (props) => {
     props.getContent(e.target.value);
   }
   return (
-    <section className="template-new-wrapper-scene1 scene-16 scene-17 slider-section">
+    <section className="template-new-wrapper-scene1 scene-16 section-18 scene-19 slider-section">
       <div className="d-flex">
         <div className="img-section d-flex justify-content-between">
-          <div className="half-width width60">
-            <DragResizeContainer
-              className="resize-container"
-              resizeProps={{
-                minWidth: 100,
-                minHeight: 70,
-                enable: canResizable(50),
-              }}
-              onClick={() => setshowbg(false, "", "", false)}
-              layout={layout}
-              onLayoutChange={onLayoutChange}
-              dragProps={{ disabled: false }}
-              scale={1}
-            >
+          <div className="bg-section d-flex justify-end">
+            <div class="text-wrapper  left-section-text">
               {layout.map((single) => {
                 return (
                   <textarea
@@ -167,35 +155,11 @@ const SceneSevenTeen = (props) => {
                   ></textarea>
                 );
               })}
-            </DragResizeContainer>
-            <div className="bg-section">
+            </div>
+            <div className="half-width">
               <Slider {...settings}>
                 {mediaArray.map((data, index) => {
                   return index == 0 ? (
-                    <div key={index}>
-                      <div className="slider-box">
-                        <div
-                          onClick={() =>
-                            setshowbg(true, data.url, data.type, false, index)
-                          }
-                          className="bg box-1"
-                          style={{
-                            "background-image":
-                              "url(" + apiPath + data.url + ") ",
-                          }}
-                        ></div>
-                      </div>
-                    </div>
-                  ) : null;
-                })}
-              </Slider>
-            </div>
-          </div>
-          <div className="half-width marginTop">
-            <div className="bg-section">
-              <Slider {...settings}>
-                {mediaArray.map((data, index) => {
-                  return index == 1 ? (
                     <div key={index}>
                       <div className="slider-box">
                         <div
@@ -220,4 +184,4 @@ const SceneSevenTeen = (props) => {
     </section>
   );
 };
-export default SceneSevenTeen;
+export default SceneNineTeen;

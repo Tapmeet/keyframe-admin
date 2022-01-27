@@ -134,7 +134,7 @@ const SceneSix = (props) => {
       <div  className='content-part'>
           {layout.map((single) => {
             return (
-              <div 
+              <textarea 
               contenteditable="true"
               onClick={()=> setshowbg(false, '', '', false)}
               key={single.key}
@@ -155,7 +155,7 @@ const SceneSix = (props) => {
               value={content}
             >
               {content}
-            </div>
+            </textarea>
             );
           })}
         </div>

@@ -7,7 +7,7 @@ import SidebarLeft from "../../SidebarLeft/SidebarLeft";
 
 import TextEditor from "../../TextEditor/TextEditor";
 import ChangeBg from "../../ChangeBg";
-import SceneFourteen from "./SceneFourteen";
+import SceneNineTeen from "./Scene19"; 
 import AddMedia from "../../AddMedia/AddMedia";
 import AddScenes from "../../AddScenes/AddScenes";
 import TopSection from "../../TopSection/TopSection";
@@ -16,8 +16,10 @@ import {
   apiUpdateScene,
   apiGetScene,
 } from "../../../../../Utility/Utility";
+import Scene from "./../../../../../assets/images/templates/img11.png";
+import Scene2 from "./../../../../../assets/images/templates/img12.png";
 import Player from "../../Player";
-const TemplateScene14 = (props) => {
+const TemplateScene19 = (props) => {
   const [userId, setUserId] = React.useState("");
   const [blocks, setBlocks] = React.useState("");
   const [templateTitle, setTemplateTitle] = React.useState("");
@@ -277,7 +279,7 @@ const TemplateScene14 = (props) => {
     setShowEditbutton(false);
   }
   function getData() {
-    axios.get(`${apiGetScene}?id=14`, {}).then(function (response) {
+    axios.get(`${apiGetScene}?id=19`, {}).then(function (response) {
       if (response.data.scene) {
         setBlocks(response.data.scene);
         setTemplateTitle(response.data.scene.sceneTitle);
@@ -314,8 +316,8 @@ const TemplateScene14 = (props) => {
 
   function updateData(data) {
     axios
-      .put(`${apiUpdateScene}14`, {
-        id: "14",
+      .put(`${apiUpdateScene}19`, {
+        id: "19",
         sceneData: data,
       })
       .then(function (response) {
@@ -353,7 +355,7 @@ const TemplateScene14 = (props) => {
   return (
     <section className="template-new-wrapper scene-warpper">
       {templateTitle ? (
-        <TopSection templateTitle={templateTitle} id="3" />
+        <TopSection templateTitle={templateTitle} id="19" />
       ) : null}
       <div className="d-flex justify-content-between outervh">
         {addMedia ? (
@@ -364,7 +366,7 @@ const TemplateScene14 = (props) => {
           playActive ? (
             <Player blocks={blocks} />
           ) : (
-            <SceneFourteen
+            <SceneNineTeen
               setColor={textColor}
               setAlignment={textAligmnet}
               setTextTransform={textTransform}
@@ -392,7 +394,7 @@ const TemplateScene14 = (props) => {
               getTextSize={getTextSize}
               textSize={textSize}
               textlineHeight={textlineHeight}
-              id={3}
+              id={19}
               thumbnails={sceneThumbnail}
               category={selectedCategory}
               getFontfamily={getFontfamily}
@@ -408,4 +410,4 @@ const TemplateScene14 = (props) => {
     </section>
   );
 };
-export default TemplateScene14;
+export default TemplateScene19;

@@ -58,6 +58,7 @@ const TemplateScene15= React.lazy(() => import('./views/pages/Scenes/Scenes/Scen
 const TemplateScene16= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene16'));
 const TemplateScene17= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene17'));
 const TemplateScene18= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene18'));
+const TemplateScene19= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene19'));
 
 const AllScenesCategories = React.lazy(() => import('./views/pages/Category/AllCategories'));
 const AddCategory = React.lazy(() => import('./views/pages/Category/AddCategory'));
@@ -153,6 +154,7 @@ const routes = [
   { path: '/edit-scene/16', exact: true,  name: 'Scene 16', component: TemplateScene16 }, 
   { path: '/edit-scene/17', exact: true,  name: 'Scene 17', component: TemplateScene17 },
   { path: '/edit-scene/18', exact: true,  name: 'Scene 17', component: TemplateScene18 },
+  { path: '/edit-scene/19', exact: true,  name: 'Scene 19', component: TemplateScene19 },
 
   { path: '/scene-categories', exact: true,  name: 'Categories', component: AllScenesCategories },
   { path: '/add-category', exact: true,  name: 'Add Category', component: AddCategory },
