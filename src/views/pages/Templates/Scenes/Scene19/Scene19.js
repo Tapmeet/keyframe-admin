@@ -13,7 +13,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import DragResizeContainer from "react-drag-resize";
 import { CommentTwoTone } from "@material-ui/icons";
-import { apiPath } from "../../../../../Utility/Utility";
+import { apiPath } from "./../../../../../Utility/Utility";
 const SceneNineTeen = (props) => {
   const [mediaArray, setMediaArray] = React.useState(props.mediaArray);
   const [transformX, setTransformX] = React.useState(0);
@@ -129,7 +129,7 @@ const SceneNineTeen = (props) => {
   }
   return (
     <section className="template-new-wrapper-scene1 scene-16 section-18 scene-19 slider-section">
-      <div className="d-flex">
+     <div className="d-flex">
         <div className="img-section d-flex justify-content-between">
           <div className="bg-section d-flex justify-end">
             <div class="text-wrapper  left-section-text">
@@ -159,7 +159,7 @@ const SceneNineTeen = (props) => {
             <div className="half-width">
               <Slider {...settings}>
                 {mediaArray.map((data, index) => {
-                  return(
+                  return  (
                     <div key={index}>
                       <div className="slider-box">
                         <div
@@ -174,7 +174,7 @@ const SceneNineTeen = (props) => {
                         ></div>
                       </div>
                     </div>
-                  ) 
+                  ) ;
                 })}
               </Slider>
             </div>

@@ -101,8 +101,8 @@ const EditTemplateCategory = ({ match }) => {
       .get(`${apiGetTemplateCategory + "?id=" + match.params.id}`, {})
       .then(function (response) {
         console.log(response.data)
-        setTitle(response.data.template.title);
-        setCategoryImage(response.data.template.categoryImage);
+        setTitle(response.data.template[0].title);
+        setCategoryImage(response.data.template[0].categoryImage);
         // console.log(response.data.scene);
       });
   }, [userId]);

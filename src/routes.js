@@ -1,5 +1,4 @@
 import React from 'react';
-
 const Toaster = React.lazy(() => import('./views/notifications/toaster/Toaster'));
 const Tables = React.lazy(() => import('./views/base/tables/Tables'));
 
@@ -59,6 +58,7 @@ const TemplateScene16= React.lazy(() => import('./views/pages/Scenes/Scenes/Scen
 const TemplateScene17= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene17'));
 const TemplateScene18= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene18'));
 const TemplateScene19= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene19'));
+const TemplateScene20= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene20'));
 
 const AllScenesCategories = React.lazy(() => import('./views/pages/Category/AllCategories'));
 const AddCategory = React.lazy(() => import('./views/pages/Category/AddCategory'));
@@ -87,6 +87,8 @@ const TemplateSceneFifteen= React.lazy(() => import('./views/pages/Templates/Sce
 const TemplateSceneSixteen= React.lazy(() => import('./views/pages/Templates/Scenes/Scene16'))
 const TemplateSceneSevenTeen= React.lazy(() => import('./views/pages/Templates/Scenes/Scene17'))
 const TemplateSceneEighteen= React.lazy(() => import('./views/pages/Templates/Scenes/Scene18'))
+const TemplateSceneNineteen = React.lazy(() => import('./views/pages/Templates/Scenes/Scene19'))
+const TemplateSceneTwenty = React.lazy(() => import('./views/pages/Templates/Scenes/Scene20'))
 
 const TemplateSceneLast= React.lazy(() => import('./views/pages/Templates/Scenes/SceneLast'));
 const EditTemplate= React.lazy(() => import('./views/pages/Templates/EditTemplate'));
@@ -155,6 +157,7 @@ const routes = [
   { path: '/edit-scene/17', exact: true,  name: 'Scene 17', component: TemplateScene17 },
   { path: '/edit-scene/18', exact: true,  name: 'Scene 17', component: TemplateScene18 },
   { path: '/edit-scene/19', exact: true,  name: 'Scene 19', component: TemplateScene19 },
+  { path: '/edit-scene/20', exact: true,  name: 'Scene 20', component: TemplateScene20 },
 
   { path: '/scene-categories', exact: true,  name: 'Categories', component: AllScenesCategories },
   { path: '/add-category', exact: true,  name: 'Add Category', component: AddCategory },
@@ -183,6 +186,8 @@ const routes = [
   { path: '/template/:id/16/:sceneid', exact: true,  name: 'Scene 16', component: TemplateSceneSixteen },
   { path: '/template/:id/17/:sceneid', exact: true,  name: 'Scene 17', component: TemplateSceneSevenTeen },
   { path: '/template/:id/18/:sceneid', exact: true,  name: 'Scene 18', component: TemplateSceneEighteen },
+  { path: '/template/:id/19/:sceneid', exact: true,  name: 'Scene 19', component: TemplateSceneNineteen },
+  { path: '/template/:id/20/:sceneid', exact: true,  name: 'Scene 20', component: TemplateSceneTwenty },
   
   { path: '/template/:id/last/:sceneid', exact: true,  name: 'Scene 4', component: TemplateSceneLast },
   { path: '/my-videos/', exact: true,  name: 'Scene 4', component: MyVideos },

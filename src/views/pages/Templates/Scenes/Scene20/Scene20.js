@@ -14,7 +14,7 @@ import "slick-carousel/slick/slick-theme.css";
 import DragResizeContainer from "react-drag-resize";
 import { CommentTwoTone } from "@material-ui/icons";
 import { apiPath } from "../../../../../Utility/Utility";
-const SceneNineTeen = (props) => {
+const SceneTwenty = (props) => {
   const [mediaArray, setMediaArray] = React.useState(props.mediaArray);
   const [transformX, setTransformX] = React.useState(0);
   const [content, setContent] = React.useState(props.content);
@@ -128,11 +128,23 @@ const SceneNineTeen = (props) => {
     props.getContent(e.target.value);
   }
   return (
-    <section className="template-new-wrapper-scene1 scene-16 section-18 scene-19 slider-section">
+    <section className="template-new-wrapper-scene1 scene-16 scene-17 scene-20 slider-section">
       <div className="d-flex">
         <div className="img-section d-flex justify-content-between">
-          <div className="bg-section d-flex justify-end">
-            <div class="text-wrapper  left-section-text">
+          <div className="half-width width60">
+            <DragResizeContainer
+              className="resize-container"
+              resizeProps={{
+                minWidth: 100,
+                minHeight: 70,
+                enable: canResizable(50),
+              }}
+              onClick={() => setshowbg(false, "", "", false)}
+              layout={layout}
+              onLayoutChange={onLayoutChange}
+              dragProps={{ disabled: false }}
+              scale={1}
+            >
               {layout.map((single) => {
                 return (
                   <textarea
@@ -155,11 +167,11 @@ const SceneNineTeen = (props) => {
                   ></textarea>
                 );
               })}
-            </div>
-            <div className="half-width">
+            </DragResizeContainer>
+            <div className="bg-section">
               <Slider {...settings}>
                 {mediaArray.map((data, index) => {
-                  return(
+                  return index == 0 ? (
                     <div key={index}>
                       <div className="slider-box">
                         <div
@@ -174,7 +186,7 @@ const SceneNineTeen = (props) => {
                         ></div>
                       </div>
                     </div>
-                  ) 
+                  ) : null;
                 })}
               </Slider>
             </div>
@@ -184,4 +196,4 @@ const SceneNineTeen = (props) => {
     </section>
   );
 };
-export default SceneNineTeen;
+export default SceneTwenty;

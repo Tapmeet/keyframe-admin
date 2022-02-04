@@ -136,6 +136,7 @@ const BottomSection = (props) => {
   React.useEffect(() => {
     // setSceneOrder(props.bottomData.sceneOrder);
     // setSceneData(props.bottomData.blocks);
+    console.log(props.bottomData.blocks)
     var time = 0;
     sceneData.map((scene) => {
       time = parseFloat(time) + parseFloat(scene.sceneData.time);
