@@ -353,7 +353,7 @@ const TemplateScene6 = (props) => {
   return (
     <section className="template-new-wrapper scene-warpper">
       {templateTitle ? (
-        <TopSection templateTitle={templateTitle} id="3" />
+        <TopSection templateTitle={templateTitle} id="6" />
       ) : null}
       <div className="d-flex justify-content-between outervh">
         {addMedia ? (

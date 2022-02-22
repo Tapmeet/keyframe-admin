@@ -7,10 +7,11 @@ import Scene4 from "./../../../../../assets/images/templates/img14.png";
 
 import trash from "./../../../../../assets/images/templates/trash.svg";
 import add from "./../../../../../assets/images/templates/add.svg";
-import Slider from "react-slick";
-import $ from "jquery";
+  import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import $ from "jquery";
+  
 import DragResizeContainer from "react-drag-resize";
 import { CommentTwoTone } from "@material-ui/icons";
 import { apiPath } from "./../../../../../Utility/Utility";

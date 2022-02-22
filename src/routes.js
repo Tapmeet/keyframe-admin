@@ -59,6 +59,17 @@ const TemplateScene17= React.lazy(() => import('./views/pages/Scenes/Scenes/Scen
 const TemplateScene18= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene18'));
 const TemplateScene19= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene19'));
 const TemplateScene20= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene20'));
+const TemplateScene21= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene21'));
+const TemplateScene22= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene22'));
+const TemplateScene23= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene23'));
+const TemplateScene24= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene24'));
+const TemplateScene25= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene25'));
+const TemplateScene26= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene26'));
+const TemplateScene27= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene27'));
+const TemplateScene28= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene28'))
+const TemplateScene29= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene29'))
+const TemplateScene30= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene30'))
+const TemplateScene31= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene31'))
 
 const AllScenesCategories = React.lazy(() => import('./views/pages/Category/AllCategories'));
 const AddCategory = React.lazy(() => import('./views/pages/Category/AddCategory'));
@@ -89,6 +100,17 @@ const TemplateSceneSevenTeen= React.lazy(() => import('./views/pages/Templates/S
 const TemplateSceneEighteen= React.lazy(() => import('./views/pages/Templates/Scenes/Scene18'))
 const TemplateSceneNineteen = React.lazy(() => import('./views/pages/Templates/Scenes/Scene19'))
 const TemplateSceneTwenty = React.lazy(() => import('./views/pages/Templates/Scenes/Scene20'))
+const TemplateSceneTwentyOne = React.lazy(() => import('./views/pages/Templates/Scenes/Scene21'))
+const TemplateSceneTwentyTwo = React.lazy(() => import('./views/pages/Templates/Scenes/Scene22'))
+const TemplateSceneTwentyThree = React.lazy(() => import('./views/pages/Templates/Scenes/Scene23'))
+const TemplateSceneTwentyFour = React.lazy(() => import('./views/pages/Templates/Scenes/Scene24'))
+const TemplateSceneTwentyFive = React.lazy(() => import('./views/pages/Templates/Scenes/Scene25'))
+const TemplateSceneTwentySix = React.lazy(() => import('./views/pages/Templates/Scenes/Scene26'))
+const TemplateSceneTwentySeven = React.lazy(() => import('./views/pages/Templates/Scenes/Scene27'))
+const TemplateSceneTwentyEight = React.lazy(() => import('./views/pages/Templates/Scenes/Scene28'))
+const TemplateSceneTwentyNine = React.lazy(() => import('./views/pages/Templates/Scenes/Scene29'))
+const TemplateSceneThirty = React.lazy(() => import('./views/pages/Templates/Scenes/Scene30'))
+const TemplateSceneThirtyOne = React.lazy(() => import('./views/pages/Templates/Scenes/Scene31'))
 
 const TemplateSceneLast= React.lazy(() => import('./views/pages/Templates/Scenes/SceneLast'));
 const EditTemplate= React.lazy(() => import('./views/pages/Templates/EditTemplate'));
@@ -158,6 +180,17 @@ const routes = [
   { path: '/edit-scene/18', exact: true,  name: 'Scene 17', component: TemplateScene18 },
   { path: '/edit-scene/19', exact: true,  name: 'Scene 19', component: TemplateScene19 },
   { path: '/edit-scene/20', exact: true,  name: 'Scene 20', component: TemplateScene20 },
+  { path: '/edit-scene/21', exact: true,  name: 'Scene 21', component: TemplateScene21 },
+  { path: '/edit-scene/22', exact: true,  name: 'Scene 22', component: TemplateScene22 },
+  { path: '/edit-scene/23', exact: true,  name: 'Scene 23', component: TemplateScene23 },
+  { path: '/edit-scene/24', exact: true,  name: 'Scene 24', component: TemplateScene24 },
+  { path: '/edit-scene/25', exact: true,  name: 'Scene 25', component: TemplateScene25 },
+  { path: '/edit-scene/26', exact: true,  name: 'Scene 26', component: TemplateScene26 },
+  { path: '/edit-scene/27', exact: true,  name: 'Scene 27', component: TemplateScene27 },
+  { path: '/edit-scene/28', exact: true,  name: 'Scene 28', component: TemplateScene28 },
+  { path: '/edit-scene/29', exact: true,  name: 'Scene 29', component: TemplateScene29 },
+  { path: '/edit-scene/30', exact: true,  name: 'Scene 30', component: TemplateScene30 },
+  { path: '/edit-scene/31', exact: true,  name: 'Scene 31', component: TemplateScene31 },
 
   { path: '/scene-categories', exact: true,  name: 'Categories', component: AllScenesCategories },
   { path: '/add-category', exact: true,  name: 'Add Category', component: AddCategory },
@@ -188,6 +221,17 @@ const routes = [
   { path: '/template/:id/18/:sceneid', exact: true,  name: 'Scene 18', component: TemplateSceneEighteen },
   { path: '/template/:id/19/:sceneid', exact: true,  name: 'Scene 19', component: TemplateSceneNineteen },
   { path: '/template/:id/20/:sceneid', exact: true,  name: 'Scene 20', component: TemplateSceneTwenty },
+  { path: '/template/:id/21/:sceneid', exact: true,  name: 'Scene 21', component: TemplateSceneTwentyOne },
+  { path: '/template/:id/22/:sceneid', exact: true,  name: 'Scene 22', component: TemplateSceneTwentyTwo },
+  { path: '/template/:id/23/:sceneid', exact: true,  name: 'Scene 23', component: TemplateSceneTwentyThree },
+  { path: '/template/:id/24/:sceneid', exact: true,  name: 'Scene 24', component: TemplateSceneTwentyFour },
+  { path: '/template/:id/25/:sceneid', exact: true,  name: 'Scene 25', component: TemplateSceneTwentyFive },
+  { path: '/template/:id/26/:sceneid', exact: true,  name: 'Scene 26', component: TemplateSceneTwentySix },
+  { path: '/template/:id/27/:sceneid', exact: true,  name: 'Scene 27', component: TemplateSceneTwentySeven },
+  { path: '/template/:id/28/:sceneid', exact: true,  name: 'Scene 28', component: TemplateSceneTwentyEight },
+  { path: '/template/:id/29/:sceneid', exact: true,  name: 'Scene 29', component: TemplateSceneTwentyNine },
+  { path: '/template/:id/30/:sceneid', exact: true,  name: 'Scene 30', component: TemplateSceneThirty },
+  { path: '/template/:id/31/:sceneid', exact: true,  name: 'Scene 31', component: TemplateSceneThirtyOne },
   
   { path: '/template/:id/last/:sceneid', exact: true,  name: 'Scene 4', component: TemplateSceneLast },
   { path: '/my-videos/', exact: true,  name: 'Scene 4', component: MyVideos },
