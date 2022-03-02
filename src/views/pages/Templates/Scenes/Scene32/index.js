@@ -3,26 +3,38 @@ import axios from "axios";
 import { useRouteMatch } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import Cookies from "universal-cookie";
-import SidebarLeft from "../../SidebarLeft/SidebarLeft";
+import SidebarLeft from "./../../../Scenes/SidebarLeft/SidebarLeft";
 
-import TextEditor from "../../TextEditor/TextEditor";
-import ChangeBg from "../../ChangeBg";
-import SceneTwentyFive from "./Scene25";
-import AddMedia from "../../AddMedia/AddMedia";
-import AddScenes from "../../AddScenes/AddScenes";
-import TopSection from "../../TopSection/TopSection";
+import TextEditor from "./../../../Scenes/TextEditor/TextEditor";
+import ChangeBg from "./../../../Scenes/ChangeBg";
+import SceneThirtyTwo from "./Scene32";
+import AddMedia from "./../../../Scenes/AddMedia/AddMedia";
+import AddScenes from "./../../../Scenes/AddScenes/AddScenes";
+import TopSection from "./../../../Scenes/TopSection/TopSection";
+import BottomSection from "./../../../Scenes/BottomSection/BottomSection";
+import AddMusic from "./../../../Scenes/AddMusic/AddMusic";
 import {
+  apigetAdminTemplate,
   apigetTemplate,
-  apiUpdateScene,
+  apiUpdateBlock,
   apiGetScene,
-} from "../../../../../Utility/Utility";
+} from "./../../../../../Utility/Utility";
+import Scene from "./../../../../../assets/images/templates/img11.png";
+import Scene2 from "./../../../../../assets/images/templates/img12.png";
 import Player from "../../Player";
-const TemplateScene25 = (props) => {
+const TemplateSceneThirtyTwo = (props) => {
+  const [bottomData, setBottomData] = React.useState("");
+  const [sceneOrder, setSceneOrder] = React.useState("");
   const [userId, setUserId] = React.useState("");
   const [blocks, setBlocks] = React.useState("");
+  const match = useRouteMatch("/template/:templateId/32/:sceneId");
+  const {
+    params: { templateId },
+  } = match;
+  const {
+    params: { sceneId },
+  } = match;
   const [templateTitle, setTemplateTitle] = React.useState("");
-  // const match = useRouteMatch("/template/:templateId");
-  // const templateId = "5f4a7da816b5091d38dd97a1";
   const [data, setData] = React.useState("");
   const [userToken, setUserToken] = React.useState("");
   const cookies = new Cookies();
@@ -37,10 +49,12 @@ const TemplateScene25 = (props) => {
   const [changeBg, setChangeBg] = React.useState(false);
   const [addMedia, setAddMedia] = React.useState(false);
   const [addScene, setAddScene] = React.useState(false);
+  const [addMusic, setAddMusic] = React.useState(false);
   const [container, setContainer] = React.useState("");
   const [showEditbutton, setShowEditbutton] = React.useState(false);
   const [playActive, setPlayActive] = React.useState(false);
   const [sceneThumbnail, setSceneThumbnail] = React.useState("");
+  const [preview, setPreview] = React.useState("");
   const [selectedCategory, setSelectedCategory] = React.useState("");
   // const [mediaArray, setMediaArray] = React.useState([
   //   {
@@ -65,6 +79,7 @@ const TemplateScene25 = (props) => {
   const [transformY, setTransformY] = React.useState(0);
   const [width, setWidth] = React.useState(350);
   const [height, setHeight] = React.useState(100);
+
   const [fontFamily, setFontFamily] = React.useState("");
   const [fontWeight, setFontWeight] = React.useState("");
 
@@ -238,6 +253,11 @@ const TemplateScene25 = (props) => {
   }
   function showAddMedia(media, mediaFile) {
     setAddMedia(media);
+    setAddMusic(false);
+  }
+  function showMusic(media) {
+    setAddMusic(media);
+    setAddMedia(false);
   }
   function closeAddMedia(media, mediaFile, mediaType) {
     if (mediaFile) {
@@ -271,35 +291,50 @@ const TemplateScene25 = (props) => {
   }
   function showAddScene(mediaactive, scene) {
     setAddScene(mediaactive);
+    setAddMusic(false);
   }
   function closeAddScene(media) {
     setAddScene(media);
     setShowEditbutton(false);
   }
   function getData() {
-    axios.get(`${apiGetScene}?id=25`, {}).then(function (response) {
-      if (response.data.scene) {
-        setBlocks(response.data.scene);
-        setTemplateTitle(response.data.scene.sceneTitle);
-        setMediaArray(response.data.scene.sceneData.media);
-        setTextSize(response.data.scene.sceneData.textSize);
-        setTextlineHeight(response.data.scene.sceneData.textlineHeight);
-        setTextColor(response.data.scene.sceneData.textColor);
-        setTexttransform(response.data.scene.sceneData.textTransform);
-        setTextAligmnet(response.data.scene.sceneData.textAligmnet);
+    axios
+      .get(`${apigetAdminTemplate}` + "?templateId=" + templateId, {})
+      .then(function (response) {
+        console.log(response.data);
+        if (response.data.data.length > 0) {
+          if (typeof response.data.data[0] !== undefined) {
+            setTemplateTitle(response.data.data[0].title);
+            setBottomData(response.data.data[0]);
+            setSceneThumbnail(response.data.data[0].templateImage);
+            setPreview(response.data.data[0].templatePreview);
+            setSelectedCategory(response.data.data[0].templateCategory);
+            setSceneOrder(response.data.data[0].sceneOrder);
+            if (response.data.data[0].blocks.length > 0) {
+              setBlocks(response.data.data[0].blocks);
+              response.data.data[0].blocks.map((block) => {
+                if (block.sceneId == 32) {
+                  setMediaArray(block.sceneData.media);
+                  setTextSize(block.sceneData.textSize);
+                  setTextlineHeight(block.sceneData.textlineHeight);
+                  setTextColor(block.sceneData.textColor);
+                  setTexttransform(block.sceneData.textTransform);
+                  setTextAligmnet(block.sceneData.textAligmnet);
 
-        setTransformX(response.data.scene.sceneData.x);
-        setTransformY(response.data.scene.sceneData.y);
-        setWidth(response.data.scene.sceneData.boxwidth);
-        setHeight(response.data.scene.sceneData.boxheight);
-        setContent(response.data.scene.sceneData.content);
-        setSceneThumbnail(response.data.scene.sceneThumbnail);
-        setSelectedCategory(response.data.scene.sceneCategory);
-        setFontWeight(response.data.scene.sceneData.fontWeight);
-        setFontFamily(response.data.scene.sceneData.fontFamily);
-        setData(response.data.scene.sceneData);
-      }
-    });
+                  setTransformX(block.sceneData.x);
+                  setTransformY(block.sceneData.y);
+                  setWidth(block.sceneData.boxwidth);
+                  setHeight(block.sceneData.boxheight);
+                  setContent(block.sceneData.content);
+                  setFontWeight(block.sceneData.fontWeight);
+                  setFontFamily(block.sceneData.fontFamily);
+                  setData(block.sceneData);
+                }
+              });
+            }
+          }
+        }
+      });
   }
   React.useEffect(() => {
     if (cookies.get("token")) {
@@ -307,15 +342,15 @@ const TemplateScene25 = (props) => {
       const token = cookies.get("token");
       const decoded = jwt_decode(token);
       //setUserId(decoded.id);
-      setUserId("5fb232562f0b30f2d6c9ff48c");
+      setUserId("5fb23662f0b30f2d6c9ff48c");
       getData();
     }
   }, [userId]);
 
   function updateData(data) {
     axios
-      .put(`${apiUpdateScene}25`, {
-        id: "25",
+      .put(`${apiUpdateBlock}/${sceneId}`, {
+        id: sceneId,
         sceneData: data,
       })
       .then(function (response) {
@@ -350,21 +385,41 @@ const TemplateScene25 = (props) => {
   function playVideo(click) {
     setPlayActive(click);
   }
+  function reFetchData() {
+    getData();
+  }
   return (
-    <section className="template-new-wrapper scene-warpper">
+    <section className="template-new-wrapper">
       {templateTitle ? (
-        <TopSection templateTitle={templateTitle} id="25" />
+        <TopSection
+          templateTitle={templateTitle}
+          template={true}
+          templateId={templateId}
+        />
       ) : null}
       <div className="d-flex justify-content-between outervh">
+        <SidebarLeft
+          showAddScene={showAddScene}
+          addScene={addScene}
+          addMedia={addMedia}
+          showMusic={showMusic}
+          addMusic={addMusic}
+        />
         {addMedia ? (
           <AddMedia closeAddMedia={closeAddMedia} />
         ) : addScene ? (
-          <AddScenes closeAddScene={closeAddScene} />
+          <AddScenes sceneOrder={sceneOrder} closeAddScene={closeAddScene} />
+        ) : addMusic ? (
+          <AddMusic
+            reFetchData={reFetchData}
+            showMusic={showMusic}
+            closeAddScene={closeAddScene}
+          />
         ) : data != "" ? (
           playActive ? (
             <Player blocks={blocks} />
           ) : (
-            <SceneTwentyFive
+            <SceneThirtyTwo
               setColor={textColor}
               setAlignment={textAligmnet}
               setTextTransform={textTransform}
@@ -392,20 +447,32 @@ const TemplateScene25 = (props) => {
               getTextSize={getTextSize}
               textSize={textSize}
               textlineHeight={textlineHeight}
-              id={25}
+              id={32}
               thumbnails={sceneThumbnail}
               category={selectedCategory}
+              template={true}
+              templateId={templateId}
               getFontfamily={getFontfamily}
               getFontWeight={getFontWeight}
               fontFamily={fontFamily}
               fontWeight={fontWeight}
+              preview={preview}
             />
           ) : null
         ) : (
           <ChangeBg showAddMedia={showAddMedia} type={bgType} scene={bgScene} />
         )}
       </div>
+      {bottomData ? (
+        <BottomSection
+          showEditbutton={showEditbutton}
+          showAddScene={showAddScene}
+          playVideo={playVideo}
+          bottomData={bottomData}
+          reFetchData={reFetchData}
+        />
+      ) : null}
     </section>
   );
 };
-export default TemplateScene25;
+export default TemplateSceneThirtyTwo;

@@ -70,6 +70,11 @@ const TemplateScene28= React.lazy(() => import('./views/pages/Scenes/Scenes/Scen
 const TemplateScene29= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene29'))
 const TemplateScene30= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene30'))
 const TemplateScene31= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene31'))
+const TemplateScene32= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene32'))
+const TemplateScene33= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene33'))
+const TemplateScene34= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene34'))
+const TemplateScene35= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene35'))
+const TemplateScene36= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene36'))
 
 const AllScenesCategories = React.lazy(() => import('./views/pages/Category/AllCategories'));
 const AddCategory = React.lazy(() => import('./views/pages/Category/AddCategory'));
@@ -111,6 +116,11 @@ const TemplateSceneTwentyEight = React.lazy(() => import('./views/pages/Template
 const TemplateSceneTwentyNine = React.lazy(() => import('./views/pages/Templates/Scenes/Scene29'))
 const TemplateSceneThirty = React.lazy(() => import('./views/pages/Templates/Scenes/Scene30'))
 const TemplateSceneThirtyOne = React.lazy(() => import('./views/pages/Templates/Scenes/Scene31'))
+const TemplateSceneThirtyTwo = React.lazy(() => import('./views/pages/Templates/Scenes/Scene32'))
+const TemplateSceneThirtyThree = React.lazy(() => import('./views/pages/Templates/Scenes/Scene33'))
+const TemplateSceneThirtyFour = React.lazy(() => import('./views/pages/Templates/Scenes/Scene34'))
+const TemplateSceneThirtyFive = React.lazy(() => import('./views/pages/Templates/Scenes/Scene35'))
+const TemplateSceneThirtySix = React.lazy(() => import('./views/pages/Templates/Scenes/Scene36'))
 
 const TemplateSceneLast= React.lazy(() => import('./views/pages/Templates/Scenes/SceneLast'));
 const EditTemplate= React.lazy(() => import('./views/pages/Templates/EditTemplate'));
@@ -191,6 +201,11 @@ const routes = [
   { path: '/edit-scene/29', exact: true,  name: 'Scene 29', component: TemplateScene29 },
   { path: '/edit-scene/30', exact: true,  name: 'Scene 30', component: TemplateScene30 },
   { path: '/edit-scene/31', exact: true,  name: 'Scene 31', component: TemplateScene31 },
+  { path: '/edit-scene/32', exact: true,  name: 'Scene 32', component: TemplateScene32 },
+  { path: '/edit-scene/33', exact: true,  name: 'Scene 33', component: TemplateScene33 },
+  { path: '/edit-scene/34', exact: true,  name: 'Scene 34', component: TemplateScene34 },
+  { path: '/edit-scene/35', exact: true,  name: 'Scene 35', component: TemplateScene35 },
+  { path: '/edit-scene/36', exact: true,  name: 'Scene 36', component: TemplateScene36 },
 
   { path: '/scene-categories', exact: true,  name: 'Categories', component: AllScenesCategories },
   { path: '/add-category', exact: true,  name: 'Add Category', component: AddCategory },
@@ -232,7 +247,12 @@ const routes = [
   { path: '/template/:id/29/:sceneid', exact: true,  name: 'Scene 29', component: TemplateSceneTwentyNine },
   { path: '/template/:id/30/:sceneid', exact: true,  name: 'Scene 30', component: TemplateSceneThirty },
   { path: '/template/:id/31/:sceneid', exact: true,  name: 'Scene 31', component: TemplateSceneThirtyOne },
-  
+  { path: '/template/:id/32/:sceneid', exact: true,  name: 'Scene 32', component: TemplateSceneThirtyTwo },
+  { path: '/template/:id/33/:sceneid', exact: true,  name: 'Scene 32', component: TemplateSceneThirtyThree },
+  { path: '/template/:id/34/:sceneid', exact: true,  name: 'Scene 32', component: TemplateSceneThirtyFour },
+  { path: '/template/:id/35/:sceneid', exact: true,  name: 'Scene 32', component: TemplateSceneThirtyFive },
+  { path: '/template/:id/36/:sceneid', exact: true,  name: 'Scene 32', component: TemplateSceneThirtySix },
+
   { path: '/template/:id/last/:sceneid', exact: true,  name: 'Scene 4', component: TemplateSceneLast },
   { path: '/my-videos/', exact: true,  name: 'Scene 4', component: MyVideos },
   { path: '/export-video/:templateId/download/', exact: true,  name: 'Export Video', component: ExportVideo },

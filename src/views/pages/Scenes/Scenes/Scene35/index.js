@@ -7,7 +7,7 @@ import SidebarLeft from "../../SidebarLeft/SidebarLeft";
 
 import TextEditor from "../../TextEditor/TextEditor";
 import ChangeBg from "../../ChangeBg";
-import SceneTwentyFive from "./Scene25";
+import SceneThirtyFive from "./Scene35"; 
 import AddMedia from "../../AddMedia/AddMedia";
 import AddScenes from "../../AddScenes/AddScenes";
 import TopSection from "../../TopSection/TopSection";
@@ -16,8 +16,10 @@ import {
   apiUpdateScene,
   apiGetScene,
 } from "../../../../../Utility/Utility";
+import Scene from "./../../../../../assets/images/templates/img11.png";
+import Scene2 from "./../../../../../assets/images/templates/img12.png";
 import Player from "../../Player";
-const TemplateScene25 = (props) => {
+const TemplateScene35 = (props) => {
   const [userId, setUserId] = React.useState("");
   const [blocks, setBlocks] = React.useState("");
   const [templateTitle, setTemplateTitle] = React.useState("");
@@ -277,7 +279,7 @@ const TemplateScene25 = (props) => {
     setShowEditbutton(false);
   }
   function getData() {
-    axios.get(`${apiGetScene}?id=25`, {}).then(function (response) {
+    axios.get(`${apiGetScene}?id=35`, {}).then(function (response) {
       if (response.data.scene) {
         setBlocks(response.data.scene);
         setTemplateTitle(response.data.scene.sceneTitle);
@@ -307,15 +309,15 @@ const TemplateScene25 = (props) => {
       const token = cookies.get("token");
       const decoded = jwt_decode(token);
       //setUserId(decoded.id);
-      setUserId("5fb232562f0b30f2d6c9ff48c");
+      setUserId("5fb23662f0b30f2d6c9ff48c");
       getData();
     }
   }, [userId]);
 
   function updateData(data) {
     axios
-      .put(`${apiUpdateScene}25`, {
-        id: "25",
+      .put(`${apiUpdateScene}35`, {
+        id: "35",
         sceneData: data,
       })
       .then(function (response) {
@@ -353,7 +355,7 @@ const TemplateScene25 = (props) => {
   return (
     <section className="template-new-wrapper scene-warpper">
       {templateTitle ? (
-        <TopSection templateTitle={templateTitle} id="25" />
+        <TopSection templateTitle={templateTitle} id="35" />
       ) : null}
       <div className="d-flex justify-content-between outervh">
         {addMedia ? (
@@ -364,7 +366,7 @@ const TemplateScene25 = (props) => {
           playActive ? (
             <Player blocks={blocks} />
           ) : (
-            <SceneTwentyFive
+            <SceneThirtyFive
               setColor={textColor}
               setAlignment={textAligmnet}
               setTextTransform={textTransform}
@@ -392,7 +394,7 @@ const TemplateScene25 = (props) => {
               getTextSize={getTextSize}
               textSize={textSize}
               textlineHeight={textlineHeight}
-              id={25}
+              id={35}
               thumbnails={sceneThumbnail}
               category={selectedCategory}
               getFontfamily={getFontfamily}
@@ -408,4 +410,4 @@ const TemplateScene25 = (props) => {
     </section>
   );
 };
-export default TemplateScene25;
+export default TemplateScene35;

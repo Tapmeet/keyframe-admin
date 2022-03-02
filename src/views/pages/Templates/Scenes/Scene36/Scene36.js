@@ -7,15 +7,15 @@ import Scene4 from "./../../../../../assets/images/templates/img14.png";
 
 import trash from "./../../../../../assets/images/templates/trash.svg";
 import add from "./../../../../../assets/images/templates/add.svg";
-import Slider from "react-slick";
+  import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import $ from "jquery";
-
+  
 import DragResizeContainer from "react-drag-resize";
 import { CommentTwoTone } from "@material-ui/icons";
 import { apiPath } from "../../../../../Utility/Utility";
-const SceneThirty = (props) => {
+const SceneThirtyFive = (props) => {
   const [mediaArray, setMediaArray] = React.useState(props.mediaArray);
   const [transformX, setTransformX] = React.useState(0);
   const [content, setContent] = React.useState(props.content);
@@ -129,82 +129,72 @@ const SceneThirty = (props) => {
     props.getContent(e.target.value);
   }
   return (
-    <section className="template-new-wrapper-scene1 scene-16 section-five section-six section-18 scene-30 scene-26 scene-19 slider-section">
+    <section className="template-new-wrapper-scene1 scene-16 scene-17 scene-20 scene-36 slider-section">
       <div className="d-flex">
         <div className="img-section d-flex justify-content-between">
-          <div className="bg-section d-flex justify-end">
-            <div className="full-width d-flex">
-              <img
-                alt="imgmain"
-                onClick={() =>
-                  setshowbg(
-                    true,
-                    mediaArray[0].url,
-                    mediaArray[0].type,
-                    false,
-                    0
-                  )
-                }
-                className="imgone img-slide"
-                src={apiPath + mediaArray[0].url}
-              />
-              <img
-                alt="imgmain"
-                onClick={() =>
-                  setshowbg(
-                    true,
-                    mediaArray[0].url,
-                    mediaArray[0].type,
-                    false,
-                    0
-                  )
-                }
-                className="imgtwo img-slide"
-                src={apiPath + mediaArray[0].url}
-              />
-              <img
-                onClick={() =>
-                  setshowbg(
-                    true,
-                    mediaArray[0].url,
-                    mediaArray[0].type,
-                    false,
-                    0
-                  )
-                }
-                alt="imgmain"
-                className="imgthree img-slide"
-                src={apiPath + mediaArray[0].url}
-              />
+          <div className="half-width width60">
+            <DragResizeContainer
+              className="resize-container"
+              resizeProps={{
+                minWidth: 100,
+                minHeight: 70,
+                enable: canResizable(50),
+              }}
+              onClick={() => setshowbg(false, "", "", false)}
+              layout={layout}
+              onLayoutChange={onLayoutChange}
+              dragProps={{ disabled: false }}
+              scale={1}
+            >
+              {layout.map((single) => {
+                return (
+                  <textarea
+                    key={single.key}
+                    style={{
+                      "font-size": props.settextSize + "px",
+                      color: props.setColor,
+                      "line-height": props.setTextLineHeight,
+                      fontFamily: props.data.fontFamily,
+                      fontWeight: props.data.fontWeight,
+                    }}
+                    className={
+                      "child-container form-control border  size-auto " +
+                      props.setAlignment +
+                      " " +
+                      props.setTextTransform
+                    }
+                    onChange={getcontent}
+                    value={content}
+                  ></textarea>
+                );
+              })}
+            </DragResizeContainer>
+            <div className="bg-section">
+              <Slider {...settings}>
+                {mediaArray.map((data, index) => {
+                  return index == 0 ? (
+                    <div key={index}>
+                      <div className="slider-box">
+                        <div
+                          onClick={() =>
+                            setshowbg(true, data.url, data.type, false, index)
+                          }
+                          className="bg box-1"
+                          style={{
+                            "background-image":
+                              "url(" + apiPath + data.url + ") ",
+                          }}
+                        ></div>
+                      </div>
+                    </div>
+                  ) : null;
+                })}
+              </Slider>
             </div>
-          </div>
-          <div class="content-part">
-            {layout.map((single) => {
-              return (
-                <textarea
-                  key={single.key}
-                  style={{
-                    "font-size": props.settextSize + "px",
-                    color: props.setColor,
-                    "line-height": props.setTextLineHeight,
-                    fontFamily: props.data.fontFamily,
-                    fontWeight: props.data.fontWeight,
-                  }}
-                  className={
-                    "child-container form-control border  size-auto " +
-                    props.setAlignment +
-                    " " +
-                    props.setTextTransform
-                  }
-                  onChange={getcontent}
-                  value={content}
-                ></textarea>
-              );
-            })}
           </div>
         </div>
       </div>
     </section>
   );
 };
-export default SceneThirty;
+export default SceneThirtyFive;

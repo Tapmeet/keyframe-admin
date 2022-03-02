@@ -132,7 +132,7 @@ const SceneTwentyEight = (props) => {
     <section className="template-new-wrapper-scene1 scene-16 section-18 scene-28 scene-26 scene-19 slider-section">
       <div className="d-flex">
         <div className="img-section d-flex justify-content-between">
-          <div className="bg-section d-flex justify-end">
+          <div className="bg-section d-flex ">
           <div className="half-width">
               <img
                 className="imgone img-slide"
