@@ -2172,6 +2172,7 @@ section.template-new-wrapper-scene1.scene-16.section-18.section-six.scene-32.sce
     }
   }
 }
+
 section.template-new-wrapper-scene1.scene-16.section-18.section-six.scene-32.scene-34.scene-35.scene-19.slider-section {
   .content-part {
     justify-content: flex-end;
@@ -2181,12 +2182,178 @@ section.template-new-wrapper-scene1.scene-16.section-18.section-six.scene-32.sce
       left: 50px;
       right: auto;
     }
+
     textarea.form-control {
       padding-left: 40px;
     }
   }
 }
 
-section.template-new-wrapper-scene1.scene-16.scene-17.scene-20.scene-36.slider-section{
+section.template-new-wrapper-scene1.scene-16.scene-17.scene-20.scene-36.slider-section {
   background: #522406 !important;
+}
+
+section.template-new-wrapper-scene1.scene-16.section-18.scene-19.slider-section.scene-21.scene-38 {
+  background: #7a9993;
+}
+
+section.template-new-wrapper-scene1.scene1.scene37 {
+  .img-section .react-draggable>div {
+    background-color: #7a9993;
+  }
+
+  .img-section textarea.form-control {
+    background-color: #7a9993;
+    min-height: 135px;
+  }
+
+  .bg.box-1 {
+    display: flex;
+    background-color: #7a9993;
+    align-items: center;
+  }
+}
+
+section.template-new-wrapper-scene1.section-18.slider-section.section-39 {
+  background-color: #7a9993;
+
+  .text-wrapper.left-section-text {
+    background-color: #7a9993;
+  }
+
+}
+
+section.template-new-wrapper-scene1.scene-16.section-18.scene-19.scene-40.slider-section {
+  .text-wrapper.left-section-text {
+    background: transparent;
+    max-width: 50% !important;
+    background-color: #7a9993;
+  }
+
+  .half-width {
+    width: 50% !important;
+    height: 100%;
+    margin: 0 !important;
+  }
+}
+
+section.template-new-wrapper-scene1.scene-16.section-18.scene-19.scene-40.scene-41.slider-section {
+
+  .text-wrapper.left-section-text {
+    left: auto;
+    top: 0;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+
+section.template-new-wrapper-scene1.scene-16.section-18.section-six.scene-32.scene-34.scene-42.scene-19.slider-section {
+  overflow: hidden;
+
+  textarea.child-container.form-control.editable-div.size-auto.text-center {
+    text-align: center !important;
+    min-height: 150px !important;
+    background-color: #7fb9dc !important;
+    width: 100%;
+  }
+
+  .content-part {
+    background-color: #173c66 !important;
+    bottom: -50px;
+  }
+
+  .textareabox {
+    border: 10px solid #fff;
+
+    max-width: 346px;
+    text-align: center;
+    top: -100px;
+    position: relative;
+    left: 50px;
+  }
+}
+section.template-new-wrapper-scene1.section-18.slider-section.section-43.scene-2{
+  background: #7fb9dc;
+  .text-wrapper.left-section-text {
+    background-color: #173c66;
+  }
+}
+section.template-new-wrapper-scene1.section-18.slider-section.section-39.section-43 {
+  background: #7fb9dc;
+  .text-wrapper.left-section-text {
+    background-color: #173c66;
+  }
+}
+
+section.template-new-wrapper-scene1.scene-16.section-18.scene-19.scene-26.scene-44.slider-section {
+  background: #7fb9dc;
+
+  .content-part {
+    position: absolute;
+    z-index: 999;
+    bottom: -80px;
+    left: -80px;
+    width: calc(100% + 160px);
+    background: #173c66;
+    ;
+  }
+
+  .bg-section.d-flex.justify-end {
+    margin-top: -30px;
+  }
+
+  .img-slide {
+    filter: grayscale(100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    max-width: 60%;
+    margin-left: 80px;
+  }
+
+  .imgthree.img-slide {
+    margin-right: -300px;
+  }
+
+  .imgtwo.img-slide {
+    filter: none;
+    max-width: 70%;
+  }
+
+  .imgone {
+    margin-left: -300px;
+  }
+}
+
+.template-new-wrapper-scene1.scene-16.scene-24.scene-45 {
+  .content-section {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: #173c66 !important;
+
+    textarea {
+      background: #173c66 !important;
+      padding-top: 20px;
+    }
+  }
+}
+
+section.template-new-wrapper-scene1.scene-16.scene-17.scene-20.scene-36.slider-section.scene-46 {
+  background: #7fb9dc !important;
+
+  .resize-container {
+    position: absolute;
+    z-index: 999;
+    width: calc(100% + 40px);
+    bottom: -30px;
+    left: -20px;
+    background: #173c66 !important;
+
+    textarea {
+      background: #173c66 !important;
+      padding-top: 20px;
+    }
+  }
 }
