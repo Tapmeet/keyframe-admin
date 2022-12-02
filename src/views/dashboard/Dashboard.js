@@ -1,4 +1,5 @@
-import React, { lazy } from 'react'
+import React, { lazy, useState, useEffect } from "react";
+
 import {
   CBadge,
   CButton,
@@ -10,21 +11,28 @@ import {
   CCol,
   CProgress,
   CRow,
-  CCallout
-} from '@coreui/react'
-import CIcon from '@coreui/icons-react'
-
-import MainChartExample from '../charts/MainChartExample.js'
-
-const WidgetsDropdown = lazy(() => import('../widgets/WidgetsDropdown.js'))
-const WidgetsBrand = lazy(() => import('../widgets/WidgetsBrand.js'))
-
+  CCallout,
+} from "@coreui/react";
+import CIcon from "@coreui/icons-react";
+import userImg from "./../../assets/profile-user.png";
+import MainChartExample from "../charts/MainChartExample.js";
+import axios from "axios";
+import { apiGetUsers } from "./../../Utility/Utility";
+const WidgetsDropdown = lazy(() => import("../widgets/WidgetsDropdown.js"));
+const WidgetsBrand = lazy(() => import("../widgets/WidgetsBrand.js"));
 const Dashboard = () => {
+  const [usersData, setUsersData] = useState([]);
+  useEffect(() => {
+    axios.get(`${apiGetUsers}`, {}).then(function (response) {
+      setUsersData(response.data.users);
+    });
+  }, []);
+
   return (
     <>
       <WidgetsDropdown />
       <CCard>
-        <CCardBody>
+        {/* <CCardBody>
           <CRow>
             <CCol sm="5">
               <h4 id="traffic" className="card-title mb-0">Traffic</h4>
@@ -51,8 +59,8 @@ const Dashboard = () => {
             </CCol>
           </CRow>
           <MainChartExample style={{height: '300px', marginTop: '40px'}}/>
-        </CCardBody>
-        <CCardFooter>
+        </CCardBody> */}
+        {/* <CCardFooter>
           <CRow className="text-center">
             <CCol md sm="12" className="mb-sm-2 mb-0">
               <div className="text-muted">Visits</div>
@@ -83,7 +91,7 @@ const Dashboard = () => {
                 color="warning"
                 value={40}
               />
-            </CCol>
+            </CCol> 
             <CCol md sm="12" className="mb-sm-2 mb-0">
               <div className="text-muted">New Users</div>
               <strong>22.123 Users (80%)</strong>
@@ -104,22 +112,21 @@ const Dashboard = () => {
               />
             </CCol>
           </CRow>
-        </CCardFooter>
+        </CCardFooter> */}
       </CCard>
 
-      <WidgetsBrand withCharts/>
+      {/* <WidgetsBrand withCharts/> */}
 
       <CRow>
         <CCol>
           <CCard>
             <CCardHeader>
-              Traffic {' & '} Sales
+              <strong>Website Users Details</strong>
             </CCardHeader>
             <CCardBody>
               <CRow>
                 <CCol xs="12" md="6" xl="6">
-
-                  <CRow>
+                  {/* <CRow>
                     <CCol sm="6">
                       <CCallout color="info">
                         <small className="text-muted">New Clients</small>
@@ -134,11 +141,11 @@ const Dashboard = () => {
                         <strong className="h4">22,643</strong>
                       </CCallout>
                     </CCol>
-                  </CRow>
+                  </CRow> */}
+                  {/* 
+                  <hr className="mt-0" /> */}
 
-                  <hr className="mt-0" />
-
-                  <div className="progress-group mb-4">
+                  {/* <div className="progress-group mb-4">
                     <div className="progress-group-prepend">
                       <span className="progress-group-text">
                         Monday
@@ -314,7 +321,7 @@ const Dashboard = () => {
                       <CIcon name="cil-options" />
                     </CButton>
                   </div>
-
+*/}
                 </CCol>
               </CRow>
 
@@ -323,235 +330,63 @@ const Dashboard = () => {
               <table className="table table-hover table-outline mb-0 d-none d-sm-table">
                 <thead className="thead-light">
                   <tr>
-                    <th className="text-center"><CIcon name="cil-people" /></th>
+                    <th className="text-center">
+                      <CIcon name="cil-people" />
+                    </th>
                     <th>User</th>
-                    <th className="text-center">Country</th>
-                    <th>Usage</th>
-                    <th className="text-center">Payment Method</th>
-                    <th>Activity</th>
+                    <th className="text-left">Email</th>
+                    <th>Phone</th>
+                    <th className="text-left">Role</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td className="text-center">
-                      <div className="c-avatar">
-                        <img src={'avatars/1.jpg'} className="c-avatar-img" alt="admin@bootstrapmaster.com" />
-                        <span className="c-avatar-status bg-success"></span>
-                      </div>
-                    </td>
-                    <td>
-                      <div>Yiorgos Avraamu</div>
-                      <div className="small text-muted">
-                        <span>New</span> | Registered: Jan 1, 2015
-                      </div>
-                    </td>
-                    <td className="text-center">
-                      <CIcon height={25} name="cif-us" title="us" id="us" />
-                    </td>
-                    <td>
-                      <div className="clearfix">
-                        <div className="float-left">
-                          <strong>50%</strong>
-                        </div>
-                        <div className="float-right">
-                          <small className="text-muted">Jun 11, 2015 - Jul 10, 2015</small>
-                        </div>
-                      </div>
-                      <CProgress className="progress-xs" color="success" value="50" />
-                    </td>
-                    <td className="text-center">
-                      <CIcon height={25} name="cib-cc-mastercard" />
-                    </td>
-                    <td>
-                      <div className="small text-muted">Last login</div>
-                      <strong>10 sec ago</strong>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="text-center">
-                      <div className="c-avatar">
-                        <img src={'avatars/2.jpg'} className="c-avatar-img" alt="admin@bootstrapmaster.com" />
-                        <span className="c-avatar-status bg-danger"></span>
-                      </div>
-                    </td>
-                    <td>
-                      <div>Avram Tarasios</div>
-                      <div className="small text-muted">
-
-                        <span>Recurring</span> | Registered: Jan 1, 2015
-                      </div>
-                    </td>
-                    <td className="text-center">
-                      <CIcon height={25} name="cif-br" title="br" id="br" />
-                    </td>
-                    <td>
-                      <div className="clearfix">
-                        <div className="float-left">
-                          <strong>10%</strong>
-                        </div>
-                        <div className="float-right">
-                          <small className="text-muted">Jun 11, 2015 - Jul 10, 2015</small>
-                        </div>
-                      </div>
-                      <CProgress className="progress-xs" color="info" value="10" />
-                    </td>
-                    <td className="text-center">
-                      <CIcon height={25} name="cib-cc-visa" />
-                    </td>
-                    <td>
-                      <div className="small text-muted">Last login</div>
-                      <strong>5 minutes ago</strong>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="text-center">
-                      <div className="c-avatar">
-                        <img src={'avatars/3.jpg'} className="c-avatar-img" alt="admin@bootstrapmaster.com" />
-                        <span className="c-avatar-status bg-warning"></span>
-                      </div>
-                    </td>
-                    <td>
-                      <div>Quintin Ed</div>
-                      <div className="small text-muted">
-                        <span>New</span> | Registered: Jan 1, 2015
-                      </div>
-                    </td>
-                    <td className="text-center">
-                      <CIcon height={25} name="cif-in" title="in" id="in" />
-                    </td>
-                    <td>
-                      <div className="clearfix">
-                        <div className="float-left">
-                          <strong>74%</strong>
-                        </div>
-                        <div className="float-right">
-                          <small className="text-muted">Jun 11, 2015 - Jul 10, 2015</small>
-                        </div>
-                      </div>
-                      <CProgress className="progress-xs" color="warning" value="74" />
-                    </td>
-                    <td className="text-center">
-                      <CIcon height={25} name="cib-stripe" />
-                    </td>
-                    <td>
-                      <div className="small text-muted">Last login</div>
-                      <strong>1 hour ago</strong>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="text-center">
-                      <div className="c-avatar">
-                        <img src={'avatars/4.jpg'} className="c-avatar-img" alt="admin@bootstrapmaster.com" />
-                        <span className="c-avatar-status bg-secondary"></span>
-                      </div>
-                    </td>
-                    <td>
-                      <div>Enéas Kwadwo</div>
-                      <div className="small text-muted">
-                        <span>New</span> | Registered: Jan 1, 2015
-                      </div>
-                    </td>
-                    <td className="text-center">
-                      <CIcon height={25} name="cif-fr" title="fr" id="fr" />
-                    </td>
-                    <td>
-                      <div className="clearfix">
-                        <div className="float-left">
-                          <strong>98%</strong>
-                        </div>
-                        <div className="float-right">
-                          <small className="text-muted">Jun 11, 2015 - Jul 10, 2015</small>
-                        </div>
-                      </div>
-                      <CProgress className="progress-xs" color="danger" value="98" />
-                    </td>
-                    <td className="text-center">
-                      <CIcon height={25} name="cib-paypal" />
-                    </td>
-                    <td>
-                      <div className="small text-muted">Last login</div>
-                      <strong>Last month</strong>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="text-center">
-                      <div className="c-avatar">
-                        <img src={'avatars/5.jpg'} className="c-avatar-img" alt="admin@bootstrapmaster.com" />
-                        <span className="c-avatar-status bg-success"></span>
-                      </div>
-                    </td>
-                    <td>
-                      <div>Agapetus Tadeáš</div>
-                      <div className="small text-muted">
-                        <span>New</span> | Registered: Jan 1, 2015
-                      </div>
-                    </td>
-                    <td className="text-center">
-                      <CIcon height={25} name="cif-es" title="es" id="es" />
-                    </td>
-                    <td>
-                      <div className="clearfix">
-                        <div className="float-left">
-                          <strong>22%</strong>
-                        </div>
-                        <div className="float-right">
-                          <small className="text-muted">Jun 11, 2015 - Jul 10, 2015</small>
-                        </div>
-                      </div>
-                      <CProgress className="progress-xs" color="info" value="22" />
-                    </td>
-                    <td className="text-center">
-                      <CIcon height={25} name="cib-google-pay"/>
-                    </td>
-                    <td>
-                      <div className="small text-muted">Last login</div>
-                      <strong>Last week</strong>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="text-center">
-                      <div className="c-avatar">
-                        <img src={'avatars/6.jpg'} className="c-avatar-img" alt="admin@bootstrapmaster.com" />
-                        <span className="c-avatar-status bg-danger"></span>
-                      </div>
-                    </td>
-                    <td>
-                      <div>Friderik Dávid</div>
-                      <div className="small text-muted">
-                        <span>New</span> | Registered: Jan 1, 2015
-                      </div>
-                    </td>
-                    <td className="text-center">
-                      <CIcon height={25} name="cif-pl" title="pl" id="pl" />
-                    </td>
-                    <td>
-                      <div className="clearfix">
-                        <div className="float-left">
-                          <strong>43%</strong>
-                        </div>
-                        <div className="float-right">
-                          <small className="text-muted">Jun 11, 2015 - Jul 10, 2015</small>
-                        </div>
-                      </div>
-                      <CProgress className="progress-xs" color="success" value="43" />
-                    </td>
-                    <td className="text-center">
-                      <CIcon height={25} name="cib-cc-amex" />
-                    </td>
-                    <td>
-                      <div className="small text-muted">Last login</div>
-                      <strong>Yesterday</strong>
-                    </td>
-                  </tr>
+                  {usersData.map(function (user, index) {
+                    var start = new Date(user.createdAt);
+                    var date = [
+                      start.getMonth() + 1,
+                      start.getDate(),
+                      start.getFullYear(),
+                    ].join("-");
+                    return (
+                      <tr key={index}>
+                        <td className="text-center">
+                          <div className="c-avatar">
+                            <img
+                              src={userImg}
+                              className="c-avatar-img"
+                              alt="admin@bootstrapmaster.com"
+                            />
+                            <span className="c-avatar-status bg-success"></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div className="text-capitalize">{user.fullName}</div>
+                          <div className="small text-muted">
+                            <span>New</span> | Registered: {date}
+                          </div>
+                        </td>
+                        <td className="text-left">{user.email}</td>
+                        <td>
+                          <div className="clearfix">
+                            <div className="float-left">
+                              <strong> {user.phone}</strong>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="text-left">
+                          <div className="text-capitalize">{user.userRole}</div>
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
-
             </CCardBody>
           </CCard>
         </CCol>
       </CRow>
     </>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

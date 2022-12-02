@@ -9,7 +9,10 @@ import DataTable from "react-data-table-component";
 import { apiGetTemplates, apiPath } from "./../../../Utility/Utility";
 const AllTemplates = () => {
   const renderEditUrl = (val, row) => (
-    <a href={`/${row["sceneId"]}`}>Edit Scene</a>
+    <a href={`/${row["sceneId"]}`}>Edit Template</a>
+  );
+  const viewStats = (val, row) => (
+    <a href={`/stats/${row["sceneId"]}`}>View Stats</a>
   );
   const [data, setData] = useState([]);
   const columns = [
@@ -49,6 +52,24 @@ const AllTemplates = () => {
         >
           {row.key}
           Edit Scene
+        </a>
+      ),
+    },
+    {
+      name: "Action ",
+      left: true,
+      ignoreRowClick: true,
+      cell: (row) => (
+        <a
+          href={
+            "/#/view-template-stats/" +
+            row._id 
+          }
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {row.key}
+          View Stats
         </a>
       ),
     },

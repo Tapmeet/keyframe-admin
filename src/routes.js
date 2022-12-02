@@ -85,12 +85,18 @@ const TemplateScene43= React.lazy(() => import('./views/pages/Scenes/Scenes/Scen
 const TemplateScene44= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene44'))
 const TemplateScene45= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene45'))
 const TemplateScene46= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene46'))
+const TemplateScene47= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene47'))
+const TemplateScene48= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene48'))
+const TemplateScene49= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene49'))
+const TemplateScene50= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene50'))
 
 const AllScenesCategories = React.lazy(() => import('./views/pages/Category/AllCategories'));
 const AddCategory = React.lazy(() => import('./views/pages/Category/AddCategory'));
 const EditCategory = React.lazy(() => import('./views/pages/Category/EditCategory'));
 const AllTemplates = React.lazy(() => import('./views/pages/Templates/AllTemplates'));
 const AddTemplate = React.lazy(() => import('./views/pages/Templates/AddTemplate'));
+const TemplatesStats = React.lazy(() => import('./views/users/ViewStats'));
+const ViewStats = React.lazy(() => import('./views/pages/Templates/ViewStats'));
 
 const AllTemplateCategories = React.lazy(() => import('./views/pages/TemplateCategory/AllCategories'));
 const AddTemplateCategory = React.lazy(() => import('./views/pages/TemplateCategory/AddCategory'));
@@ -142,6 +148,12 @@ const TemplateSceneFourtyFour= React.lazy(() => import('./views/pages/Templates/
 const TemplateSceneFourtyFive= React.lazy(() => import('./views/pages/Templates/Scenes/Scene45'))
 const TemplateSceneFourtySix = React.lazy(() => import('./views/pages/Templates/Scenes/Scene46'))
 
+const TemplateSceneFourtySeven = React.lazy(() => import('./views/pages/Templates/Scenes/Scene47'))
+const TemplateSceneFourtyEight = React.lazy(() => import('./views/pages/Templates/Scenes/Scene48'))
+const TemplateSceneFourtyNine = React.lazy(() => import('./views/pages/Templates/Scenes/Scene49'))
+const TemplateSceneFifty = React.lazy(() => import('./views/pages/Templates/Scenes/Scene50'))
+
+
 const TemplateSceneLast= React.lazy(() => import('./views/pages/Templates/Scenes/SceneLast'));
 const EditTemplate= React.lazy(() => import('./views/pages/Templates/EditTemplate'));
 const MyVideos= React.lazy(() => import('./views/pages/MyVideos'));
@@ -187,6 +199,9 @@ const routes = [
   { path: '/widgets', name: 'Widgets', component: Widgets },
   { path: '/users', exact: true,  name: 'Users', component: Users },
   { path: '/users/:id', exact: true, name: 'User Details', component: User },
+  { path: '/viewstats/:id', exact: true, name: 'View Stats', component: TemplatesStats },
+  { path: '/view-template-stats/:id', exact: true, name: 'View Stats', component: ViewStats },
+
   { path: '/add-user', exact: true,  name: 'Add User', component: AddUser },
   { path: '/profile', exact: true,  name: 'Profile', component: UserProfile },
   { path: '/all-Scenes', exact: true,  name: 'All Scenes', component: AllScenes },
@@ -236,17 +251,22 @@ const routes = [
   { path: '/edit-scene/44', exact: true,  name: 'Scene 43', component: TemplateScene44 },
   { path: '/edit-scene/45', exact: true,  name: 'Scene 45', component: TemplateScene45 },
   { path: '/edit-scene/46', exact: true,  name: 'Scene 46', component: TemplateScene46 },
+  { path: '/edit-scene/47', exact: true,  name: 'Scene 47', component: TemplateScene47 },
+  { path: '/edit-scene/48', exact: true,  name: 'Scene 48', component: TemplateScene48 },
+  { path: '/edit-scene/49', exact: true,  name: 'Scene 49', component: TemplateScene49 },
+  { path: '/edit-scene/50', exact: true,  name: 'Scene 50', component: TemplateScene50 },
 
   { path: '/scene-categories', exact: true,  name: 'Categories', component: AllScenesCategories },
   { path: '/add-category', exact: true,  name: 'Add Category', component: AddCategory },
   { path: '/edit-category/:id', exact: true, name: 'Edit Category', component: EditCategory },
   { path: '/all-templates', exact: true,  name: 'All Templates', component: AllTemplates },
+  
   { path: '/add-template', exact: true,  name: 'Add Template', component: AddTemplate },
 
   { path: '/template-categories', exact: true,  name: 'Categories', component: AllTemplateCategories },
   { path: '/add-template-category', exact: true,  name: 'Add Category', component: AddTemplateCategory },
   { path: '/edit-template-category/:id', exact: true, name: 'Edit Category', component: EditTemplateCategory },
-
+  
   { path: '/template/:id/1/:sceneid', exact: true,  name: 'Scene 1', component: TemplateSceneOne },
   { path: '/template/:id/2/:sceneid', exact: true,  name: 'Scene 2', component: TemplateSceneTwo },
   { path: '/template/:id/3/:sceneid', exact: true,  name: 'Scene 3', component: TemplateSceneThree },
@@ -291,7 +311,11 @@ const routes = [
   { path: '/template/:id/43/:sceneid', exact: true,  name: 'Scene 43', component: TemplateSceneFourtyThree },
   { path: '/template/:id/44/:sceneid', exact: true,  name: 'Scene 44', component: TemplateSceneFourtyFour },
   { path: '/template/:id/45/:sceneid', exact: true,  name: 'Scene 45', component: TemplateSceneFourtyFive },
-  { path: '/template/:id/46/:sceneid', exact: true,  name: 'Scene 45', component: TemplateSceneFourtySix },
+  { path: '/template/:id/46/:sceneid', exact: true,  name: 'Scene 46', component: TemplateSceneFourtySix },
+  { path: '/template/:id/47/:sceneid', exact: true,  name: 'Scene 47', component: TemplateSceneFourtySeven },
+  { path: '/template/:id/48/:sceneid', exact: true,  name: 'Scene 48', component: TemplateSceneFourtyEight },
+  { path: '/template/:id/49/:sceneid', exact: true,  name: 'Scene 49', component: TemplateSceneFourtyNine },
+  { path: '/template/:id/50/:sceneid', exact: true,  name: 'Scene 50', component: TemplateSceneFifty },
 
   { path: '/template/:id/last/:sceneid', exact: true,  name: 'Scene 4', component: TemplateSceneLast },
   { path: '/my-videos/', exact: true,  name: 'Scene 4', component: MyVideos },

@@ -22,6 +22,7 @@ const AddUser = ({ match }) => {
   const [errorMessage, setErrorMessage] = React.useState('');
   const [loader, setLoader] = React.useState(false);
   const [redirectPath, setRedirectPath] = React.useState(false);
+  const [access, setAccess] = React.useState('1');
 
   /**
    * Set First Name
@@ -151,6 +152,7 @@ const AddUser = ({ match }) => {
       confirmPassword: confirmPassword,
       email: email,
       phone: phone,
+      userPlan:access,
       isVerified: true,
       userRole:role
     }).then((response) => {
@@ -217,6 +219,15 @@ const AddUser = ({ match }) => {
               <select defaultValue={role} onChange={e => setRole(e.currentTarget.value)} className="form-control">
                 <option value="customer">Customer</option>
                 <option value="admin">Admin</option>
+              </select>
+            </div>
+          </div>
+          <div className="row form-group">
+            <div className="col-12 col-sm-12">
+              <label>Template Access</label>
+              <select defaultValue={access} onChange={e => setAccess(e.currentTarget.value)} className="form-control">
+                <option value="1">Limited Access</option>
+                <option value="2">Full Access</option>
               </select>
             </div>
           </div>

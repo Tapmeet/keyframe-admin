@@ -1,33 +1,33 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
-import React, { useState, useEffect } from 'react'
-import { CCard, CCardBody, CCardHeader, CCol, CRow } from '@coreui/react'
-import CIcon from '@coreui/icons-react'
+import React, { useState, useEffect } from "react";
+import { CCard, CCardBody, CCardHeader, CCol, CRow } from "@coreui/react";
+import CIcon from "@coreui/icons-react";
 import axios from "axios";
-import { apiGetUser } from './../../Utility/Utility';
+import { apiGetUser } from "./../../Utility/Utility";
 
 const User = ({ match }) => {
-  const [usersData, setUsersCreatedAt] = useState('')
-  const [usersName, setUsersName] = useState('')
-  const [usersEmail, setUsersEmail] = useState('')
-  const [usersRole, setUsersRole] = useState('')
-  const [usersPhone, setUsersPhone] = useState('')
-  const [usersIsVerified, setUsersIsVerified] = useState(false)
+  const [usersData, setUsersCreatedAt] = useState("");
+  const [usersName, setUsersName] = useState("");
+  const [usersEmail, setUsersEmail] = useState("");
+  const [usersRole, setUsersRole] = useState("");
+  const [usersPhone, setUsersPhone] = useState("");
+  const [usersIsVerified, setUsersIsVerified] = useState(false);
   useEffect(() => {
-    if (usersData === '') {
-      axios.get(`${apiGetUser + match.params.id}`, {
-      }).then(function (response) {
-        console.log(response.data.user)
-        setUsersCreatedAt(response.data.user.createdAt)
-        setUsersEmail(response.data.user.email)
-        setUsersRole(response.data.user.userRole)
-        setUsersName(response.data.user.firstName)
-        setUsersPhone(response.data.user.phone)
-        setUsersIsVerified(response.data.user.isVerified)
-      });
+    if (usersData === "") {
+      axios
+        .get(`${apiGetUser + match.params.id}`, {})
+        .then(function (response) {
+          console.log(response.data.user);
+          setUsersCreatedAt(response.data.user.createdAt);
+          setUsersEmail(response.data.user.email);
+          setUsersRole(response.data.user.userRole);
+          setUsersName(response.data.user.firstName);
+          setUsersPhone(response.data.user.phone);
+          setUsersIsVerified(response.data.user.isVerified);
+        });
     }
-  }, [match.params.id, usersData])
-
+  }, [match.params.id, usersData]);
 
   return (
     <CRow>
@@ -57,11 +57,17 @@ const User = ({ match }) => {
                 </tr>
                 <tr>
                   <td>Email Verification:</td>
-                  <td>{usersIsVerified ? 'True' : 'False' }</td>
+                  <td>{usersIsVerified ? "True" : "False"}</td>
                 </tr>
                 <tr>
                   <td>Date:</td>
                   <td>{usersData}</td>
+                </tr>
+                <tr>
+                  <td>View Stats:</td>
+                  <td>
+                    <a href={"/#/viewstats/" + match.params.id}>View</a>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -69,7 +75,7 @@ const User = ({ match }) => {
         </CCard>
       </CCol>
     </CRow>
-  )
-}
+  );
+};
 
-export default User
+export default User;

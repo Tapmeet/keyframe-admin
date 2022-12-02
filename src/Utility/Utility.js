@@ -73,6 +73,7 @@ export const apiGetTemplates = `${url}api/template/all-templates`
 export const apiaddAdminTemplate = `${url}api/template/create-template`
 export const apigetAdminTemplate = `${url}api/template/get-admin-template`
 export const apiupdateAdminTemplate = `${url}api/template/update-template/`
+export const apigetTemplateStats = `${url}api/template/get-stats`
 
 export const apiAddLastScene = `${url}api/last-block/add-scene`
 export const apiUpdatLastScene = `${url}api/last-block/`
@@ -82,3 +83,5 @@ export const apideleteMedia = `${url}api/template/delete-media/`
 
 export const apigetVideos = `${url}api/template/get-user-videos/`
 export const apideleteVideos = `${url}api/template/delete-user-videos/`
+export const apigetAllVideos = `${url}api/template/get-all-videos`
+export const apigetAlltemplates = `${url}api/template/all-templates-users`

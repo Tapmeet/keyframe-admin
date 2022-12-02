@@ -52,6 +52,7 @@
     "react-dom": "^16.13.1",
     "react-drag-reorder": "^1.0.0",
     "react-drag-resize": "^0.1.4",
+    "react-moment": "^1.1.2",
     "react-redux": "7.2.0",
     "react-reorder": "^3.0.0-alpha.7",
     "react-responsive-carousel": "^3.2.11",

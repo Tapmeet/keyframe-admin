@@ -2273,14 +2273,18 @@ section.template-new-wrapper-scene1.scene-16.section-18.section-six.scene-32.sce
     left: 50px;
   }
 }
-section.template-new-wrapper-scene1.section-18.slider-section.section-43.scene-2{
+
+section.template-new-wrapper-scene1.section-18.slider-section.section-43.scene-2 {
   background: #7fb9dc;
+
   .text-wrapper.left-section-text {
     background-color: #173c66;
   }
 }
+
 section.template-new-wrapper-scene1.section-18.slider-section.section-39.section-43 {
   background: #7fb9dc;
+
   .text-wrapper.left-section-text {
     background-color: #173c66;
   }
@@ -2355,5 +2359,70 @@ section.template-new-wrapper-scene1.scene-16.scene-17.scene-20.scene-36.slider-s
       background: #173c66 !important;
       padding-top: 20px;
     }
+  }
+}
+
+section.template-new-wrapper-scene1.slider-section.scene-47.scene-10 {
+  .img-section .react-draggable>div {
+    background-color: #697784;
+
+    textarea {
+      background-color: #697784 !important;
+    }
+  }
+}
+
+section.template-new-wrapper-scene1.slider-section.scene-2.scene-13.scene-48 {
+  background: #697784
+}
+
+section.template-new-wrapper-scene1.slider-section.section-five.scene-49.section-six {
+  background: #697784;
+
+  .content-part {
+    position: absolute;
+    z-index: 999;
+    bottom: auto;
+    left: -50px;
+    width: 100%;
+    top: -50px;
+    background: #cddfe3;
+
+    textarea.child-container.form-control {
+      padding-left: 20px !important;
+    }
+  }
+
+  .d-flex .bg-section {
+    top: 10px;
+  }
+
+  .slider-box::after {
+    position: absolute;
+    content: "";
+    background: #cddfe3;
+    left: 20px;
+    top: 15px;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.template-new-wrapper-scene1.scene-16.scene-50 {
+  background-color: #697784;
+
+  .img-section .react-draggable>div {
+    background-color: #cddfe3;
+    display: flex;
+    align-items: center;
+
+    textarea.form-control {
+      background: #cddfe3 !important;
+    }
+  }
+
+  .half-width .react-draggable {
+    bottom: -5px !important;
+    left: 69%;
   }
 }
