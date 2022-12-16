@@ -6,6 +6,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 import DragResizeContainer from "react-drag-resize";
 import { apiPath } from "../../../../../Utility/Utility";
+import pentagon from "../../../../../assets/pentagon.png";
 const SceneFiftyFour = (props) => {
   const [mediaArray, setMediaArray] = React.useState(props.mediaArray);
   var textArrays = props.textArray;
@@ -125,8 +126,8 @@ const SceneFiftyFour = (props) => {
     props.getContent(newArr);
   }
   return (
-    <section className="template-new-wrapper-scene1 slider-section scene-54 ">
-      <div className="d-flex">
+    <section className="template-new-wrapper-scene1 slider-section scene-54">
+       <div className="d-flex">
         <div className="img-section d-flex">
           <div className="right-width-scene">
             <div className="row-1 row-right">

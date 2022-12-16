@@ -109,7 +109,7 @@ const SceneFiftyTwo = (props) => {
   function getcontent(e, index) {
     let newArr = [...textArrays]; // copying the old datas array
     newArr[index] = {
-      text: e.target.value,
+      text: e,
       fontSize: newArr[index].fontSize,
       fontFamily: newArr[index].fontFamily,
       fontWeight: newArr[index].fontWeight,
@@ -129,9 +129,8 @@ const SceneFiftyTwo = (props) => {
       <div className="d-flex">
         <div className="img-section d-flex">
           <div className="left-width-scene">
-          
             {textArrays.map((data, index) => {
-              return index == 1 ? (
+              return index == 0 ? (
                 <div
                   className="Heading-section"
                   style={{
@@ -141,12 +140,22 @@ const SceneFiftyTwo = (props) => {
                     // fontWeight: data.fontWeight,
                     fontFamily: data.fontFamily,
                   }}
+                  contenteditable="true"
+                  onClick={() => setshowbg(false, "", "", false, 0, 0)}
+                  onInput={(e) => getcontent(e.currentTarget.textContent, 0)}
                 >
-                  JUST Listed!
+                  {data.text}
                 </div>
               ) : null;
             })}
-            <div className="bottom-text-section">USA,CA</div>
+            <div
+              className="bottom-text-section"
+              contenteditable="true"
+              onClick={() => setshowbg(false, "", "", false, 1, 1)}
+              onInput={(e) => getcontent(e.currentTarget.textContent, 1)}
+            >
+              {textArrays[1].text}
+            </div>
           </div>
           <div className="right-width-scene">
             <div className="row-1 row-right">
@@ -156,7 +165,7 @@ const SceneFiftyTwo = (props) => {
                     key={index}
                     id={index}
                     onClick={() =>
-                      setshowbg(true, data.url, data.type, false, index + 2)
+                      setshowbg(true, data.url, data.type, false, index )
                     }
                     className="bg box-1"
                     style={{
@@ -173,7 +182,7 @@ const SceneFiftyTwo = (props) => {
                     key={index}
                     id={index}
                     onClick={() =>
-                      setshowbg(true, data.url, data.type, false, index + 2)
+                      setshowbg(true, data.url, data.type, false, index )
                     }
                     className="bg box-1"
                     style={{

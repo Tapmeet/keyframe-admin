@@ -6,7 +6,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 import DragResizeContainer from "react-drag-resize";
 import { apiPath } from "../../../../../Utility/Utility";
-const SceneFiftyFour = (props) => {
+const SceneFiftyTwo = (props) => {
   const [mediaArray, setMediaArray] = React.useState(props.mediaArray);
   var textArrays = props.textArray;
   const [mediaArray1, setMediaArray1] = React.useState([]);
@@ -125,9 +125,44 @@ const SceneFiftyFour = (props) => {
     props.getContent(newArr);
   }
   return (
-    <section className="template-new-wrapper-scene1 slider-section scene-54 ">
+    <section className="template-new-wrapper-scene1 slider-section scene-52">
       <div className="d-flex">
         <div className="img-section d-flex">
+          <div className="left-width-scene">
+            {textArrays.map((data, index) => {
+              return index == 0 ? (
+                <div
+                  className="Heading-section"
+                  style={{
+                    "font-size": data.fontSize + "px",
+                    color: data.fontColor,
+                    "line-height": data.fontLineHeight,
+                    fontWeight: data.fontWeight,
+                    fontFamily: data.fontFamily,
+                  }}
+                  contenteditable="true"
+                  onClick={() => setshowbg(false, "", "", false, 0, 0)}
+                  onInput={(e) => getcontent(e.currentTarget.textContent, 0)}
+                >
+                  {data.text}
+                </div>
+              ) : null;
+            })}
+            <div
+              className="bottom-text-section"
+              contenteditable="true"
+              onClick={() => setshowbg(false, "", "", false, 1, 1)}
+              onInput={(e) => getcontent(e.currentTarget.textContent, 1)}
+              style={{
+                "font-size": textArrays[1].fontSize + "px",
+                color: textArrays[1].fontColor,
+                fontWeight: textArrays[1].fontWeight,
+                fontFamily: textArrays[1].fontFamily,
+              }}
+            >
+              {textArrays[1].text}
+            </div>
+          </div>
           <div className="right-width-scene">
             <div className="row-1 row-right">
               {mediaArray.map((data, index) => {
@@ -136,7 +171,7 @@ const SceneFiftyFour = (props) => {
                     key={index}
                     id={index}
                     onClick={() =>
-                      setshowbg(true, data.url, data.type, false, index )
+                      setshowbg(true, data.url, data.type, false, index)
                     }
                     className="bg box-1"
                     style={{
@@ -146,14 +181,14 @@ const SceneFiftyFour = (props) => {
                 ) : null;
               })}
             </div>
-            <div className="row-2 row-right">
+            <div className="row-1 row-right">
               {mediaArray.map((data, index) => {
                 return index > 1 ? (
                   <div
                     key={index}
                     id={index}
                     onClick={() =>
-                      setshowbg(true, data.url, data.type, false, index )
+                      setshowbg(true, data.url, data.type, false, index)
                     }
                     className="bg box-1"
                     style={{
@@ -162,35 +197,6 @@ const SceneFiftyFour = (props) => {
                   ></div>
                 ) : null;
               })}
-            </div>
-          </div>
-          <div className="left-width-scene">
-            {textArrays.map((data, index) => {
-              return index == 1 ? (
-                <div
-                  className="Heading-section"
-                  style={{
-                    // "font-size": data.fontSize + "px",
-                    // color: data.fontColor,
-                    // fontWeight: data.fontWeight,
-                    fontFamily: data.fontFamily,
-                  }}
-                  contenteditable="true"
-                  onClick={() => setshowbg(false, "", "", false, 0, 0)}
-                  onInput={(e) => getcontent(e.currentTarget.textContent, 0)}
-                >
-                  {textArrays[0].text}
-                </div>
-              ) : null;
-            })}
-            <div className="logo-section">Logo</div>
-            <div
-              className="bottom-text-section"
-              contenteditable="true"
-              onClick={() => setshowbg(false, "", "", false, 1, 1)}
-              onInput={(e) => getcontent(e.currentTarget.textContent, 1)}
-            >
-              {textArrays[1].text}
             </div>
           </div>
         </div>
@@ -198,4 +204,4 @@ const SceneFiftyFour = (props) => {
     </section>
   );
 };
-export default SceneFiftyFour;
+export default SceneFiftyTwo;

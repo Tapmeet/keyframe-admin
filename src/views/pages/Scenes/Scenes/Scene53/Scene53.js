@@ -6,7 +6,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 import DragResizeContainer from "react-drag-resize";
 import { apiPath } from "../../../../../Utility/Utility";
-import pentagon from "../../../../../assets/pentagon.png"
+import pentagon from "../../../../../assets/pentagon.png";
 const SceneFiftyThree = (props) => {
   const [mediaArray, setMediaArray] = React.useState(props.mediaArray);
   var textArrays = props.textArray;
@@ -110,7 +110,7 @@ const SceneFiftyThree = (props) => {
   function getcontent(e, index) {
     let newArr = [...textArrays]; // copying the old datas array
     newArr[index] = {
-      text: e.target.value,
+      text: e,
       fontSize: newArr[index].fontSize,
       fontFamily: newArr[index].fontFamily,
       fontWeight: newArr[index].fontWeight,
@@ -131,6 +131,9 @@ const SceneFiftyThree = (props) => {
         <div className="img-section d-flex">
           <div
             className="box-1 box-size"
+            onClick={() =>
+              setshowbg(true, mediaArray[0].url, mediaArray[0].type, false, 0 )
+            }
             style={{
               "background-image": "url(" + apiPath + mediaArray[0].url + ") ",
             }}
@@ -139,10 +142,24 @@ const SceneFiftyThree = (props) => {
             <img src={pentagon} alt="pentagon" className="img img-1" />
             <img src={pentagon} alt="pentagon" className="img img-2" />
             <img src={pentagon} alt="pentagon" className="img img-3" />
-             Lets Walk you through
-            </div>
+           
+            {textArrays.map((data, index) => {
+              return index == 0 ? (
+                <div
+                  contenteditable="true"
+                  onClick={() => setshowbg(false, "", "", false, 0, 0)}
+                  onInput={(e) => getcontent(e.currentTarget.textContent, 0)}
+                >
+                  {data.text}
+                </div>
+              ) : null;
+            })}
+          </div>
           <div
             className="box-3 box-size"
+            onClick={() =>
+              setshowbg(true, mediaArray[1].url, mediaArray[1].type, false, 1 )
+            }
             style={{
               "background-image": "url(" + apiPath + mediaArray[1].url + ") ",
             }}

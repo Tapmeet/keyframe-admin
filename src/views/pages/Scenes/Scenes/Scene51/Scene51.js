@@ -107,9 +107,10 @@ const SceneFiftyOne = (props) => {
     };
   });
   function getcontent(e, index) {
+    console.log(e);
     let newArr = [...textArrays]; // copying the old datas array
     newArr[index] = {
-      text: e.target.value,
+      text: e,
       fontSize: newArr[index].fontSize,
       fontFamily: newArr[index].fontFamily,
       fontWeight: newArr[index].fontWeight,
@@ -124,6 +125,7 @@ const SceneFiftyOne = (props) => {
     };
     props.getContent(newArr);
   }
+
   return (
     <section className="template-new-wrapper-scene1 slider-section">
       <div className="d-flex">
@@ -131,21 +133,31 @@ const SceneFiftyOne = (props) => {
           <div className="left-width-scene">
             <div className="logo-section">Logo</div>
             {textArrays.map((data, index) => {
-              return index == 1 ? (
+              return index == 0 ? (
                 <div
                   className="Heading-section"
-                  style={{
-                    // "font-size": data.fontSize + "px",
-                    // color: data.fontColor,
-                    // fontWeight: data.fontWeight,
-                    fontFamily: data.fontFamily,
-                  }}
+                  // style={{
+                  //   "font-size": data.fontSize + "px",
+                  //   color: data.fontColor,
+                  //   fontWeight: data.fontWeight,
+                  //   fontFamily: data.fontFamily,
+                  // }}
+                  contenteditable="true"
+                  onClick={() => setshowbg(false, "", "", false, 0, 0)}
+                  onInput={(e) => getcontent(e.currentTarget.textContent, 0)}
                 >
-                  JUST SOLD!
+                  {data.text}
                 </div>
               ) : null;
             })}
-            <div className="bottom-text-section">USA,CA</div>
+            <div
+              className="bottom-text-section"
+              contenteditable="true"
+              onClick={() => setshowbg(false, "", "", false, 1, 1)}
+              onInput={(e) => getcontent(e.currentTarget.textContent, 1)}
+            >
+              {textArrays[1].text}
+            </div>
           </div>
           <div className="right-width-scene">
             <div className="row-1 row-right">
@@ -155,7 +167,7 @@ const SceneFiftyOne = (props) => {
                     key={index}
                     id={index}
                     onClick={() =>
-                      setshowbg(true, data.url, data.type, false, index + 2)
+                      setshowbg(true, data.url, data.type, false, index)
                     }
                     className="bg box-1"
                     style={{
@@ -167,12 +179,12 @@ const SceneFiftyOne = (props) => {
             </div>
             <div className="row-2 row-right">
               {mediaArray.map((data, index) => {
-                return index > 1 ? (
+                return index > 1 && index <= 3 ? (
                   <div
                     key={index}
                     id={index}
                     onClick={() =>
-                      setshowbg(true, data.url, data.type, false, index + 2)
+                      setshowbg(true, data.url, data.type, false, index)
                     }
                     className="bg box-1"
                     style={{
@@ -184,12 +196,12 @@ const SceneFiftyOne = (props) => {
             </div>
             <div className="row-3 row-right">
               {mediaArray.map((data, index) => {
-                return index < 2 ? (
+                return index > 3 && index <= 5 ? (
                   <div
                     key={index}
                     id={index}
                     onClick={() =>
-                      setshowbg(true, data.url, data.type, false, index + 2)
+                      setshowbg(true, data.url, data.type, false, index)
                     }
                     className="bg box-1"
                     style={{

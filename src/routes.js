@@ -157,6 +157,10 @@ const TemplateSceneFourtyEight = React.lazy(() => import('./views/pages/Template
 const TemplateSceneFourtyNine = React.lazy(() => import('./views/pages/Templates/Scenes/Scene49'))
 const TemplateSceneFifty = React.lazy(() => import('./views/pages/Templates/Scenes/Scene50'))
 
+const TemplateSceneFiftyOne = React.lazy(() => import('./views/pages/Templates/Scenes/Scene51'))
+const TemplateSceneFiftyTwo = React.lazy(() => import('./views/pages/Templates/Scenes/Scene52'))
+const TemplateSceneFiftyThree = React.lazy(() => import('./views/pages/Templates/Scenes/Scene53'))
+const TemplateSceneFiftyFour = React.lazy(() => import('./views/pages/Templates/Scenes/Scene54'))
 
 const TemplateSceneLast= React.lazy(() => import('./views/pages/Templates/Scenes/SceneLast'));
 const EditTemplate= React.lazy(() => import('./views/pages/Templates/EditTemplate'));
@@ -323,6 +327,10 @@ const routes = [
   { path: '/template/:id/48/:sceneid', exact: true,  name: 'Scene 48', component: TemplateSceneFourtyEight },
   { path: '/template/:id/49/:sceneid', exact: true,  name: 'Scene 49', component: TemplateSceneFourtyNine },
   { path: '/template/:id/50/:sceneid', exact: true,  name: 'Scene 50', component: TemplateSceneFifty },
+  { path: '/template/:id/51/:sceneid', exact: true,  name: 'Scene 51', component: TemplateSceneFiftyOne },
+  { path: '/template/:id/52/:sceneid', exact: true,  name: 'Scene 52', component: TemplateSceneFiftyTwo },
+  { path: '/template/:id/53/:sceneid', exact: true,  name: 'Scene 53', component: TemplateSceneFiftyThree },
+  { path: '/template/:id/54/:sceneid', exact: true,  name: 'Scene 54', component: TemplateSceneFiftyFour },
 
   { path: '/template/:id/last/:sceneid', exact: true,  name: 'Scene 4', component: TemplateSceneLast },
   { path: '/my-videos/', exact: true,  name: 'Scene 4', component: MyVideos },

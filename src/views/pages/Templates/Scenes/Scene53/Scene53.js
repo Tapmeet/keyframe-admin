@@ -6,7 +6,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 import DragResizeContainer from "react-drag-resize";
 import { apiPath } from "../../../../../Utility/Utility";
-const SceneFiftyFour = (props) => {
+import pentagon from "../../../../../assets/pentagon.png";
+const SceneFiftyThree = (props) => {
   const [mediaArray, setMediaArray] = React.useState(props.mediaArray);
   var textArrays = props.textArray;
   const [mediaArray1, setMediaArray1] = React.useState([]);
@@ -125,77 +126,54 @@ const SceneFiftyFour = (props) => {
     props.getContent(newArr);
   }
   return (
-    <section className="template-new-wrapper-scene1 slider-section scene-54 ">
+    <section className="template-new-wrapper-scene1 slider-section">
       <div className="d-flex">
         <div className="img-section d-flex">
-          <div className="right-width-scene">
-            <div className="row-1 row-right">
-              {mediaArray.map((data, index) => {
-                return index < 2 ? (
-                  <div
-                    key={index}
-                    id={index}
-                    onClick={() =>
-                      setshowbg(true, data.url, data.type, false, index )
-                    }
-                    className="bg box-1"
-                    style={{
-                      "background-image": "url(" + apiPath + data.url + ") ",
-                    }}
-                  ></div>
-                ) : null;
-              })}
-            </div>
-            <div className="row-2 row-right">
-              {mediaArray.map((data, index) => {
-                return index > 1 ? (
-                  <div
-                    key={index}
-                    id={index}
-                    onClick={() =>
-                      setshowbg(true, data.url, data.type, false, index )
-                    }
-                    className="bg box-1"
-                    style={{
-                      "background-image": "url(" + apiPath + data.url + ") ",
-                    }}
-                  ></div>
-                ) : null;
-              })}
-            </div>
-          </div>
-          <div className="left-width-scene">
+          <div
+            className="box-1 box-size"
+            onClick={() =>
+              setshowbg(true, mediaArray[0].url, mediaArray[0].type, false, 0)
+            }
+            style={{
+              "background-image": "url(" + apiPath + mediaArray[0].url + ") ",
+            }}
+          ></div>
+          <div className="box-2">
+            <img src={pentagon} alt="pentagon" className="img img-1" />
+            <img src={pentagon} alt="pentagon" className="img img-2" />
+            <img src={pentagon} alt="pentagon" className="img img-3" />
+
             {textArrays.map((data, index) => {
-              return index == 1 ? (
+              return index == 0 ? (
                 <div
-                  className="Heading-section"
-                  style={{
-                    // "font-size": data.fontSize + "px",
-                    // color: data.fontColor,
-                    // fontWeight: data.fontWeight,
-                    fontFamily: data.fontFamily,
-                  }}
+                style={{
+                  "font-size": data.fontSize + "px",
+                  color: data.fontColor,
+                  "line-height": data.fontLineHeight,
+                  fontWeight: data.fontWeight,
+                  fontFamily: data.fontFamily,
+                }}
                   contenteditable="true"
                   onClick={() => setshowbg(false, "", "", false, 0, 0)}
                   onInput={(e) => getcontent(e.currentTarget.textContent, 0)}
                 >
-                  {textArrays[0].text}
+                  {data.text}
                 </div>
               ) : null;
             })}
-            <div className="logo-section">Logo</div>
-            <div
-              className="bottom-text-section"
-              contenteditable="true"
-              onClick={() => setshowbg(false, "", "", false, 1, 1)}
-              onInput={(e) => getcontent(e.currentTarget.textContent, 1)}
-            >
-              {textArrays[1].text}
-            </div>
           </div>
+          <div
+            className="box-3 box-size"
+            onClick={() =>
+              setshowbg(true, mediaArray[1].url, mediaArray[1].type, false, 1)
+            }
+            style={{
+              "background-image": "url(" + apiPath + mediaArray[1].url + ") ",
+            }}
+          ></div>
         </div>
       </div>
     </section>
   );
 };
-export default SceneFiftyFour;
+export default SceneFiftyThree;
