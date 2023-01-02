@@ -2482,13 +2482,13 @@ section.template-new-wrapper-scene1.slider-section.section-five.scene-49.section
     font-size: 50px;
     font-weight: bold;
     color: #00c8b0;
-    padding:20px 30px 30px;
+    padding: 20px 30px 30px;
     line-height: 1.3;
     border: 0px;
     background: transparent;
     text-align: center;
     resize: none;
-    
+
   }
 
   .bottom-text-section {
@@ -2654,28 +2654,38 @@ section.template-new-wrapper-scene1.slider-section.section-five.scene-49.section
 }
 
 .scene-54 {
-  .right-width-scene{
+  .right-width-scene {
     display: flex;
   }
-  
- .row-right {
+
+  .row-right {
     width: 50%;
     height: 100%;
     flex-wrap: wrap;
   }
+
   .row-1 div:first-of-type,
-  .row-2 div:nth-of-type(2){
+  .row-2 div:nth-of-type(2) {
     height: 60%;
     width: 100%;
   }
+
   .row-1 div:nth-of-type(2),
-  .row-2 div:first-of-type{
+  .row-2 div:first-of-type {
     height: 40%;
     width: 100%;
   }
-  .left-width-scene .bottom-text-section{
-    font-size: 17px;
-    color: #fff;
+
+  .left-width-scene {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+
+    .bottom-text-section {
+      font-size: 17px;
+      color: #fff;
+      width: 100%;
+    }
   }
 }
 
