@@ -15,7 +15,7 @@ const SceneFiftyThree = (props) => {
   function setshowbg(option, scene, type, titleColor, index, textIndex) {
     props.showBg(option, type, scene, titleColor, index, textIndex);
   }
-  const settings = {
+  const settings = { 
     arrows: false,
     infiniteLoop: true,
     autoPlay: true,

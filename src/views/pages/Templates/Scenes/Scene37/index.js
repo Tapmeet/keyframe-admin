@@ -76,7 +76,7 @@ const TemplateSceneThirtySeven = (props) => {
       media: mediaArray,
       fontFamily: fontfamily,
       fontWeight: fontWeight,
-      time: 4,
+      time: 5,
     };
     updateData(data);
   }
@@ -96,7 +96,7 @@ const TemplateSceneThirtySeven = (props) => {
       media: mediaArray,
       fontFamily: fontFamily,
       fontWeight: fontweight,
-      time: 4,
+      time: 5,
     };
     updateData(data);
   }
@@ -115,7 +115,7 @@ const TemplateSceneThirtySeven = (props) => {
       boxheight: height,
       textTransform: textTransform,
       media: mediaArray,
-      time: 4,
+      time: 5,
       fontFamily:fontFamily,
       fontWeight:fontWeight,
     };
@@ -135,7 +135,7 @@ const TemplateSceneThirtySeven = (props) => {
       boxheight: height,
       textTransform: textTransform,
       media: mediaArray,
-      time: 4,
+      time: 5,
       fontFamily:fontFamily,
       fontWeight:fontWeight,
     };
@@ -155,7 +155,7 @@ const TemplateSceneThirtySeven = (props) => {
       boxheight: height,
       textTransform: texttransform,
       media: mediaArray,
-      time: 4,
+      time: 5,
       fontFamily:fontFamily,
       fontWeight:fontWeight,
     };
@@ -175,7 +175,7 @@ const TemplateSceneThirtySeven = (props) => {
       boxheight: height,
       textTransform: textTransform,
       media: mediaArray,
-      time: 4,
+      time: 5,
       fontFamily:fontFamily,
       fontWeight:fontWeight,
     };
@@ -196,7 +196,7 @@ const TemplateSceneThirtySeven = (props) => {
       boxheight: height,
       textTransform: textTransform,
       media: mediaArray,
-      time: 4,
+      time: 5,
       fontFamily:fontFamily,
       fontWeight:fontWeight,
     };
@@ -216,7 +216,7 @@ const TemplateSceneThirtySeven = (props) => {
       boxheight: height,
       textTransform: textTransform,
       media: mediaArray,
-      time: 4,
+      time: 5,
       fontFamily:fontFamily,
       fontWeight:fontWeight,
     };
@@ -258,7 +258,7 @@ const TemplateSceneThirtySeven = (props) => {
         boxheight: height,
         textTransform: textTransform,
         media: newArr,
-        time: 4,
+        time: 5,
         fontFamily:fontFamily,
         fontWeight:fontWeight,
       };
@@ -348,7 +348,7 @@ const TemplateSceneThirtySeven = (props) => {
       boxheight: obj.boxheight,
       textTransform: textTransform,
       media: mediaArray,
-      time: 4,
+      time: 5,
       fontFamily:fontFamily,
       fontWeight:fontWeight,
     };

@@ -87,7 +87,7 @@ const TemplateScene13 = (props) => {
         fontWeight: fontWeight,
         titleFontFamily: fontfamily,
         titleFontWeight: titleFontWeight,
-        time: 4,
+        time: 6.5,
       };
       updateData(data);
     } else {
@@ -106,7 +106,7 @@ const TemplateScene13 = (props) => {
         fontWeight: fontWeight,
         titleFontFamily: titleFontFamily,
         titleFontWeight: titleFontWeight,
-        time: 4,
+        time: 6.5,
       };
       updateData(data);
     }
@@ -130,7 +130,7 @@ const TemplateScene13 = (props) => {
         fontWeight: fontWeight,
         titleFontFamily: titleFontFamily,
         titleFontWeight: fontweight,
-        time: 4,
+        time: 6.5,
       };
       updateData(data);
     } else {
@@ -149,7 +149,7 @@ const TemplateScene13 = (props) => {
         fontWeight: fontweight,
         titleFontFamily: titleFontFamily,
         titleFontWeight: titleFontWeight,
-        time: 4,
+        time: 6.5,
       };
       updateData(data);
     }
@@ -171,7 +171,7 @@ const TemplateScene13 = (props) => {
       fontWeight: fontWeight,
       titleFontFamily: titleFontFamily,
       titleFontWeight: titleFontWeight,
-      time: 4,
+      time: 6.5,
     };
     updateData(data);
   }
@@ -191,7 +191,7 @@ const TemplateScene13 = (props) => {
       fontWeight: fontWeight,
       titleFontFamily: titleFontFamily,
       titleFontWeight: titleFontWeight,
-      time: 4,
+      time: 6.5,
     };
     updateData(data);
   }
@@ -211,7 +211,7 @@ const TemplateScene13 = (props) => {
         media: mediaArray,
         fontFamily: fontFamily,
         fontWeight: fontWeight,
-        time: 4,
+        time: 6.5,
       };
       updateData(data);
     } else {
@@ -227,7 +227,7 @@ const TemplateScene13 = (props) => {
         media: mediaArray,
         fontFamily: fontFamily,
         fontWeight: fontWeight,
-        time: 4,
+        time: 6.5,
       };
       updateData(data);
       setTextColor(color);
@@ -251,7 +251,7 @@ const TemplateScene13 = (props) => {
       fontWeight: fontWeight,
       titleFontFamily: titleFontFamily,
       titleFontWeight: titleFontWeight,
-      time: 4,
+      time: 6.5,
     };
     updateData(data);
   }
@@ -272,7 +272,7 @@ const TemplateScene13 = (props) => {
       fontWeight: fontWeight,
       titleFontFamily: titleFontFamily,
       titleFontWeight: titleFontWeight,
-      time: 4,
+      time: 6.5,
     };
     updateData(data);
   }
@@ -293,7 +293,7 @@ const TemplateScene13 = (props) => {
         fontWeight: fontWeight,
         titleFontFamily: titleFontFamily,
         titleFontWeight: titleFontWeight,
-        time: 4,
+        time: 6.5,
       };
       updateData(data);
     } else {
@@ -312,7 +312,7 @@ const TemplateScene13 = (props) => {
         fontWeight: fontWeight,
         titleFontFamily: titleFontFamily,
         titleFontWeight: titleFontWeight,
-        time: 4,
+        time: 6.5,
       };
       updateData(data);
     }
@@ -364,7 +364,7 @@ const TemplateScene13 = (props) => {
         textSize: textSize,
         textTransform: textTransform,
         media: newArr,
-        time: 4,
+        time: 6.5,
         titletextSize: titletextSize,
         fontFamily: fontFamily,
         fontWeight: fontWeight,

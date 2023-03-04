@@ -93,6 +93,10 @@ const TemplateScene51= React.lazy(() => import('./views/pages/Scenes/Scenes/Scen
 const TemplateScene52= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene52'))
 const TemplateScene53= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene53'))
 const TemplateScene54= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene54'))
+const TemplateScenelast2= React.lazy(() => import('./views/pages/Scenes/Scenes/Scenelast2'))
+
+const TemplateScene55= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene55'))
+const TemplateScene56= React.lazy(() => import('./views/pages/Scenes/Scenes/Scene56'))
 
 const AllScenesCategories = React.lazy(() => import('./views/pages/Category/AllCategories'));
 const AddCategory = React.lazy(() => import('./views/pages/Category/AddCategory'));
@@ -162,6 +166,7 @@ const TemplateSceneFiftyTwo = React.lazy(() => import('./views/pages/Templates/S
 const TemplateSceneFiftyThree = React.lazy(() => import('./views/pages/Templates/Scenes/Scene53'))
 const TemplateSceneFiftyFour = React.lazy(() => import('./views/pages/Templates/Scenes/Scene54'))
 
+const TemplateSceneLast2= React.lazy(() => import('./views/pages/Templates/Scenes/SceneLast2'));
 const TemplateSceneLast= React.lazy(() => import('./views/pages/Templates/Scenes/SceneLast'));
 const EditTemplate= React.lazy(() => import('./views/pages/Templates/EditTemplate'));
 const MyVideos= React.lazy(() => import('./views/pages/MyVideos'));
@@ -267,6 +272,10 @@ const routes = [
   { path: '/edit-scene/52', exact: true,  name: 'Scene 52', component: TemplateScene52 },
   { path: '/edit-scene/53', exact: true,  name: 'Scene 53', component: TemplateScene53 },
   { path: '/edit-scene/54', exact: true,  name: 'Scene 54', component: TemplateScene54},
+  { path: '/edit-scene/55', exact: true,  name: 'Scene 55', component: TemplateScene55},
+  { path: '/edit-scene/56', exact: true,  name: 'Scene 56', component: TemplateScene56},
+
+  { path: '/edit-scene/last2', exact: true,  name: 'Scene last', component: TemplateScenelast2},
   { path: '/scene-categories', exact: true,  name: 'Categories', component: AllScenesCategories },
   { path: '/add-category', exact: true,  name: 'Add Category', component: AddCategory },
   { path: '/edit-category/:id', exact: true, name: 'Edit Category', component: EditCategory },
@@ -331,7 +340,7 @@ const routes = [
   { path: '/template/:id/52/:sceneid', exact: true,  name: 'Scene 52', component: TemplateSceneFiftyTwo },
   { path: '/template/:id/53/:sceneid', exact: true,  name: 'Scene 53', component: TemplateSceneFiftyThree },
   { path: '/template/:id/54/:sceneid', exact: true,  name: 'Scene 54', component: TemplateSceneFiftyFour },
-
+  { path: '/template/:id/last2/:sceneid', exact: true,  name: 'Scene last2', component: TemplateSceneLast2 },
   { path: '/template/:id/last/:sceneid', exact: true,  name: 'Scene 4', component: TemplateSceneLast },
   { path: '/my-videos/', exact: true,  name: 'Scene 4', component: MyVideos },
   { path: '/export-video/:templateId/download/', exact: true,  name: 'Export Video', component: ExportVideo },

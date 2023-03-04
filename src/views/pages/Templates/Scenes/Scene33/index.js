@@ -101,7 +101,7 @@ const TemplateSceneThirtyThree = (props) => {
         fontWeight: fontWeight,
         titleFontFamily: fontfamily,
         titleFontWeight: titleFontWeight,
-        time: 4,
+        time: 6.5,
       };
       updateData(data);
     } else {
@@ -120,7 +120,7 @@ const TemplateSceneThirtyThree = (props) => {
         fontWeight: fontWeight,
         titleFontFamily: titleFontFamily,
         titleFontWeight: titleFontWeight,
-        time: 4,
+        time: 6.5,
       };
       updateData(data);
     }
@@ -143,7 +143,7 @@ const TemplateSceneThirtyThree = (props) => {
         fontWeight: fontWeight,
         titleFontFamily: titleFontFamily,
         titleFontWeight: fontweight,
-        time: 4,
+        time: 6.5,
       };
       updateData(data);
     } else {
@@ -162,7 +162,7 @@ const TemplateSceneThirtyThree = (props) => {
         fontWeight: fontweight,
         titleFontFamily: titleFontFamily,
         titleFontWeight: titleFontWeight,
-        time: 4,
+        time: 6.5,
       };
       updateData(data);
     }
@@ -184,7 +184,7 @@ const TemplateSceneThirtyThree = (props) => {
       fontWeight: fontWeight,
       titleFontFamily: titleFontFamily,
       titleFontWeight: titleFontWeight,
-      time: 4,
+      time: 6.5,
     };
     updateData(data);
   }
@@ -204,7 +204,7 @@ const TemplateSceneThirtyThree = (props) => {
       fontWeight: fontWeight,
       titleFontFamily: titleFontFamily,
       titleFontWeight: titleFontWeight,
-      time: 4,
+      time: 6.5,
     };
     updateData(data);
   }
@@ -224,7 +224,7 @@ const TemplateSceneThirtyThree = (props) => {
         media: mediaArray,
         fontFamily: fontFamily,
         fontWeight: fontWeight,
-        time: 4,
+        time: 6.5,
       };
       updateData(data);
     } else {
@@ -240,7 +240,7 @@ const TemplateSceneThirtyThree = (props) => {
         media: mediaArray,
         fontFamily: fontFamily,
         fontWeight: fontWeight,
-        time: 4,
+        time: 6.5,
       };
       updateData(data);
       setTextColor(color);
@@ -264,7 +264,7 @@ const TemplateSceneThirtyThree = (props) => {
       fontWeight: fontWeight,
       titleFontFamily: titleFontFamily,
       titleFontWeight: titleFontWeight,
-      time: 4,
+      time: 6.5,
     };
     updateData(data);
   }
@@ -285,7 +285,7 @@ const TemplateSceneThirtyThree = (props) => {
       fontWeight: fontWeight,
       titleFontFamily: titleFontFamily,
       titleFontWeight: titleFontWeight,
-      time: 4,
+      time: 6.5,
     };
     updateData(data);
   }
@@ -306,7 +306,7 @@ const TemplateSceneThirtyThree = (props) => {
         fontWeight: fontWeight,
         titleFontFamily: titleFontFamily,
         titleFontWeight: titleFontWeight,
-        time: 4,
+        time: 6.5,
       };
       updateData(data);
     } else {
@@ -325,7 +325,7 @@ const TemplateSceneThirtyThree = (props) => {
         fontWeight: fontWeight,
         titleFontFamily: titleFontFamily,
         titleFontWeight: titleFontWeight,
-        time: 4,
+        time: 6.5,
       };
       updateData(data);
     }
@@ -394,7 +394,7 @@ const TemplateSceneThirtyThree = (props) => {
         textSize: textSize,
         textTransform: textTransform,
         media: newArr,
-        time: 4,
+        time: 6.5,
         titletextSize: titletextSize,
         fontFamily: fontFamily,
         fontWeight: fontWeight,

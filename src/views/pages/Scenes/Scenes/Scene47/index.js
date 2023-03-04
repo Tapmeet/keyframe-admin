@@ -68,7 +68,7 @@ const TemplateScene47 = (props) => {
     setTextArray(newArr);
     const data = {
       media: mediaArray,
-      time: 6,
+      time: 7.5,
       textArray: newArr,
     };
     updateData(data);
@@ -93,7 +93,7 @@ const TemplateScene47 = (props) => {
     setTextArray(newArr);
     const data = {
       media: mediaArray,
-      time: 6,
+      time: 7.5,
       textArray: newArr,
     };
     updateData(data);
@@ -118,7 +118,7 @@ const TemplateScene47 = (props) => {
     setTextArray(newArr);
     const data = {
       media: mediaArray,
-      time: 6,
+      time: 7.5,
       textArray: newArr,
     };
     updateData(data);
@@ -142,7 +142,7 @@ const TemplateScene47 = (props) => {
     setTextArray(newArr);
     const data = {
       media: mediaArray,
-      time: 6,
+      time: 7.5,
       textArray: newArr,
     };
     updateData(data);
@@ -166,7 +166,7 @@ const TemplateScene47 = (props) => {
     setTextArray(newArr);
     const data = {
       media: mediaArray,
-      time: 6,
+      time: 7.5,
       textArray: newArr,
     };
     updateData(data);
@@ -191,7 +191,7 @@ const TemplateScene47 = (props) => {
     setTextArray(newArr);
     const data = {
       media: mediaArray,
-      time: 6,
+      time: 7.5,
       textArray: newArr,
     };
     updateData(data);
@@ -218,7 +218,7 @@ const TemplateScene47 = (props) => {
     //console.log(newArr)
     const data = {
       media: mediaArray,
-      time: 6,
+      time: 7.5,
       textArray: newArr,
     };
     updateData(data);
@@ -253,7 +253,7 @@ const TemplateScene47 = (props) => {
       setMediaArray(newArr);
       const data = {
         media: newArr,
-        time: 6,
+        time: 7.5,
         textArray: textArray,
       };
       updateData(data);
@@ -271,7 +271,7 @@ const TemplateScene47 = (props) => {
     setTextArray(content);
     const data = {
       textArray: content,
-      time: 6,
+      time: 7.5,
       media: mediaArray,
     };
     updateData(data);
