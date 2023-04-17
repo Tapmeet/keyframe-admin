@@ -2869,6 +2869,19 @@ section.template-new-wrapper-scene1.slider-section.section-five.scene-49.section
     color: #fff;
     font-family: Oswald;
   }
+
+  .left-width-scene .Heading-section {
+    font-size: 45px;
+  }
+
+  .bottom-text-section {
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+    border: 0px;
+    resize: none;
+
+  }
 }
 
 .scene-56 {
@@ -2946,4 +2959,199 @@ section.template-new-wrapper-scene1.slider-section.section-five.scene-49.section
     color: #a6724c;
     padding-bottom: 15px;
   }
+}
+
+.template-new-wrapper-scene1.slider-section.scene-55.scene-57 {
+  .right-width-scene .row-right {
+    width: 100%;
+    height: 50%;
+    display: flex;
+
+    div {
+      border: 20px solid #0b2d49;
+    }
+  }
+
+  .row-2.row-right div {
+    border-bottom: 10px solid #0b2d49 !important;
+  }
+
+  .row-3.row-right div {
+    border-top: 10px solid #0b2d49 !important;
+  }
+
+  .left-width-scene {
+    width: 45%;
+    background-color: #0b2d49;
+
+    .date-section {
+      font-family: Roboto;
+    }
+
+    .time-section {
+      font-family: Roboto;
+    }
+
+    .content-wrapper {
+      font-family: Roboto;
+    }
+  }
+
+  .left-width-scene .bottom-text-section {
+    background: transparent;
+  }
+
+  .left-width-scene .Heading-section {
+    font-size: 54px;
+    font-family: Merriweather;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .left-width-scene .bottom-text-section {
+    color: #fff;
+    font-family: Roboto;
+    text-transform: none;
+    font-weight: normal;
+    padding: 15px 0 10px;
+  }
+
+  .date-section::after {
+    background: #fff;
+  }
+}
+
+.template-new-wrapper-scene1.slider-section.scene-55.scene-58 {
+  .box-2 {
+    background-color: #e3d4be;
+    width: 45%;
+    font-size: 20px;
+    font-weight: normal;
+    color: #333;
+    text-transform: none;
+
+    .date-section {
+      font-family: "saira";
+      font-size: 20px;
+      color: #333;
+    }
+
+    .time-section {
+      font-family: "saira";
+      font-size: 16px;
+      color: #333;
+    }
+
+    .content-wrapper {
+      font-family: "Saira";
+      font-size: 18px;
+      color: #333;
+    }
+
+    .bottom-text-section {
+      color: #000;
+      font-family: "Saira";
+    }
+
+    .Heading-section {
+      color: #000;
+      font-family: DM Serif Display;
+      font-size: 50px;
+      line-height: 1.4;
+      margin-bottom: 30px;
+    }
+  }
+
+}
+
+.template-new-wrapper-scene1.slider-section.scene-55.scene-58.scene-59 {
+  .box-3.box-size {
+    position: relative;
+
+  }
+
+  .box-2 {
+    background-color: #880001;
+
+    .Heading-section {
+      color: #fff;
+      max-width: 200px;
+      margin-bottom: 60px;
+    }
+
+    .bottom-text-section {
+      color: #fff;
+    }
+
+    .content-wrapper {
+      color: #fff;
+    }
+  }
+
+  .box-1 {
+    position: relative;
+  }
+
+  .price-warpper {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    font-size: 20px;
+    color: #fff;
+    padding: 15px 0;
+  }
+}
+
+.template-new-wrapper-scene1.slider-section.scene-56.scene-60 {
+  .left-width-scene::before {
+    display: none;
+  }
+
+  .left-width-scene {
+    width: 30%;
+    text-align: center;
+    background-color: transparent;
+    position: absolute;
+    overflow: hidden;
+    left: 50px;
+    bottom: auto;
+    width: 35%;
+    height: auto;
+    top: 0px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .text-content-section {
+      background-color: rgba(250, 250, 250, 0.8);
+      padding: 50px;
+    }
+  }
+
+
+  .left-width-scene .bottom-text-section {
+    background: transparent;
+    font-family: Poppins;
+    text-transform: none;
+    color: #000;
+    padding-top: 00px;
+  }
+
+  .Heading-section {
+    color: #000;
+  }
+
+  .left-width-scene::after {
+    display: none;
+  }
+
+  .content-wrapper {
+    font-size: 18px;
+    color: #000;
+    padding-bottom: 15px;
+  }
+
 }

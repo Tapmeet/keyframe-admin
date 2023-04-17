@@ -43,7 +43,6 @@
     "jquery": "^3.5.1",
     "jwt-decode": "^3.1.2",
     "multiselect-react-dropdown": "^1.6.7",
-    "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-app-polyfill": "^1.0.6",
@@ -65,7 +64,8 @@
     "universal-cookie": "^4.0.4"
   },
   "devDependencies": {
-    "react-scripts": "^3.4.1"
+    "react-scripts": "^3.4.1",
+    "sass": "^1.60.0"
   },
   "scripts": {
     "start": "react-scripts start",
