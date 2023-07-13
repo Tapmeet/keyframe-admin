@@ -1,4 +1,5 @@
 import React from 'react';
+
 const Toaster = React.lazy(() => import('./views/notifications/toaster/Toaster'));
 const Tables = React.lazy(() => import('./views/base/tables/Tables'));
 
@@ -116,6 +117,9 @@ const TemplateScene72 = React.lazy(() => import('./views/pages/Scenes/Scenes/Sce
 const TemplateScene73 = React.lazy(() => import('./views/pages/Scenes/Scenes/Scene73'))
 const TemplateScene74 = React.lazy(() => import('./views/pages/Scenes/Scenes/Scene74'))
 const TemplateScene75 = React.lazy(() => import('./views/pages/Scenes/Scenes/Scene75'))
+const TemplateScene76 = React.lazy(() => import('./views/pages/Scenes/Scenes/Scene76'))
+const TemplateScene77 = React.lazy(() => import('./views/pages/Scenes/Scenes/Scene77'))
+const TemplateScene78 = React.lazy(() => import('./views/pages/Scenes/Scenes/Scene78'))
 
 const AllScenesCategories = React.lazy(() => import('./views/pages/Category/AllCategories'));
 const AddCategory = React.lazy(() => import('./views/pages/Category/AddCategory'));
@@ -205,6 +209,10 @@ const TemplateSceneSeventyTwo = React.lazy(() => import('./views/pages/Templates
 const TemplateSceneSeventyThree = React.lazy(() => import('./views/pages/Templates/Scenes/Scene73'))
 const TemplateSceneSeventyFour = React.lazy(() => import('./views/pages/Templates/Scenes/Scene74'))
 const TemplateSceneSeventyFive = React.lazy(() => import('./views/pages/Templates/Scenes/Scene75'))
+const TemplateSceneSeventySix = React.lazy(() => import('./views/pages/Templates/Scenes/Scene76'))
+const TemplateSceneSeventySeven = React.lazy(() => import('./views/pages/Templates/Scenes/Scene77'))
+const TemplateSceneSeventyEight= React.lazy(() => import('./views/pages/Templates/Scenes/Scene78'))
+
 const TemplateSceneLast2 = React.lazy(() => import('./views/pages/Templates/Scenes/SceneLast2'));
 const TemplateSceneLast = React.lazy(() => import('./views/pages/Templates/Scenes/SceneLast'));
 const EditTemplate = React.lazy(() => import('./views/pages/Templates/EditTemplate'));
@@ -332,6 +340,9 @@ const routes = [
   { path: '/edit-scene/73', exact: true, name: 'Scene 71', component: TemplateScene73 },
   { path: '/edit-scene/74', exact: true, name: 'Scene 71', component: TemplateScene74 },
   { path: '/edit-scene/75', exact: true, name: 'Scene 75', component: TemplateScene75 },
+  { path: '/edit-scene/76', exact: true, name: 'Scene 76', component: TemplateScene76 },
+  { path: '/edit-scene/77', exact: true, name: 'Scene 76', component: TemplateScene77 },
+  { path: '/edit-scene/78', exact: true, name: 'Scene 78', component: TemplateScene78 },
 
   { path: '/edit-scene/last2', exact: true, name: 'Scene last', component: TemplateScenelast2 },
   { path: '/scene-categories', exact: true, name: 'Categories', component: AllScenesCategories },
@@ -419,6 +430,9 @@ const routes = [
   { path: '/template/:id/73/:sceneid', exact: true, name: 'Scene 73', component: TemplateSceneSeventyThree },
   { path: '/template/:id/74/:sceneid', exact: true, name: 'Scene 74', component: TemplateSceneSeventyFour },
   { path: '/template/:id/75/:sceneid', exact: true, name: 'Scene 75', component: TemplateSceneSeventyFive },
+  { path: '/template/:id/76/:sceneid', exact: true, name: 'Scene 76', component: TemplateSceneSeventySix },
+  { path: '/template/:id/77/:sceneid', exact: true, name: 'Scene 77', component: TemplateSceneSeventySeven },
+  { path: '/template/:id/78/:sceneid', exact: true, name: 'Scene 78', component: TemplateSceneSeventyEight},
 
   { path: '/template/:id/last2/:sceneid', exact: true, name: 'Scene last2', component: TemplateSceneLast2 },
   { path: '/template/:id/last/:sceneid', exact: true, name: 'Scene 4', component: TemplateSceneLast },
