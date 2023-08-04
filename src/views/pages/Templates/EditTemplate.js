@@ -38,6 +38,7 @@ const EditTemplate = () => {
   const [sceneOptions, setSceneOptions] = React.useState([]);
   const [thumbnail, setThumbnail] = React.useState("");
   const [selectedCategory, setSelectedCategory] = React.useState();
+  const [templateOrder, setTemplateOrder] = React.useState('');
   const [selectedValue, setSelectedValue] = React.useState([]);
   const [templateDate, setTemplateData] = React.useState([]);
   /**
@@ -55,6 +56,7 @@ const EditTemplate = () => {
       return false;
     }
     console.log('heress')
+    console.log(templateOrder)
     // if (checktemplateImage === false) {
     //   return false;
     // }
@@ -70,6 +72,7 @@ const EditTemplate = () => {
         templateImage: templateImage,
         templateScenes: selectedValue,
         templateCategory: selectedCategory,
+        templateOrder:templateOrder
       })
       .then((response) => {
         console.log(response);
@@ -111,7 +114,7 @@ const EditTemplate = () => {
           settemplateImage(imageUrl);
           setChecktemplateImage(true);
         })
-        .catch((error) => {});
+        .catch((error) => { });
     }
   }
   React.useEffect(() => {
@@ -123,7 +126,7 @@ const EditTemplate = () => {
       setUserId(decoded.id);
     }
     axios.get(`${apiGetTemplateCategories}`, {}).then(function (response) {
-    //  console.log(response.data.templates);
+      //  console.log(response.data.templates);
       setCategories(response.data.templates);
     });
     axios.get(`${apiAllScene}`, {}).then(function (response) {
@@ -143,13 +146,14 @@ const EditTemplate = () => {
     axios
       .get(`${apigetAdminTemplate}` + "?templateId=" + templateId, {})
       .then(function (response) {
-         console.log(response)
+        console.log(response)
         setTemplateData(response.data.data[0]);
         setTitle(response.data.data[0].title)
         setSelectedCategory(response.data.data[0].templateCategory);
         setThumbnail(response.data.data[0].templateImage);
         setSelectedValue(response.data.data[0].templateScenes);
         settemplateImage(response.data.data[0].templateImage);
+        setTemplateOrder(response.data.data[0].templateOrder)
       });
   }, [userId]);
   function onSelect(selectedList, selectedItem) {
@@ -217,6 +221,16 @@ const EditTemplate = () => {
               return <option value={data._id}>{data.title}</option>;
             })}
           </select>
+        </div>
+        <div className="form-group">
+          <label>Order</label>
+          <input
+            value={templateOrder}
+            type="text"
+            className="form-control"
+            onChange={(e) => setTemplateOrder(e.currentTarget.value)}
+            placeholder="Order"
+          />
         </div>
         <button
           onClick={handleSubmit}
